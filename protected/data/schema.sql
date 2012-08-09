@@ -328,7 +328,7 @@ CREATE TABLE IF NOT EXISTS extensions
 CREATE TABLE IF NOT EXISTS extensionscomments
 (
 	id int(10) NOT NULL auto_increment,
-	postid int(10) NOT NULL default '',
+	postid int(10) NOT NULL default '0',
 	authorid int(10) NOT NULL default '0', 
 	postdate int(10) NOT NULL default '0',
 	visible tinyint(1) NOT NULL default '0', 
@@ -341,7 +341,7 @@ CREATE TABLE IF NOT EXISTS extensionscomments
 CREATE TABLE IF NOT EXISTS usercomments
 (
 	id int(10) NOT NULL auto_increment,
-	userid int(10) NOT NULL default '',
+	userid int(10) NOT NULL default '0',
 	authorid int(10) NOT NULL default '0', 
 	postdate int(10) NOT NULL default '0',
 	visible tinyint(1) NOT NULL default '0', 
@@ -354,7 +354,7 @@ CREATE TABLE IF NOT EXISTS usercomments
 CREATE TABLE IF NOT EXISTS extensionsfiles
 (
 	id int(10) NOT NULL auto_increment,
-	extensionid int(10) NOT NULL default '',
+	extensionid int(10) NOT NULL default '0',
 	authorid int(10) NOT NULL default '0', 
 	postdate int(10) NOT NULL default '0',
 	size int(10) NOT NULL default '0',
@@ -397,7 +397,7 @@ CREATE TABLE IF NOT EXISTS forumtopics
 	content TEXT NULL,
 	PRIMARY KEY (id),
 	KEY title (title),
-	KEY alias (alias),
+	KEY alias (alias(128)),
 	KEY language (language),
 	KEY lastpostdate (lastpostdate),
 	KEY dateposted (dateposted)
