@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS members
 	data TEXT NULL,
 	role char(30) NOT NULL default '',
 	ipaddress char(30) NOT NULL default '',
-	fbuid int(10) NOT NULL default '0',
+	fbuid varchar(16) NOT NULL default '0',
 	fbtoken varchar(255) NOT NULL default '',
 	PRIMARY KEY (id),
 	KEY username (username),
