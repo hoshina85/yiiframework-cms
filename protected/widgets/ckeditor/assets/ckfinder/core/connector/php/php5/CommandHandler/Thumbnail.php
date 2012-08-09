@@ -81,7 +81,7 @@ class CKFinder_Connector_CommandHandler_Thumbnail extends CKFinder_Connector_Com
 
         // If the thumbnail file doesn't exists, create it now.
         if (!file_exists($thumbFilePath)) {
-            if(!$this->createThumb($sourceFilePath, $thumbFilePath, $_thumbnails->getMaxWidth(), $_thumbnails->getMaxHeight(), $_thumbnails->getQuality(), true, $_thumbnails->getBmpSupported())) {
+            if (!$this->createThumb($sourceFilePath, $thumbFilePath, $_thumbnails->getMaxWidth(), $_thumbnails->getMaxHeight(), $_thumbnails->getQuality(), true, $_thumbnails->getBmpSupported())) {
                 $this->_errorHandler->throwError(CKFINDER_CONNECTOR_ERROR_ACCESS_DENIED);
             }
         }
@@ -98,8 +98,7 @@ class CKFinder_Connector_CommandHandler_Thumbnail extends CKFinder_Connector_Com
 
         if (isset($_SERVER["HTTP_IF_NONE_MATCH"]) && $_SERVER["HTTP_IF_NONE_MATCH"] === $etag) {
             $is304 = true;
-        }
-        else if($rtime == $mtime) {
+        } elseif ($rtime == $mtime) {
             $is304 = true;
         }
 
@@ -125,12 +124,12 @@ class CKFinder_Connector_CommandHandler_Thumbnail extends CKFinder_Connector_Com
     /**
      * Create thumbnail
      *
-     * @param string $sourceFile
-     * @param string $targetFile
-     * @param int $maxWidth
-     * @param int $maxHeight
-     * @param boolean $preserverAspectRatio
-     * @param boolean $bmpSupported
+     * @param  string  $sourceFile
+     * @param  string  $targetFile
+     * @param  int     $maxWidth
+     * @param  int     $maxHeight
+     * @param  boolean $preserverAspectRatio
+     * @param  boolean $bmpSupported
      * @return boolean
      * @static
      * @access public
@@ -158,22 +157,20 @@ class CKFinder_Connector_CommandHandler_Thumbnail extends CKFinder_Connector_Com
             if ($sourceFile != $targetFile) {
                 copy($sourceFile, $targetFile);
             }
+
             return true;
         }
 
-        if ($preserverAspectRatio)
-        {
+        if ($preserverAspectRatio) {
             // Gets the best size for aspect ratio resampling
             $oSize = CKFinder_Connector_CommandHandler_Thumbnail::GetAspectRatioSize($iFinalWidth, $iFinalHeight, $sourceImageWidth, $sourceImageHeight );
-        }
-        else {
+        } else {
             $oSize = array('Width' => $iFinalWidth, 'Height' => $iFinalHeight);
         }
 
         CKFinder_Connector_Utils_Misc::setMemoryForImage($sourceImageWidth, $sourceImageHeight, $sourceImageBits, $sourceImageChannels);
 
-        switch ($sourceImageAttr['mime'])
-        {
+        switch ($sourceImageAttr['mime']) {
             case 'image/gif':
                 {
                     if (@imagetypes() & IMG_GIF) {
@@ -234,13 +231,11 @@ class CKFinder_Connector_CommandHandler_Thumbnail extends CKFinder_Connector_Com
             return false;
         }
 
-
         $oThumbImage = imagecreatetruecolor($oSize["Width"], $oSize["Height"]);
         //imagecopyresampled($oThumbImage, $oImage, 0, 0, 0, 0, $oSize["Width"], $oSize["Height"], $sourceImageWidth, $sourceImageHeight);
-        CKFinder_Connector_Utils_Misc::fastImageCopyResampled($oThumbImage, $oImage, 0, 0, 0, 0, $oSize["Width"], $oSize["Height"], $sourceImageWidth, $sourceImageHeight, (int)max(floor($quality/20), 1));
+        CKFinder_Connector_Utils_Misc::fastImageCopyResampled($oThumbImage, $oImage, 0, 0, 0, 0, $oSize["Width"], $oSize["Height"], $sourceImageWidth, $sourceImageHeight, (int) max(floor($quality/20), 1));
 
-        switch ($sourceImageAttr['mime'])
-        {
+        switch ($sourceImageAttr['mime']) {
             case 'image/gif':
                 imagegif($oThumbImage, $targetFile);
                 break;
@@ -269,8 +264,6 @@ class CKFinder_Connector_CommandHandler_Thumbnail extends CKFinder_Connector_Com
         return true;
     }
 
-
-
     /**
      * Return aspect ratio size, returns associative array:
      * <pre>
@@ -281,10 +274,10 @@ class CKFinder_Connector_CommandHandler_Thumbnail extends CKFinder_Connector_Com
      * )
      * </pre>
      *
-     * @param int $maxWidth
-     * @param int $maxHeight
-     * @param int $actualWidth
-     * @param int $actualHeight
+     * @param  int   $maxWidth
+     * @param  int   $maxHeight
+     * @param  int   $actualWidth
+     * @param  int   $actualHeight
      * @return array
      * @static
      * @access public
@@ -294,18 +287,16 @@ class CKFinder_Connector_CommandHandler_Thumbnail extends CKFinder_Connector_Com
         $oSize = array("Width"=>$maxWidth, "Height"=>$maxHeight);
 
         // Calculates the X and Y resize factors
-        $iFactorX = (float)$maxWidth / (float)$actualWidth;
-        $iFactorY = (float)$maxHeight / (float)$actualHeight;
+        $iFactorX = (float) $maxWidth / (float) $actualWidth;
+        $iFactorY = (float) $maxHeight / (float) $actualHeight;
 
         // If some dimension have to be scaled
-        if ($iFactorX != 1 || $iFactorY != 1)
-        {
+        if ($iFactorX != 1 || $iFactorY != 1) {
             // Uses the lower Factor to scale the oposite size
             if ($iFactorX < $iFactorY) {
-                $oSize["Height"] = (int)round($actualHeight * $iFactorX);
-            }
-            else if ($iFactorX > $iFactorY) {
-                $oSize["Width"] = (int)round($actualWidth * $iFactorY);
+                $oSize["Height"] = (int) round($actualHeight * $iFactorX);
+            } elseif ($iFactorX > $iFactorY) {
+                $oSize["Width"] = (int) round($actualWidth * $iFactorY);
             }
         }
 

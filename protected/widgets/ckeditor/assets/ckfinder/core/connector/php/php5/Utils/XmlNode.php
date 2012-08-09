@@ -58,11 +58,11 @@ class Ckfinder_Connector_Utils_XmlNode
     /**
      * Create new node
      *
-     * @param string $nodeName node name
-     * @param string $nodeValue node value
+     * @param  string                           $nodeName  node name
+     * @param  string                           $nodeValue node value
      * @return Ckfinder_Connector_Utils_XmlNode
      */
-    function __construct($nodeName, $nodeValue = null)
+    public function __construct($nodeName, $nodeValue = null)
     {
         $this->_name = $nodeName;
         if (!is_null($nodeValue)) {
@@ -113,6 +113,7 @@ class Ckfinder_Connector_Utils_XmlNode
         //if there is nothing more todo, close empty tag and exit
         if (is_null($this->_value) && !sizeof($this->_childNodes)) {
             $ret .= " />";
+
             return $ret;
         }
 

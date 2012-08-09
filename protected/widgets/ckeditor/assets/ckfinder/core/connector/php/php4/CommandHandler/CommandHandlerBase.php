@@ -34,23 +34,23 @@ class CKFinder_Connector_CommandHandler_CommandHandlerBase
      * @access protected
      * @var CKFinder_Connector_Core_Connector
      */
-    var $_connector;
+    public $_connector;
     /**
      * CKFinder_Connector_Core_FolderHandler object
      *
      * @access protected
      * @var CKFinder_Connector_Core_FolderHandler
      */
-    var $_currentFolder;
+    public $_currentFolder;
     /**
      * Error handler object
      *
      * @access protected
      * @var CKFinder_Connector_ErrorHandler_Base|CKFinder_Connector_ErrorHandler_FileUpload|CKFinder_Connector_ErrorHandler_Http
      */
-    var $_errorHandler;
+    public $_errorHandler;
 
-    function CKFinder_Connector_CommandHandler_CommandHandlerBase()
+    public function CKFinder_Connector_CommandHandler_CommandHandlerBase()
     {
         $this->_currentFolder =& CKFinder_Connector_Core_Factory::getInstance("Core_FolderHandler");
         $this->_connector =& CKFinder_Connector_Core_Factory::getInstance("Core_Connector");
@@ -63,7 +63,7 @@ class CKFinder_Connector_CommandHandler_CommandHandlerBase
      * @return CKFinder_Connector_Core_FolderHandler
      * @access public
      */
-    function getFolderHandler()
+    public function getFolderHandler()
     {
         if (is_null($this->_currentFolder)) {
             $this->_currentFolder =& CKFinder_Connector_Core_Factory::getInstance("Core_FolderHandler");
@@ -77,7 +77,7 @@ class CKFinder_Connector_CommandHandler_CommandHandlerBase
      * @access protected
      *
      */
-    function checkConnector()
+    public function checkConnector()
     {
         $_config =& CKFinder_Connector_Core_Factory::getInstance("Core_Config");
         if (!$_config->getIsEnabled()) {
@@ -90,7 +90,7 @@ class CKFinder_Connector_CommandHandler_CommandHandlerBase
      * @access protected
      *
      */
-    function checkRequest()
+    public function checkRequest()
     {
         if (preg_match(CKFINDER_REGEX_INVALID_PATH, $this->_currentFolder->getClientPath())) {
             $this->_errorHandler->throwError(CKFINDER_CONNECTOR_ERROR_INVALID_NAME);
@@ -101,7 +101,6 @@ class CKFinder_Connector_CommandHandler_CommandHandlerBase
         if (is_null($_resourceTypeConfig)) {
             $this->_errorHandler->throwError(CKFINDER_CONNECTOR_ERROR_INVALID_TYPE);
         }
-
 
         $_clientPath = $this->_currentFolder->getClientPath();
         $_clientPathParts = explode("/", trim($_clientPath, "/"));
@@ -120,8 +119,7 @@ class CKFinder_Connector_CommandHandler_CommandHandlerBase
                      * @todo handle error
                      */
                 }
-            }
-            else {
+            } else {
                 $this->_errorHandler->throwError(CKFINDER_CONNECTOR_ERROR_FOLDER_NOT_FOUND);
             }
         }

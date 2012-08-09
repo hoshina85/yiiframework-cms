@@ -107,17 +107,15 @@ class CKFinder_Connector_CommandHandler_GetFiles extends CKFinder_Connector_Comm
                     if (!empty($_thumbServerPath) && preg_match(CKFINDER_REGEX_IMAGES_EXT, $filename)) {
                         if (file_exists($_thumbServerPath . $filename)) {
                             $oFileNode[$i]->addAttribute("thumb", $filename);
-                        }
-                        elseif ($_showThumbs) {
+                        } elseif ($_showThumbs) {
                             $oFileNode[$i]->addAttribute("thumb", "?" . $filename);
                         }
                     }
                     $size = filesize($_sServerDir . $file);
                     if ($size && $size<1024) {
                         $size = 1;
-                    }
-                    else {
-                        $size = (int)round($size / 1024);
+                    } else {
+                        $size = (int) round($size / 1024);
                     }
                     $oFileNode[$i]->addAttribute("size", $size);
                     $i++;

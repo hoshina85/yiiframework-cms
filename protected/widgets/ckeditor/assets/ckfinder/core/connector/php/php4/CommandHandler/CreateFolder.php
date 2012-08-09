@@ -37,14 +37,14 @@ class CKFinder_Connector_CommandHandler_CreateFolder extends CKFinder_Connector_
      * @access private
      * @var string
      */
-    var $command = "CreateFolder";
+    public $command = "CreateFolder";
 
     /**
      * handle request and build XML
      * @access protected
      *
      */
-    function buildXml()
+    public function buildXml()
     {
         $_config =& CKFinder_Connector_Core_Factory::getInstance("Core_Config");
         if (!$this->_currentFolder->checkAcl(CKFINDER_CONNECTOR_ACL_FOLDER_CREATE)) {
@@ -77,8 +77,7 @@ class CKFinder_Connector_CommandHandler_CreateFolder extends CKFinder_Connector_
             $oldUmask = umask(0);
             $bCreated = @mkdir($sServerDir, $perms);
             umask($oldUmask);
-        }
-        else {
+        } else {
             $bCreated = @mkdir($sServerDir);
         }
 

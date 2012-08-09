@@ -101,8 +101,7 @@ class CKFinder_Connector_CommandHandler_Init extends CKFinder_Connector_CommandH
 
         $_aTypesSize = sizeof($_aTypes);
         if ($_aTypesSize) {
-            for ($i = 0; $i < $_aTypesSize; $i++)
-            {
+            for ($i = 0; $i < $_aTypesSize; $i++) {
                 $_resourceTypeName = $_aTypes[$i];
 
                 $_acl = $_config->getAccessControlConfig();

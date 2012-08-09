@@ -32,14 +32,14 @@ class CKFinder_Connector_CommandHandler_DownloadFile extends CKFinder_Connector_
      * @access private
      * @var string
      */
-    var $command = "DownloadFile";
+    public $command = "DownloadFile";
 
     /**
      * send response (file)
      * @access public
      *
      */
-    function sendResponse()
+    public function sendResponse()
     {
         if (!function_exists('ob_list_handlers') || ob_list_handlers()) {
             @ob_end_clean();

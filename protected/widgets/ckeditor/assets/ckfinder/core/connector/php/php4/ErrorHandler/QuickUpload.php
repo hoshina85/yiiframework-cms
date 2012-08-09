@@ -34,11 +34,12 @@ class CKFinder_Connector_ErrorHandler_QuickUpload extends CKFinder_Connector_Err
     /**
      * Throw file upload error, return true if error has been thrown, false if error has been catched
      *
-     * @param int $number
+     * @param int    $number
      * @param string $text
      * @access public
      */
-    function throwError($number, $uploaded = false, $exit = true) {
+    public function throwError($number, $uploaded = false, $exit = true)
+    {
         if ($this->_catchAllErrors || in_array($number, $this->_skipErrorsArray)) {
             return false;
         }
@@ -49,11 +50,11 @@ class CKFinder_Connector_ErrorHandler_QuickUpload extends CKFinder_Connector_Err
 
         header('Content-Type: text/html; charset=utf-8');
 
-		/**
-		 * echo <script> is not called before CKFinder_Connector_Utils_Misc::getErrorMessage
-		 * because PHP has problems with including files that contain BOM character.
-		 * Having BOM character after <script> tag causes a javascript error.
-		 */
+        /**
+         * echo <script> is not called before CKFinder_Connector_Utils_Misc::getErrorMessage
+         * because PHP has problems with including files that contain BOM character.
+         * Having BOM character after <script> tag causes a javascript error.
+         */
         if (!empty($_GET['CKEditor'])) {
             $errorMessage = CKFinder_Connector_Utils_Misc::getErrorMessage($number, $sFileName);
 
@@ -63,11 +64,10 @@ class CKFinder_Connector_ErrorHandler_QuickUpload extends CKFinder_Connector_Err
             }
 
             $funcNum = preg_replace("/[^0-9]/", "", $_GET['CKEditorFuncNum']);
-	        echo "<script type=\"text/javascript\">";
+            echo "<script type=\"text/javascript\">";
             echo "window.parent.CKEDITOR.tools.callFunction($funcNum, '" . str_replace("'", "\\'", $sFileUrl . $sFileName) . "', '" .str_replace("'", "\\'", $errorMessage). "');";
-        }
-        else {
-        	echo "<script type=\"text/javascript\">";
+        } else {
+            echo "<script type=\"text/javascript\">";
             if (!$uploaded) {
                 echo "window.parent.OnUploadCompleted(" . $number . ", '', '', '') ;";
             } else {

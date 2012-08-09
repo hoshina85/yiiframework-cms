@@ -12,18 +12,18 @@
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>CKFinder - Sample - Popups</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="robots" content="noindex, nofollow" />
-	<link href="../sample.css" rel="stylesheet" type="text/css" />
+    <title>CKFinder - Sample - Popups</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link href="../sample.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<h1>
-		CKFinder - Sample - Popups<br />
-	</h1>
-	<hr />
-	<p>
-	The example of opening multiple CKFinder instances in popup windows is available in the &quot;_samples/js&quot; directory. Click <a href="../js/popups.html">here</a> to open it.
-	</p>
+    <h1>
+        CKFinder - Sample - Popups<br />
+    </h1>
+    <hr />
+    <p>
+    The example of opening multiple CKFinder instances in popup windows is available in the &quot;_samples/js&quot; directory. Click <a href="../js/popups.html">here</a> to open it.
+    </p>
 </body>
 </html>

@@ -32,16 +32,16 @@ class CKFinder_Connector_Core_Registry
      * @var array
      * @access private
      */
-    var $_store = array();
+    public $_store = array();
 
     /**
      * Chacke if value has been set
      *
-     * @param string $key
+     * @param  string  $key
      * @return boolean
      * @access private
      */
-    function isValid($key)
+    public function isValid($key)
     {
         return array_key_exists($key, $this->_store);
     }
@@ -50,10 +50,10 @@ class CKFinder_Connector_Core_Registry
      * Set value
      *
      * @param string $key
-     * @param mixed $obj
+     * @param mixed  $obj
      * @access public
      */
-    function set($key, $obj)
+    public function set($key, $obj)
     {
         $this->_store[$key] = $obj;
     }
@@ -61,14 +61,14 @@ class CKFinder_Connector_Core_Registry
     /**
      * Get value
      *
-     * @param string $key
+     * @param  string $key
      * @return mixed
      * @access public
      */
-    function get($key)
+    public function get($key)
     {
-    	if ($this->isValid($key)) {
-    	    return $this->_store[$key];
-    	}
+        if ($this->isValid($key)) {
+            return $this->_store[$key];
+        }
     }
 }

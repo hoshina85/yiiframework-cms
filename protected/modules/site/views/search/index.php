@@ -11,5 +11,3 @@
   }, true);
 </script>
 <link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
-
-

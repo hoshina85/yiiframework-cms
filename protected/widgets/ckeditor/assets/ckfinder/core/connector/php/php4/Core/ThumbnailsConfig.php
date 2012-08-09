@@ -33,98 +33,97 @@ class CKFinder_Connector_Core_ThumbnailsConfig
      * @var string
      * @access private
      */
-    var  $_url = "";
+    public $_url = "";
     /**
-	 * Directory where thumbnails are stored
-	 *
-	 * @var string
-	 * @access private
-	 */
-    var $_directory = "";
+     * Directory where thumbnails are stored
+     *
+     * @var string
+     * @access private
+     */
+    public $_directory = "";
     /**
-	 * Are thumbnails enabled
-	 *
-	 * @var boolean
-	 * @access private
-	 */
-    var $_isEnabled = false;
+     * Are thumbnails enabled
+     *
+     * @var boolean
+     * @access private
+     */
+    public $_isEnabled = false;
     /**
-	 * Direct access to thumbnails?
-	 *
-	 * @var boolean
-	 * @access private
-	 */
-    var $_directAccess = false;
+     * Direct access to thumbnails?
+     *
+     * @var boolean
+     * @access private
+     */
+    public $_directAccess = false;
     /**
      * Max width for thumbnails
      *
      * @var int
      * @access private
      */
-    var $_maxWidth = 100;
+    public $_maxWidth = 100;
     /**
      * Max height for thumbnails
      *
      * @var int
      * @access private
      */
-    var $_maxHeight = 100;
+    public $_maxHeight = 100;
     /**
      * Quality of thumbnails
      *
      * @var int
      * @access private
      */
-    var $_quality = 100;
+    public $_quality = 100;
     /**
      * Are thumbnails of bitmap files enabled?
      *
      * @var boolean
      * @access private
      */
-    var $_bmpSupported = false;
+    public $_bmpSupported = false;
 
-    function CKFinder_Connector_Core_ThumbnailsConfig($thumbnailsNode)
+    public function CKFinder_Connector_Core_ThumbnailsConfig($thumbnailsNode)
     {
-        if(extension_loaded('gd') && isset($thumbnailsNode['enabled'])) {
+        if (extension_loaded('gd') && isset($thumbnailsNode['enabled'])) {
             $this->_isEnabled = CKFinder_Connector_Utils_Misc::booleanValue($thumbnailsNode['enabled']);
         }
-        if( isset($thumbnailsNode['directAccess'])) {
+        if ( isset($thumbnailsNode['directAccess'])) {
             $this->_directAccess = CKFinder_Connector_Utils_Misc::booleanValue($thumbnailsNode['directAccess']);
         }
-        if( isset($thumbnailsNode['bmpSupported'])) {
+        if ( isset($thumbnailsNode['bmpSupported'])) {
             $this->_bmpSupported = CKFinder_Connector_Utils_Misc::booleanValue($thumbnailsNode['bmpSupported']);
         }
-        if(isset($thumbnailsNode['maxWidth'])) {
+        if (isset($thumbnailsNode['maxWidth'])) {
             $_maxWidth = intval($thumbnailsNode['maxWidth']);
-            if($_maxWidth>=0) {
+            if ($_maxWidth>=0) {
                 $this->_maxWidth = $_maxWidth;
             }
         }
-        if(isset($thumbnailsNode['maxHeight'])) {
+        if (isset($thumbnailsNode['maxHeight'])) {
             $_maxHeight = intval($thumbnailsNode['maxHeight']);
-            if($_maxHeight>=0) {
+            if ($_maxHeight>=0) {
                 $this->_maxHeight = $_maxHeight;
             }
         }
-        if(isset($thumbnailsNode['quality'])) {
+        if (isset($thumbnailsNode['quality'])) {
             $_quality = intval($thumbnailsNode['quality']);
-            if($_quality>0 && $_quality<=100) {
+            if ($_quality>0 && $_quality<=100) {
                 $this->_quality = $_quality;
             }
         }
 
-        if(isset($thumbnailsNode['url'])) {
+        if (isset($thumbnailsNode['url'])) {
             $this->_url = $thumbnailsNode['url'];
         }
         if (!strlen($this->_url)) {
             $this->_url = "/";
-        }
-        else if(substr($this->_url,-1,1) != "/") {
+        } elseif (substr($this->_url,-1,1) != "/") {
             $this->_url .= "/";
         }
 
-        if(isset($thumbnailsNode['directory'])) {
+        if (isset($thumbnailsNode['directory'])) {
             $this->_directory = $thumbnailsNode['directory'];
         }
     }
@@ -135,7 +134,7 @@ class CKFinder_Connector_Core_ThumbnailsConfig
      * @access public
      * @return string
      */
-    function getUrl()
+    public function getUrl()
     {
         return $this->_url;
     }
@@ -146,7 +145,7 @@ class CKFinder_Connector_Core_ThumbnailsConfig
      * @access public
      * @return string
      */
-    function getDirectory()
+    public function getDirectory()
     {
         return $this->_directory;
     }
@@ -157,7 +156,7 @@ class CKFinder_Connector_Core_ThumbnailsConfig
      * @access public
      * @return boolean
      */
-    function getIsEnabled()
+    public function getIsEnabled()
     {
         return $this->_isEnabled;
     }
@@ -168,7 +167,7 @@ class CKFinder_Connector_Core_ThumbnailsConfig
      * @access public
      * @return boolean
      */
-    function getBmpSupported()
+    public function getBmpSupported()
     {
         return $this->_bmpSupported;
     }
@@ -179,7 +178,7 @@ class CKFinder_Connector_Core_ThumbnailsConfig
      * @access public
      * @return boolean
      */
-    function getDirectAccess()
+    public function getDirectAccess()
     {
         return $this->_directAccess;
     }
@@ -190,7 +189,7 @@ class CKFinder_Connector_Core_ThumbnailsConfig
      * @access public
      * @return int
      */
-    function getMaxWidth()
+    public function getMaxWidth()
     {
         return $this->_maxWidth;
     }
@@ -201,7 +200,7 @@ class CKFinder_Connector_Core_ThumbnailsConfig
      * @access public
      * @return int
      */
-    function getMaxHeight()
+    public function getMaxHeight()
     {
         return $this->_maxHeight;
     }
@@ -212,7 +211,7 @@ class CKFinder_Connector_Core_ThumbnailsConfig
      * @access public
      * @return int
      */
-    function getQuality()
+    public function getQuality()
     {
         return $this->_quality;
     }

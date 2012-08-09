@@ -21,7 +21,7 @@
 
 /**
  * Protect against sending warnings to the browser (#186).
- * Comment out this line during debugging. 
+ * Comment out this line during debugging.
  */
 error_reporting(0);
 
@@ -33,7 +33,7 @@ ob_start();
 /**
  * define required constants
  */
-require_once "./constants.php";
+require_once './constants.php';
 
 // @ob_end_clean();
 // header("Content-Encoding: none");
@@ -60,8 +60,10 @@ require_once CKFINDER_CONNECTOR_LIB_DIR . "/Utils/Misc.php";
  * @param string $baseUrl
  * @return string
  */
-function resolveUrl($baseUrl) {
+function resolveUrl($baseUrl)
+{
     $fileSystem =& CKFinder_Connector_Core_Factory::getInstance("Utils_FileSystem");
+
     return $fileSystem->getDocumentRootPath() . $baseUrl;
 }
 
@@ -80,9 +82,8 @@ require_once CKFINDER_CONNECTOR_CONFIG_FILE_PATH;
 CKFinder_Connector_Core_Factory::initFactory();
 $connector =& CKFinder_Connector_Core_Factory::getInstance("Core_Connector");
 
-if(isset($_GET['command'])) {
+if (isset($_GET['command'])) {
     $connector->executeCommand($_GET['command']);
-}
-else {
+} else {
     $connector->handleInvalidCommand();
 }

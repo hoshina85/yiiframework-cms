@@ -24,7 +24,8 @@
  */
 class CKFinder_Connector_Utils_Misc
 {
-    function getErrorMessage($number, $arg = "") {
+    public function getErrorMessage($number, $arg = "")
+    {
         $langCode = 'en';
         if (!empty($_GET['langCode']) && preg_match("/^[a-z\-]+$/", $_GET['langCode'])) {
             if (file_exists(CKFINDER_CONNECTOR_LANG_PATH . "/" . $_GET['langCode'] . ".php"))
@@ -40,6 +41,7 @@ class CKFinder_Connector_Utils_Misc
         } else {
             $errorMessage = "";
         }
+
         return $errorMessage;
     }
 
@@ -48,10 +50,10 @@ class CKFinder_Connector_Utils_Misc
      *
      * @static
      * @access public
-     * @param mixed $value
+     * @param  mixed   $value
      * @return boolean
      */
-    function booleanValue($value)
+    public function booleanValue($value)
     {
         if (strcasecmp("false", $value) == 0 || strcasecmp("off", $value) == 0 || !$value) {
             return false;
@@ -66,20 +68,20 @@ class CKFinder_Connector_Utils_Misc
      *
      * @static
      * @access public
-     * @param string $dst_image
-     * @param string $src_image
-     * @param int $dst_x
-     * @param int $dst_y
-     * @param int $src_x
-     * @param int $src_y
-     * @param int $dst_w
-     * @param int $dst_h
-     * @param int $src_w
-     * @param int $src_h
-     * @param int $quality
+     * @param  string  $dst_image
+     * @param  string  $src_image
+     * @param  int     $dst_x
+     * @param  int     $dst_y
+     * @param  int     $src_x
+     * @param  int     $src_y
+     * @param  int     $dst_w
+     * @param  int     $dst_h
+     * @param  int     $src_w
+     * @param  int     $src_h
+     * @param  int     $quality
      * @return boolean
      */
-    function fastImageCopyResampled (&$dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h, $quality = 3)
+    public function fastImageCopyResampled (&$dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h, $quality = 3)
     {
         if (empty($src_image) || empty($dst_image)) {
             return false;
@@ -112,10 +114,10 @@ class CKFinder_Connector_Utils_Misc
      *
      * @static
      * @access public
-     * @param string $filename
+     * @param  string  $filename
      * @return boolean
      */
-    function setMemoryForImage($imageWidth, $imageHeight, $imageBits, $imageChannels)
+    public function setMemoryForImage($imageWidth, $imageHeight, $imageBits, $imageChannels)
     {
         $MB = 1048576;  // number of bytes in 1M
         $K64 = 65536;    // number of bytes in 64K
@@ -159,6 +161,7 @@ class CKFinder_Connector_Utils_Misc
                 }
             }
         }
+
         return true;
     }
 
@@ -168,17 +171,17 @@ class CKFinder_Connector_Utils_Misc
      *
      * @static
      * @access public
-     * @param string $val
+     * @param  string $val
      * @return int
      */
-    function returnBytes($val)
+    public function returnBytes($val)
     {
         $val = trim($val);
         if (!$val) {
             return 0;
         }
         $last = strtolower($val[strlen($val)-1]);
-        switch($last) {
+        switch ($last) {
             // The 'G' modifier is available since PHP 5.1.0
             case 'g':
                 $val *= 1024;
@@ -200,7 +203,7 @@ class CKFinder_Connector_Utils_Misc
     * @param array $haystack
     * @return boolean
     */
-    function inArrayCaseInsensitive($needle, $haystack)
+    public function inArrayCaseInsensitive($needle, $haystack)
     {
         if (!$haystack || !is_array($haystack)) {
             return false;
@@ -209,6 +212,7 @@ class CKFinder_Connector_Utils_Misc
         foreach ($haystack as $key => $val) {
             $lcase[$key] = strtolower($val);
         }
+
         return in_array($needle, $lcase);
     }
 
@@ -220,9 +224,10 @@ class CKFinder_Connector_Utils_Misc
     * @param string $file
     * @return string
     */
-    function mbBasename($file)
+    public function mbBasename($file)
     {
         $explode = explode('/', str_replace("\\", "/", $file));
+
         return end($explode);
     }
 
@@ -235,7 +240,7 @@ class CKFinder_Connector_Utils_Misc
     * @param string $filename
     * @return resource
     */
-    function imageCreateFromBmp($filename)
+    public function imageCreateFromBmp($filename)
     {
         //20 seconds seems to be a reasonable value to not kill a server and process images up to 1680x1050
         @set_time_limit(20);
@@ -290,52 +295,41 @@ class CKFinder_Connector_Utils_Misc
         $line_length = $BMP['bytes_per_pixel']*$BMP['width'];
 
         if ($BMP['bits_per_pixel'] == 24) {
-            while ($Y >= 0)
-            {
+            while ($Y >= 0) {
                 $X=0;
                 $temp = unpack( "C*", substr($IMG, $P, $line_length));
 
-                while ($X < $BMP['width'])
-                {
+                while ($X < $BMP['width']) {
                     $offset = $X*3;
                     imagesetpixel($res, $X++, $Y, ($temp[$offset+3] << 16) + ($temp[$offset+2] << 8) + $temp[$offset+1]);
                 }
                 $Y--;
                 $P += $line_length + $BMP['decal'];
             }
-        }
-        elseif ($BMP['bits_per_pixel'] == 8)
-        {
-            while ($Y >= 0)
-            {
+        } elseif ($BMP['bits_per_pixel'] == 8) {
+            while ($Y >= 0) {
                 $X=0;
 
                 $temp = unpack( "C*", substr($IMG, $P, $line_length));
 
-                while ($X < $BMP['width'])
-                {
+                while ($X < $BMP['width']) {
                     imagesetpixel($res, $X++, $Y, $PALETTE[$temp[$X] +1]);
                 }
                 $Y--;
                 $P += $line_length + $BMP['decal'];
             }
-        }
-        elseif ($BMP['bits_per_pixel'] == 4)
-        {
-            while ($Y >= 0)
-            {
+        } elseif ($BMP['bits_per_pixel'] == 4) {
+            while ($Y >= 0) {
                 $X=0;
                 $i = 1;
                 $low = true;
 
                 $temp = unpack( "C*", substr($IMG, $P, $line_length));
 
-                while ($X < $BMP['width'])
-                {
+                while ($X < $BMP['width']) {
                     if ($low) {
                         $index = $temp[$i] >> 4;
-                    }
-                    else {
+                    } else {
                         $index = $temp[$i++] & 0x0F;
                     }
                     $low = !$low;
@@ -345,9 +339,7 @@ class CKFinder_Connector_Utils_Misc
                 $Y--;
                 $P += $line_length + $BMP['decal'];
             }
-        }
-        elseif ($BMP['bits_per_pixel'] == 1)
-        {
+        } elseif ($BMP['bits_per_pixel'] == 1) {
             $COLOR = unpack("n",$VIDE.substr($IMG,floor($P),1));
             if     (($P*8)%8 == 0) $COLOR[1] =  $COLOR[1]        >>7;
             elseif (($P*8)%8 == 1) $COLOR[1] = ($COLOR[1] & 0x40)>>6;
@@ -358,8 +350,7 @@ class CKFinder_Connector_Utils_Misc
             elseif (($P*8)%8 == 6) $COLOR[1] = ($COLOR[1] & 0x2)>>1;
             elseif (($P*8)%8 == 7) $COLOR[1] = ($COLOR[1] & 0x1);
             $COLOR[1] = $PALETTE[$COLOR[1]+1];
-        }
-        else {
+        } else {
             return false;
         }
 

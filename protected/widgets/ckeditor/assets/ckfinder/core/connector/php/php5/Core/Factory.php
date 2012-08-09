@@ -26,13 +26,13 @@
  */
 class CKFinder_Connector_Core_Factory
 {
-    static $instances = array();
+    public static $instances = array();
 
     /**
      * Initiate factory
      * @static
      */
-    static function initFactory()
+    public static function initFactory()
     {
     }
 

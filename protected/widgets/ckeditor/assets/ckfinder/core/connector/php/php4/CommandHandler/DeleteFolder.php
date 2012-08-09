@@ -37,15 +37,14 @@ class CKFinder_Connector_CommandHandler_DeleteFolder extends CKFinder_Connector_
      * @access private
      * @var string
      */
-    var $command = "DeleteFolder";
-
+    public $command = "DeleteFolder";
 
     /**
      * handle request and build XML
      * @access protected
      *
      */
-    function buildXml()
+    public function buildXml()
     {
         if (!$this->_currentFolder->checkAcl(CKFINDER_CONNECTOR_ACL_FOLDER_DELETE)) {
             $this->_errorHandler->throwError(CKFINDER_CONNECTOR_ERROR_UNAUTHORIZED);

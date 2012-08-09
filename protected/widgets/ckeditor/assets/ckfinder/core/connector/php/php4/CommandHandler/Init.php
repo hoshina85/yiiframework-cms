@@ -37,9 +37,9 @@ class CKFinder_Connector_CommandHandler_Init extends CKFinder_Connector_CommandH
      * @access private
      * @var string
      */
-    var $command = "Init";
+    public $command = "Init";
 
-    function mustCheckRequest()
+    public function mustCheckRequest()
     {
         return false;
     }
@@ -50,7 +50,7 @@ class CKFinder_Connector_CommandHandler_Init extends CKFinder_Connector_CommandH
      * @return boolean
      * @access protected
      */
-    function mustAddCurrentFolderNode()
+    public function mustAddCurrentFolderNode()
     {
         return false;
     }
@@ -60,7 +60,7 @@ class CKFinder_Connector_CommandHandler_Init extends CKFinder_Connector_CommandH
      * @access protected
      *
      */
-    function buildXml()
+    public function buildXml()
     {
         $_config =& CKFinder_Connector_Core_Factory::getInstance("Core_Config");
 
@@ -101,8 +101,7 @@ class CKFinder_Connector_CommandHandler_Init extends CKFinder_Connector_CommandH
 
         $_aTypesSize = sizeof($_aTypes);
         if ($_aTypesSize) {
-            for ($i = 0; $i < $_aTypesSize; $i++)
-            {
+            for ($i = 0; $i < $_aTypesSize; $i++) {
                 $_resourceTypeName = $_aTypes[$i];
 
                 $_acl = $_config->getAccessControlConfig();

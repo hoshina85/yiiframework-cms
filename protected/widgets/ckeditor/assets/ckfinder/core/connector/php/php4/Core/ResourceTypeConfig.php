@@ -32,65 +32,65 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * @var string
      * @access private
      */
-    var $_name = "";
+    public $_name = "";
     /**
      * Resource url
      *
      * @var string
      * @access private
      */
-    var $_url = "";
+    public $_url = "";
     /**
      * Directory path on a server
      *
      * @var string
      * @access private
      */
-    var $_directory = "";
+    public $_directory = "";
     /**
      * Max size
      *
      * @var unknown_type
      * @access private
      */
-    var $_maxSize = 0;
+    public $_maxSize = 0;
     /**
      * Array with allowed extensions
      *
      * @var array[]string
      * @access private
      */
-    var $_allowedExtensions = array();
+    public $_allowedExtensions = array();
     /**
      * Array with denied extensions
      *
      * @var array[]string
      * @access private
      */
-    var $_deniedExtensions = array();
+    public $_deniedExtensions = array();
     /**
      * Default view
      *
      * @var string
      * @access private
      */
-    var $_defaultView = "Thumbnails";
+    public $_defaultView = "Thumbnails";
     /**
      * used for CKFinder_Connector_Core_Config object caching
      *
      * @var CKFinder_Connector_Core_Config
      * @access private
      */
-    var $_config;
+    public $_config;
 
     /**
      * Get ResourceType configuration
      *
-     * @param string $resourceTypeNode
+     * @param  string $resourceTypeNode
      * @return array
      *
      */
-    function CKFinder_Connector_Core_ResourceTypeConfig($resourceTypeNode)
+    public function CKFinder_Connector_Core_ResourceTypeConfig($resourceTypeNode)
     {
         if (isset($resourceTypeNode["name"])) {
             $this->_name = $resourceTypeNode["name"];
@@ -102,13 +102,12 @@ class CKFinder_Connector_Core_ResourceTypeConfig
 
         if (!strlen($this->_url)) {
             $this->_url = "/";
-        }
-        else if(substr($this->_url,-1,1) != "/") {
+        } elseif (substr($this->_url,-1,1) != "/") {
             $this->_url .= "/";
         }
 
         if (isset($resourceTypeNode["maxSize"])) {
-            $this->_maxSize = CKFinder_Connector_Utils_Misc::returnBytes((string)$resourceTypeNode["maxSize"]);
+            $this->_maxSize = CKFinder_Connector_Utils_Misc::returnBytes((string) $resourceTypeNode["maxSize"]);
         }
 
         if (isset($resourceTypeNode["directory"])) {
@@ -122,11 +121,10 @@ class CKFinder_Connector_Core_ResourceTypeConfig
         if (isset($resourceTypeNode["allowedExtensions"])) {
             if (is_array($resourceTypeNode["allowedExtensions"])) {
                 foreach ($resourceTypeNode["allowedExtensions"] as $e) {
-                    $this->_allowedExtensions[] = strtolower(trim((string)$e));
+                    $this->_allowedExtensions[] = strtolower(trim((string) $e));
                 }
-            }
-            else {
-                $resourceTypeNode["allowedExtensions"] = trim((string)$resourceTypeNode["allowedExtensions"]);
+            } else {
+                $resourceTypeNode["allowedExtensions"] = trim((string) $resourceTypeNode["allowedExtensions"]);
                 if (strlen($resourceTypeNode["allowedExtensions"])) {
                     $extensions = explode(",", $resourceTypeNode["allowedExtensions"]);
                     foreach ($extensions as $e) {
@@ -140,11 +138,10 @@ class CKFinder_Connector_Core_ResourceTypeConfig
             if (is_array($resourceTypeNode["deniedExtensions"])) {
 
                 foreach ($resourceTypeNode["deniedExtensions"] as $extension) {
-                    $this->_deniedExtensions[] = strtolower(trim((string)$e));
+                    $this->_deniedExtensions[] = strtolower(trim((string) $e));
                 }
-            }
-            else {
-                $resourceTypeNode["deniedExtensions"] = trim((string)$resourceTypeNode["deniedExtensions"]);
+            } else {
+                $resourceTypeNode["deniedExtensions"] = trim((string) $resourceTypeNode["deniedExtensions"]);
                 if (strlen($resourceTypeNode["deniedExtensions"])) {
                     $extensions = explode(",", $resourceTypeNode["deniedExtensions"]);
                     foreach ($extensions as $e) {
@@ -172,7 +169,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * @access public
      * @return string
      */
-    function getName()
+    public function getName()
     {
         return $this->_name;
     }
@@ -183,7 +180,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * @access public
      * @return string
      */
-    function getUrl()
+    public function getUrl()
     {
         return $this->_url;
     }
@@ -194,7 +191,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * @access public
      * @return string
      */
-    function getDirectory()
+    public function getDirectory()
     {
         return $this->_directory;
     }
@@ -205,7 +202,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * @access public
      * @return int
      */
-    function getMaxSize()
+    public function getMaxSize()
     {
         return $this->_maxSize;
     }
@@ -216,7 +213,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * @access public
      * @return array[]string
      */
-    function getAllowedExtensions()
+    public function getAllowedExtensions()
     {
         return $this->_allowedExtensions;
     }
@@ -227,7 +224,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * @access public
      * @return array[]string
      */
-    function getDeniedExtensions()
+    public function getDeniedExtensions()
     {
         return $this->_deniedExtensions;
     }
@@ -238,7 +235,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * @access public
      * @return string
      */
-    function getDefaultView()
+    public function getDefaultView()
     {
         return $this->_defaultView;
     }
@@ -249,11 +246,11 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * If allowed extensions are defined, return false if extension isn't on allowed list.
      *
      * @access public
-     * @param string $extension extension
-     * @param boolean $renameIfRequired whether try to rename file or not
+     * @param  string  $extension        extension
+     * @param  boolean $renameIfRequired whether try to rename file or not
      * @return boolean
      */
-    function checkExtension(&$fileName, $renameIfRequired = true)
+    public function checkExtension(&$fileName, $renameIfRequired = true)
     {
         if (strpos($fileName, '.') === false) {
             return true;
@@ -285,8 +282,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
                 // Add the last extension to the final name.
                 $fileName .= '.' . $pieces[sizeof($pieces)-1] ;
             }
-        }
-        else {
+        } else {
             // Check only the last extension (ex. in file.php.jpg, only "jpg").
             return $this->checkSingleExtension( substr($fileName, strrpos($fileName,'.')+1) );
         }
@@ -302,7 +298,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * @access public
      * @return boolean
      */
-    function checkIsHiddenFolder($folderName)
+    public function checkIsHiddenFolder($folderName)
     {
         if (is_null($this->_config)) {
             $this->_config =& CKFinder_Connector_Core_Factory::getInstance("Core_Config");
@@ -324,7 +320,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * @access public
      * @return boolean
      */
-    function checkIsHiddenFile($fileName)
+    public function checkIsHiddenFile($fileName)
     {
         if (is_null($this->_config)) {
             $this->_config =& CKFinder_Connector_Core_Factory::getInstance("Core_Config");
@@ -338,7 +334,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
         return false;
     }
 
-    function checkSingleExtension($extension)
+    public function checkSingleExtension($extension)
     {
         $extension = strtolower(ltrim($extension,'.'));
 

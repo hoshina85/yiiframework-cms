@@ -2,8 +2,8 @@
 
 class extensionssidebar extends CWidget
 {
-	public function run()
-	{
-		$this->render('extensionssidebar');
-	}
+    public function run()
+    {
+        $this->render('extensionssidebar');
+    }
 }

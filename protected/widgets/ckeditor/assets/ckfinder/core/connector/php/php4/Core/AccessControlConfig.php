@@ -45,9 +45,9 @@ class CKFinder_Connector_Core_AccessControlConfig
      * @var array[string]string
      * @access private
      */
-    var $_aclEntries = array();
+    public $_aclEntries = array();
 
-    function CKFinder_Connector_Core_AccessControlConfig($accessControlNodes)
+    public function CKFinder_Connector_Core_AccessControlConfig($accessControlNodes)
     {
         foreach ($accessControlNodes as $node) {
             $_folderView = isset($node['folderView']) ? CKFinder_Connector_Utils_Misc::booleanValue($node['folderView']) : false;
@@ -91,20 +91,19 @@ class CKFinder_Connector_Core_AccessControlConfig
     /**
      * Add ACL entry
      *
-     * @param string $role role
-     * @param string $resourceType resource type
-     * @param string $folderPath folder path
-     * @param int $allowRulesMask allow rules mask
-     * @param int $denyRulesMask deny rules mask
+     * @param string $role           role
+     * @param string $resourceType   resource type
+     * @param string $folderPath     folder path
+     * @param int    $allowRulesMask allow rules mask
+     * @param int    $denyRulesMask  deny rules mask
      * @access private
      */
-    function addACLEntry($role, $resourceType, $folderPath, $allowRulesMask, $denyRulesMask)
+    public function addACLEntry($role, $resourceType, $folderPath, $allowRulesMask, $denyRulesMask)
     {
 
         if (!strlen($folderPath)) {
             $folderPath = '/';
-        }
-        else {
+        } else {
             if (substr($folderPath,0,1) != '/') {
                 $folderPath = '/' . $folderPath;
             }
@@ -126,23 +125,21 @@ class CKFinder_Connector_Core_AccessControlConfig
                     $denyRulesMask[$key] |= $value;
                 }
             }
-        }
-        else {
+        } else {
             $this->_aclEntries[$folderPath] = array();
         }
 
         $this->_aclEntries[$folderPath][$_entryKey] = array($allowRulesMask, $denyRulesMask);
     }
 
-
     /**
      * Get computed mask
      *
-     * @param string $resourceType
-     * @param string $folderPath
+     * @param  string $resourceType
+     * @param  string $folderPath
      * @return int
      */
-    function getComputedMask($resourceType, $folderPath)
+    public function getComputedMask($resourceType, $folderPath)
     {
         $_computedMask = 0;
 
@@ -151,7 +148,7 @@ class CKFinder_Connector_Core_AccessControlConfig
 
         $_userRole = null;
         if (strlen($_roleSessionVar) && isset($_SESSION[$_roleSessionVar])) {
-            $_userRole = (string)$_SESSION[$_roleSessionVar];
+            $_userRole = (string) $_SESSION[$_roleSessionVar];
         }
         if (!is_null($_userRole) && !strlen($_userRole)) {
             $_userRole = null;
@@ -162,7 +159,7 @@ class CKFinder_Connector_Core_AccessControlConfig
 
         $_currentPath = "/";
 
-        for($i = -1; $i < sizeof($_pathParts); $i++) {
+        for ($i = -1; $i < sizeof($_pathParts); $i++) {
             if ($i >= 0) {
                 if (!strlen($_pathParts[$i])) {
                     continue;
@@ -186,13 +183,13 @@ class CKFinder_Connector_Core_AccessControlConfig
      * merge current mask with folder entries
      *
      * @access private
-     * @param int $currentMask
-     * @param string $resourceType
-     * @param string $userRole
-     * @param string $path
+     * @param  int    $currentMask
+     * @param  string $resourceType
+     * @param  string $userRole
+     * @param  string $path
      * @return int
      */
-    function mergePathComputedMask( $currentMask, $resourceType, $userRole, $path )
+    public function mergePathComputedMask( $currentMask, $resourceType, $userRole, $path )
     {
         $_folderEntries = $this->_aclEntries[$path];
 
@@ -201,17 +198,14 @@ class CKFinder_Connector_Core_AccessControlConfig
         $_possibleEntries[0] = "*#@#*";
         $_possibleEntries[1] = "*#@#" . $resourceType;
 
-        if (!is_null($userRole))
-        {
+        if (!is_null($userRole)) {
             $_possibleEntries[2] = $userRole . "#@#*";
             $_possibleEntries[3] = $userRole . "#@#" . $resourceType;
         }
 
-        for ($r = 0; $r < sizeof($_possibleEntries); $r++)
-        {
+        for ($r = 0; $r < sizeof($_possibleEntries); $r++) {
             $_possibleKey = $_possibleEntries[$r];
-            if (array_key_exists($_possibleKey, $_folderEntries))
-            {
+            if (array_key_exists($_possibleKey, $_folderEntries)) {
                 $_rulesMasks = $_folderEntries[$_possibleKey];
 
                 $currentMask |= array_sum($_rulesMasks[0]);

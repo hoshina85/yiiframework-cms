@@ -12,48 +12,48 @@
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>CKFinder - Sample - Standalone</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="robots" content="noindex, nofollow" />
-	<link href="../sample.css" rel="stylesheet" type="text/css" />
-	<style type="text/css">
+    <title>CKFinder - Sample - Standalone</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link href="../sample.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
 
-		/* By defining CKFinderFrame, you are able to customize the CKFinder frame style */
-		.CKFinderFrame
-		{
-			border: solid 2px #e3e3c7;
-			background-color: #f1f1e3;
-		}
+        /* By defining CKFinderFrame, you are able to customize the CKFinder frame style */
+        .CKFinderFrame
+        {
+            border: solid 2px #e3e3c7;
+            background-color: #f1f1e3;
+        }
 
-	</style>
-	<script type="text/javascript">
+    </style>
+    <script type="text/javascript">
 
 // This is a sample function which is called when a file is selected in CKFinder.
 function ShowFileInfo( fileUrl, data )
 {
-	alert( 'The selected file URL is "' + fileUrl + '"' ) ;
+    alert( 'The selected file URL is "' + fileUrl + '"' ) ;
 
-	// Display additional information available in the "data" object.
-	// For example, the size of a file (in KB) is available in the data["fileSize"] variable.
-	for ( _info in data )
-		alert( 'data["' + _info + '"]' + ' = ' + data[_info] ) ;
+    // Display additional information available in the "data" object.
+    // For example, the size of a file (in KB) is available in the data["fileSize"] variable.
+    for ( _info in data )
+        alert( 'data["' + _info + '"]' + ' = ' + data[_info] ) ;
 }
 
-	</script>
+    </script>
 </head>
 <body>
-	<h1>
-		CKFinder - Sample - Standalone
-	</h1>
-	<hr />
-	<p>
-		CKFinder may be used in standalone mode inside any page, to create a repository
-		manager with easy. You may define a custom JavaScript function to be called when
-		an image is selected (double-clicked).</p>
-	<p style="padding-left: 30px; padding-right: 30px;">
+    <h1>
+        CKFinder - Sample - Standalone
+    </h1>
+    <hr />
+    <p>
+        CKFinder may be used in standalone mode inside any page, to create a repository
+        manager with easy. You may define a custom JavaScript function to be called when
+        an image is selected (double-clicked).</p>
+    <p style="padding-left: 30px; padding-right: 30px;">
 <?php
 
-require_once '../../ckfinder.php' ;
+require_once '../../ckfinder.php';
 
 // You can use the "CKFinder" class to render CKFinder in a page:
 $finder = new CKFinder() ;
@@ -66,6 +66,6 @@ $finder->Create() ;
 // CKFinder::CreateStatic( '../../', null, null, 'ShowFileInfo' ) ;
 
 ?>
-	</p>
+    </p>
 </body>
 </html>

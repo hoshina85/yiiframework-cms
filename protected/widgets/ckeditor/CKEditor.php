@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -10,7 +10,8 @@
  * @author Ekstazi
  * v 0.2
  */
-class CKEditor extends CInputWidget{
+class CKEditor extends CInputWidget
+{
     const COLS = 40;
     const ROWS = 10;
 
@@ -22,7 +23,7 @@ class CKEditor extends CInputWidget{
         'no','pl','pt','pt-br','ro','ru','sk','sl','sr','sr-latn','sv','th','tr',
         'uk','vi','zh','zh-cn'
     );
-    
+
     private $options=array();
 //advanced - пользователь сам определяет тулбар
     private $allowedEditorTemplates=array('full','basic','advanced');
@@ -32,12 +33,11 @@ class CKEditor extends CInputWidget{
 
     private $contentCSS = '';
 
-
     private $width = '100%';
     private $height = '400px';
 
     private $fontFamilies=array(
-        'Arial'=>'Arial, Helvetica, sans-serif', 
+        'Arial'=>'Arial, Helvetica, sans-serif',
         'Comic Sans MS'=>'Comic Sans MS, cursive',
         'Courier New'=>'Courier New, Courier, monospace',
         'Georgia'=>'Georgia, serif',
@@ -68,22 +68,22 @@ class CKEditor extends CInputWidget{
     );
 
     private $toolbar=array();
-    
+
     private $cskin='kama';
     private $theme='default';
 
-
-    public function  __construct($owner=null) {
+    public function  __construct($owner=null)
+    {
         parent::__construct($owner);
         $this->setLanguage(Yii::app()->language);
     }
 
-    public function setLanguage($value){
+    public function setLanguage($value)
+    {
         $lang = (($p = strpos($value, '_')) !== false) ? str_replace('_', '-', $value) : $value;
         if (in_array($lang, $this->allowedLanguages)) {
             $this->language = $lang;
-        }
-          else {
+        } else {
              $suffix = empty($lang) ? 'en' : ($p !== false) ? strtolower(substr($lang, 0, $p)) : strtolower($lang);
              if (in_array($suffix, $this->allowedLanguages)) $this->language = $suffix;
           }
@@ -91,18 +91,21 @@ class CKEditor extends CInputWidget{
             $this->language=$lang;
     }
 
-    public function getLanguage(){
+    public function getLanguage()
+    {
         return $this->language;
     }
 
-    public function setOptions($value){
+    public function setOptions($value)
+    {
         if (!is_array($value))
             throw new CException(Yii::t(__CLASS__, 'options must be an array'));
 
         $this->options=$value;
     }
 
-    public function getOptions(){
+    public function getOptions()
+    {
         return $this->options;
     }
 
@@ -190,8 +193,9 @@ class CKEditor extends CInputWidget{
         return $this->contentCSS;
     }
 
-    public function setToolbar($value){
-        if(is_array($value)||is_string($value)){
+    public function setToolbar($value)
+    {
+        if (is_array($value)||is_string($value)) {
             $this->toolbar=$value;
         }else throw new CException(Yii::t(__CLASS__, 'toolbar must be an array or string'));
     }
@@ -246,37 +250,37 @@ class CKEditor extends CInputWidget{
             default:
                 $options['toolbar']=$this->toolbar;
         }
-        
+
         $fontFamilies='';
-        foreach($this->fontFamilies as $k=>$v){
+        foreach ($this->fontFamilies as $k=>$v) {
             $fontFamilies.=$k.'/'.$v.';';
         }
         $options['font_names']=$fontFamilies;
 
         $fontSizes='';
-        foreach($this->fontSizes as $k=>$v){
+        foreach ($this->fontSizes as $k=>$v) {
             $fontSizes.=$k.'/'.$v.';';
         }
         $options['fontSize_sizes']=$fontSizes;
-        
+
         $options['extraPlugins'] = implode(',', $this->plugins);
 
         $options['skin']=$this->cskin;
         $options['theme']=$this->theme;
 
-		$baseDir = dirname(__FILE__);
+        $baseDir = dirname(__FILE__);
         $assets = Yii::app()->getAssetManager()->publish($baseDir.DIRECTORY_SEPARATOR.'assets');
 
-		$options['filebrowserBrowseUrl'] = $assets . '/ckfinder/ckfinder.html';
-		$options['filebrowserImageBrowseUrl'] = $assets . '/ckfinder/ckfinder.html?type=Images';
-		$options['filebrowserFlashBrowseUrl'] = $assets . '/ckfinder/ckfinder.html?type=Flash';
-		$options['filebrowserUploadUrl'] = $assets . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
-		$options['filebrowserImageUploadUrl'] = $assets . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
-		$options['filebrowserFlashUploadUrl'] = $assets . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
-		//$options['filebrowserWindowWidth'] = '1000'; 
-		//$options['filebrowserWindowHeight'] = '700'; 	
-		
-		//$options['customConfig'] = $assets . '/plugins/bbcode/_sample/bbcode.config.js';	
+        $options['filebrowserBrowseUrl'] = $assets . '/ckfinder/ckfinder.html';
+        $options['filebrowserImageBrowseUrl'] = $assets . '/ckfinder/ckfinder.html?type=Images';
+        $options['filebrowserFlashBrowseUrl'] = $assets . '/ckfinder/ckfinder.html?type=Flash';
+        $options['filebrowserUploadUrl'] = $assets . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+        $options['filebrowserImageUploadUrl'] = $assets . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
+        $options['filebrowserFlashUploadUrl'] = $assets . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
+        //$options['filebrowserWindowWidth'] = '1000';
+        //$options['filebrowserWindowHeight'] = '700';
+
+        //$options['customConfig'] = $assets . '/plugins/bbcode/_sample/bbcode.config.js';
 
       // here any option is overriden by user's options
         if (is_array($this->options)) {
@@ -286,7 +290,8 @@ class CKEditor extends CInputWidget{
         return CJavaScript::encode($options);
    }
 
-    public function run(){
+    public function run()
+    {
         parent::run();
 
         list($name, $id) = $this->resolveNameID();
@@ -299,7 +304,7 @@ class CKEditor extends CInputWidget{
         $cs = Yii::app()->getClientScript();
 
         $cs->registerScriptFile($assets.'/ckeditor.js');
-		$cs->registerScriptFile($assets.'/ckfinder/ckfinder.js');
+        $cs->registerScriptFile($assets.'/ckfinder/ckfinder.js');
 
         $this->htmlOptions['id'] = $id;
         if (!array_key_exists('style', $this->htmlOptions)) {
@@ -317,18 +322,16 @@ CKEDITOR.replace('{$name}',{$options});
 EOP;
 
 
-if( Yii::app()->locale->getOrientation() == 'rtl' )
-{
-	        $js .=<<<EOP
-	CKEDITOR.config.contentsLangDirection = 'rtl';
+if ( Yii::app()->locale->getOrientation() == 'rtl' ) {
+            $js .=<<<EOP
+    CKEDITOR.config.contentsLangDirection = 'rtl';
 EOP;
 }
         $cs->registerScript('Yii.'.get_class($this).'#'.$id, $js, CClientScript::POS_LOAD);
 
-        if($this->hasModel()) {
+        if ($this->hasModel()) {
             $html = CHtml::activeTextArea($this->model, $this->attribute, $this->htmlOptions);
-        }
-	else {
+        } else {
             $html = CHtml::textArea($name, $this->value, $this->htmlOptions);
         }
 
@@ -336,4 +339,3 @@ EOP;
 
     }
 }
-?>

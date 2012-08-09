@@ -50,7 +50,7 @@ class CKFinder_Connector_CommandHandler_CommandHandlerBase
      */
     protected $_errorHandler;
 
-    function __construct()
+    public function __construct()
     {
         $this->_currentFolder =& CKFinder_Connector_Core_Factory::getInstance("Core_FolderHandler");
         $this->_connector =& CKFinder_Connector_Core_Factory::getInstance("Core_Connector");
@@ -119,8 +119,7 @@ class CKFinder_Connector_CommandHandler_CommandHandlerBase
                      * @todo handle error
                      */
                 }
-            }
-            else {
+            } else {
                 $this->_errorHandler->throwError(CKFINDER_CONNECTOR_ERROR_FOLDER_NOT_FOUND);
             }
         }

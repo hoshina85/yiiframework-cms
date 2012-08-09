@@ -37,16 +37,16 @@ class CKFinder_Connector_Core_Xml
      * @var Ckfinder_Connector_Utils_XmlNode
      * @access private
      */
-    var $_connectorNode;
+    public $_connectorNode;
     /**
      * Error node
      *
      * @var Ckfinder_Connector_Utils_XmlNode
      * @access private
      */
-    var $_errorNode;
+    public $_errorNode;
 
-    function CKFinder_Connector_Core_Xml()
+    public function CKFinder_Connector_Core_Xml()
     {
         $this->sendXmlHeaders();
         echo $this->getXMLDeclaration();
@@ -63,7 +63,7 @@ class CKFinder_Connector_Core_Xml
      */
     function &getConnectorNode()
     {
-    	return $this->_connectorNode;
+        return $this->_connectorNode;
     }
 
     /**
@@ -74,14 +74,14 @@ class CKFinder_Connector_Core_Xml
      */
     function &getErrorNode()
     {
-    	return $this->_errorNode;
+        return $this->_errorNode;
     }
 
     /**
      * Send XML headers to the browser (and force browser not to use cache)
      * @access private
      */
-    function sendXmlHeaders()
+    public function sendXmlHeaders()
     {
         // Prevent the browser from caching the result.
         // Date in the past
@@ -104,9 +104,9 @@ class CKFinder_Connector_Core_Xml
      * @access private
      * @return string
      */
-    function getXMLDeclaration()
+    public function getXMLDeclaration()
     {
-    	return '<?xml version="1.0" encoding="utf-8"?>';
+        return '<?xml version="1.0" encoding="utf-8"?>';
     }
 
     /**
@@ -114,10 +114,10 @@ class CKFinder_Connector_Core_Xml
      * Don't call this function directly
      *
      * @access public
-     * @param int $number error number
-     * @param string $text Custom error message (optional)
+     * @param int    $number error number
+     * @param string $text   Custom error message (optional)
      */
-    function raiseError( $number, $text = false)
+    public function raiseError( $number, $text = false)
     {
         $this->_errorNode->addAttribute("number", intval($number));
         if (false!=$text) {

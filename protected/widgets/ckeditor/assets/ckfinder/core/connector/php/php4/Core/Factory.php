@@ -30,7 +30,7 @@ class CKFinder_Connector_Core_Factory
      * Initiate factory
      * @static
      */
-    function initFactory()
+    public function initFactory()
     {
         $GLOBALS['CKFinder_Connector_Factory']=array();
     }

@@ -43,14 +43,14 @@ class CKFinder_Connector_CommandHandler_XmlCommandHandlerBase extends CKFinder_C
      * @var Ckfinder_Connector_Utils_XmlNode
      * @access protected
      */
-    var $_connectorNode;
+    public $_connectorNode;
 
     /**
      * send response
      * @access public
      *
      */
-    function sendResponse()
+    public function sendResponse()
     {
         $xml =& CKFinder_Connector_Core_Factory::getInstance("Core_Xml");
         $this->_connectorNode =& $xml->getConnectorNode();
@@ -93,7 +93,7 @@ class CKFinder_Connector_CommandHandler_XmlCommandHandlerBase extends CKFinder_C
      * @return boolean
      * @access protected
      */
-    function mustCheckRequest()
+    public function mustCheckRequest()
     {
         return true;
     }
@@ -104,7 +104,7 @@ class CKFinder_Connector_CommandHandler_XmlCommandHandlerBase extends CKFinder_C
      * @return boolean
      * @access protected
      */
-    function mustAddCurrentFolderNode()
+    public function mustAddCurrentFolderNode()
     {
         return true;
     }
@@ -114,7 +114,7 @@ class CKFinder_Connector_CommandHandler_XmlCommandHandlerBase extends CKFinder_C
      * @abstract
      * @return void
      */
-    function buildXml()
+    public function buildXml()
     {
 
     }

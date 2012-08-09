@@ -29,7 +29,7 @@ class CKFinder_Connector_Utils_Security
      * Strip quotes from global arrays
      * @access public
      */
-    function getRidOfMagicQuotes()
+    public function getRidOfMagicQuotes()
     {
         if (get_magic_quotes_gpc()) {
             if (!empty($_GET)) {
@@ -56,10 +56,10 @@ class CKFinder_Connector_Utils_Security
      *
      * @access public
      * @param mixed $var
-     * @param int $depth current depth
-     * @param int $howDeep maximum depth
+     * @param int   $depth   current depth
+     * @param int   $howDeep maximum depth
      */
-    function stripQuotes(&$var, $depth=0, $howDeep=5)
+    public function stripQuotes(&$var, $depth=0, $howDeep=5)
     {
         if (is_array($var)) {
             if ($depth++<$howDeep) {

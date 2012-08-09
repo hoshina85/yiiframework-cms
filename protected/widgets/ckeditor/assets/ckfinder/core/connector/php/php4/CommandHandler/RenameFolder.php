@@ -37,15 +37,14 @@ class CKFinder_Connector_CommandHandler_RenameFolder extends CKFinder_Connector_
      * @access private
      * @var string
      */
-    var $command = "RenameFolder";
-
+    public $command = "RenameFolder";
 
     /**
      * handle request and build XML
      * @access protected
      *
      */
-    function buildXml()
+    public function buildXml()
     {
         if (!$this->_currentFolder->checkAcl(CKFINDER_CONNECTOR_ACL_FOLDER_RENAME)) {
             $this->_errorHandler->throwError(CKFINDER_CONNECTOR_ERROR_UNAUTHORIZED);

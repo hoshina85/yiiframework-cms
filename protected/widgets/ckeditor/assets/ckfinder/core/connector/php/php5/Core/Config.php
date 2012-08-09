@@ -53,11 +53,11 @@ class CKFinder_Connector_Core_Config
      */
     private $_isEnabled = false;
     /**
-	 * License Name
-	 *
-	 * @var string
-	 * @access private
-	 */
+     * License Name
+     *
+     * @var string
+     * @access private
+     */
     private $_licenseName = "";
     /**
      * License Key
@@ -178,72 +178,72 @@ class CKFinder_Connector_Core_Config
      */
     private $_forceAscii = false;
 
-    function __construct()
+    public function __construct()
     {
         $this->loadValues();
     }
 
     /**
-	 * Get file system encoding, returns null if encoding is not set
-	 *
-	 * @access public
-	 * @return string
-	 */
+     * Get file system encoding, returns null if encoding is not set
+     *
+     * @access public
+     * @return string
+     */
     public function getFilesystemEncoding()
     {
         return $this->_filesystemEncoding;
     }
 
     /**
-	 * Get "secureImageUploads" value
-	 *
-	 * @access public
-	 * @return boolean
-	 */
+     * Get "secureImageUploads" value
+     *
+     * @access public
+     * @return boolean
+     */
     public function getSecureImageUploads()
     {
         return $this->_secureImageUploads;
     }
 
     /**
-	 * Get "checkSizeAfterScaling" value
-	 *
-	 * @access public
-	 * @return boolean
-	 */
+     * Get "checkSizeAfterScaling" value
+     *
+     * @access public
+     * @return boolean
+     */
     public function checkSizeAfterScaling()
     {
         return $this->_checkSizeAfterScaling;
     }
 
     /**
-	 * Get "htmlExtensions" value
-	 *
-	 * @access public
-	 * @return array
-	 */
+     * Get "htmlExtensions" value
+     *
+     * @access public
+     * @return array
+     */
     public function getHtmlExtensions()
     {
         return $this->_htmlExtensions;
     }
 
     /**
-	 * Get "forceAscii" value
-	 *
-	 * @access public
-	 * @return array
-	 */
+     * Get "forceAscii" value
+     *
+     * @access public
+     * @return array
+     */
     public function forceAscii()
     {
         return $this->_forceAscii;
     }
 
     /**
-	 * Get regular expression to hide folders
-	 *
-	 * @access public
-	 * @return array
-	 */
+     * Get regular expression to hide folders
+     *
+     * @access public
+     * @return array
+     */
     public function getHideFoldersRegex()
     {
         static $folderRegex;
@@ -255,8 +255,7 @@ class CKFinder_Connector_Core_Config
                 $folderRegex = preg_quote($folderRegex, "/");
                 $folderRegex = strtr($folderRegex, array("__QMK__" => ".", "__AST__" => ".*", "__PIP__" => "|"));
                 $folderRegex = "/^(?:" . $folderRegex . ")$/uim";
-            }
-            else {
+            } else {
                 $folderRegex = "";
             }
         }
@@ -265,11 +264,11 @@ class CKFinder_Connector_Core_Config
     }
 
     /**
-	 * Get regular expression to hide files
-	 *
-	 * @access public
-	 * @return array
-	 */
+     * Get regular expression to hide files
+     *
+     * @access public
+     * @return array
+     */
     public function getHideFilesRegex()
     {
         static $fileRegex;
@@ -281,8 +280,7 @@ class CKFinder_Connector_Core_Config
                 $fileRegex = preg_quote($fileRegex, "/");
                 $fileRegex = strtr($fileRegex, array("__QMK__" => ".", "__AST__" => ".*", "__PIP__" => "|"));
                 $fileRegex = "/^(?:" . $fileRegex . ")$/uim";
-            }
-            else {
+            } else {
                 $fileRegex = "";
             }
         }
@@ -291,100 +289,100 @@ class CKFinder_Connector_Core_Config
     }
 
     /**
-	 * Get "Check double extension" value
-	 *
-	 * @access public
-	 * @return boolean
-	 */
+     * Get "Check double extension" value
+     *
+     * @access public
+     * @return boolean
+     */
     public function getCheckDoubleExtension()
     {
         return $this->_checkDoubleExtension;
     }
 
     /**
-	 * Get default resource types
-	 *
-	 * @access public
-	 * @return array()
-	 */
+     * Get default resource types
+     *
+     * @access public
+     * @return array()
+     */
     public function getDefaultResourceTypes()
     {
         return $this->_defaultResourceTypes;
     }
 
     /**
-	 * Is CKFinder enabled
-	 *
-	 * @access public
-	 * @return boolean
-	 */
+     * Is CKFinder enabled
+     *
+     * @access public
+     * @return boolean
+     */
     public function getIsEnabled()
     {
         return $this->_isEnabled;
     }
 
     /**
-	 * Get license key
-	 *
-	 * @access public
-	 * @return string
-	 */
+     * Get license key
+     *
+     * @access public
+     * @return string
+     */
     public function getLicenseKey()
     {
         return $this->_licenseKey;
     }
 
     /**
-	* Get license name
-	*
-	* @access public
-	* @return string
-	*/
+    * Get license name
+    *
+    * @access public
+    * @return string
+    */
     public function getLicenseName()
     {
         return $this->_licenseName;
     }
 
     /**
-	* Get chmod settings for uploaded files
-	*
-	* @access public
-	* @return integer
-	*/
+    * Get chmod settings for uploaded files
+    *
+    * @access public
+    * @return integer
+    */
     public function getChmodFiles()
     {
         return $this->_chmodFiles;
     }
 
     /**
-	* Get chmod settings for created directories
-	*
-	* @access public
-	* @return integer
-	*/
+    * Get chmod settings for created directories
+    *
+    * @access public
+    * @return integer
+    */
     public function getChmodFolders()
     {
         return $this->_chmodFolders;
     }
 
     /**
-	 * Get role sesion variable name
-	 *
-	 * @access public
-	 * @return string
-	 */
+     * Get role sesion variable name
+     *
+     * @access public
+     * @return string
+     */
     public function getRoleSessionVar()
     {
         return $this->_roleSessionVar;
     }
 
     /**
-	 * Get resourceTypeName config
-	 *
-	 * @param string $resourceTypeName
-	 * @return CKFinder_Connector_Core_ResourceTypeConfig|null
-	 * @access public
-	 */
+     * Get resourceTypeName config
+     *
+     * @param  string                                          $resourceTypeName
+     * @return CKFinder_Connector_Core_ResourceTypeConfig|null
+     * @access public
+     */
     public function &getResourceTypeConfig($resourceTypeName)
     {
         $_null = null;
@@ -465,16 +463,16 @@ class CKFinder_Connector_Core_Config
             $this->_isEnabled = CheckAuthentication();
         }
         if (isset($GLOBALS['config']['LicenseName'])) {
-            $this->_licenseName = (string)$GLOBALS['config']['LicenseName'];
+            $this->_licenseName = (string) $GLOBALS['config']['LicenseName'];
         }
         if (isset($GLOBALS['config']['LicenseKey'])) {
-            $this->_licenseKey = (string)$GLOBALS['config']['LicenseKey'];
+            $this->_licenseKey = (string) $GLOBALS['config']['LicenseKey'];
         }
         if (isset($GLOBALS['config']['FilesystemEncoding'])) {
-            $this->_filesystemEncoding = (string)$GLOBALS['config']['FilesystemEncoding'];
+            $this->_filesystemEncoding = (string) $GLOBALS['config']['FilesystemEncoding'];
         }
         if (isset($GLOBALS['config']['RoleSessionVar'])) {
-            $this->_roleSessionVar = (string)$GLOBALS['config']['RoleSessionVar'];
+            $this->_roleSessionVar = (string) $GLOBALS['config']['RoleSessionVar'];
         }
         if (isset($GLOBALS['config']['CheckDoubleExtension'])) {
             $this->_checkDoubleExtension = CKFinder_Connector_Utils_Misc::booleanValue($GLOBALS['config']['CheckDoubleExtension']);
@@ -489,13 +487,13 @@ class CKFinder_Connector_Core_Config
             $this->_forceAscii = CKFinder_Connector_Utils_Misc::booleanValue($GLOBALS['config']['ForceAscii']);
         }
         if (isset($GLOBALS['config']['HtmlExtensions'])) {
-            $this->_htmlExtensions = (array)$GLOBALS['config']['HtmlExtensions'];
+            $this->_htmlExtensions = (array) $GLOBALS['config']['HtmlExtensions'];
         }
         if (isset($GLOBALS['config']['HideFolders'])) {
-            $this->_hideFolders = (array)$GLOBALS['config']['HideFolders'];
+            $this->_hideFolders = (array) $GLOBALS['config']['HideFolders'];
         }
         if (isset($GLOBALS['config']['HideFiles'])) {
-            $this->_hideFiles = (array)$GLOBALS['config']['HideFiles'];
+            $this->_hideFiles = (array) $GLOBALS['config']['HideFiles'];
         }
         if (isset($GLOBALS['config']['ChmodFiles'])) {
             $this->_chmodFiles = $GLOBALS['config']['ChmodFiles'];
@@ -504,7 +502,7 @@ class CKFinder_Connector_Core_Config
             $this->_chmodFolders = $GLOBALS['config']['ChmodFolders'];
         }
         if (isset($GLOBALS['config']['DefaultResourceTypes'])) {
-            $_defaultResourceTypes = (string)$GLOBALS['config']['DefaultResourceTypes'];
+            $_defaultResourceTypes = (string) $GLOBALS['config']['DefaultResourceTypes'];
             if (strlen($_defaultResourceTypes)) {
                 $this->_defaultResourceTypes = explode(",", $_defaultResourceTypes);
             }
@@ -526,7 +524,7 @@ class CKFinder_Connector_Core_Config
         $_names = array();
         foreach ($GLOBALS['config']['ResourceType'] as $key => $_resourceType) {
             if (isset($_resourceType['name'])) {
-                $_names[] = (string)$_resourceType['name'];
+                $_names[] = (string) $_resourceType['name'];
             }
         }
 

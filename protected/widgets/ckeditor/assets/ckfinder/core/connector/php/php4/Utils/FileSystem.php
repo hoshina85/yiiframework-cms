@@ -30,16 +30,16 @@ class CKFinder_Connector_Utils_FileSystem
      *
      * @static
      * @access public
-     * @param string $path1 first path
-     * @param string $path2 scecond path
+     * @param  string $path1 first path
+     * @param  string $path2 scecond path
      * @return string
      */
-    function combinePaths($path1, $path2)
+    public function combinePaths($path1, $path2)
     {
-        if (is_null($path1))  {
+        if (is_null($path1)) {
             $path1 = "";
         }
-        if (is_null($path2))  {
+        if (is_null($path2)) {
             $path2 = "";
         }
         if (!strlen($path2)) {
@@ -49,8 +49,7 @@ class CKFinder_Connector_Utils_FileSystem
                     $path1 .= DIRECTORY_SEPARATOR;
                 }
             }
-        }
-        else {
+        } else {
             $_firstCharP2 = substr($path2, 0, 1);
             if (strlen($path1)) {
                 if (strpos($path2, $path1)===0) {
@@ -60,11 +59,11 @@ class CKFinder_Connector_Utils_FileSystem
                 if ($_lastCharP1 != "/" && $_lastCharP1 != "\\" && $_firstCharP2 != "/" && $_firstCharP2 != "\\") {
                     $path1 .= DIRECTORY_SEPARATOR;
                 }
-            }
-            else {
+            } else {
                 return $path2;
             }
         }
+
         return $path1 . $path2;
     }
 
@@ -73,10 +72,10 @@ class CKFinder_Connector_Utils_FileSystem
      *
      * @static
      * @access public
-     * @param string $fileName
+     * @param  string  $fileName
      * @return boolean
      */
-    function checkFileName($fileName)
+    public function checkFileName($fileName)
     {
         if (is_null($fileName) || !strlen($fileName) || substr($fileName,-1,1)=="." || false!==strpos($fileName, "..")) {
             return false;
@@ -94,26 +93,25 @@ class CKFinder_Connector_Utils_FileSystem
      *
      * @static
      * @access public
-     * @param string $path
+     * @param  string  $path
      * @return boolean
      */
-    function unlink($path)
+    public function unlink($path)
     {
         /*    make sure the path exists    */
-        if(!file_exists($path)) {
+        if (!file_exists($path)) {
             return false;
         }
 
         /*    If it is a file or link, just delete it    */
-        if(is_file($path) || is_link($path)) {
+        if (is_file($path) || is_link($path)) {
             return @unlink($path);
         }
 
         /*    Scan the dir and recursively unlink    */
         $files = CKFinder_Connector_Utils_FileSystem::php4_scandir($path);
         if ($files) {
-            foreach($files as $filename)
-            {
+            foreach ($files as $filename) {
                 if ($filename == '.' || $filename == '..') {
                     continue;
                 }
@@ -123,7 +121,7 @@ class CKFinder_Connector_Utils_FileSystem
         }
 
         /*    Remove the parent dir    */
-        if(!@rmdir($path)) {
+        if (!@rmdir($path)) {
             return false;
         }
 
@@ -136,7 +134,7 @@ class CKFinder_Connector_Utils_FileSystem
      * @access public
      * @param $directory directory name
     */
-    function php4_scandir($directory)
+    public function php4_scandir($directory)
     {
         if (!is_dir($directory) || (false === $fh = @opendir($directory))) {
             return false;
@@ -157,10 +155,10 @@ class CKFinder_Connector_Utils_FileSystem
      *
      * @static
      * @access public
-     * @param string $fileName
+     * @param  string $fileName
      * @return string
      */
-    function getFileNameWithoutExtension($fileName)
+    public function getFileNameWithoutExtension($fileName)
     {
         $dotPos = strrpos( $fileName, '.' );
         if (false === $dotPos) {
@@ -175,10 +173,10 @@ class CKFinder_Connector_Utils_FileSystem
      *
      * @static
      * @access public
-     * @param string $fileName
+     * @param  string $fileName
      * @return string
      */
-    function getExtension( $fileName )
+    public function getExtension( $fileName )
     {
         $dotPos = strrpos( $fileName, '.' );
         if (false === $dotPos) {
@@ -189,14 +187,14 @@ class CKFinder_Connector_Utils_FileSystem
     }
 
     /**
-	 * Read file, split it into small chunks and send it to the browser
-	 *
+     * Read file, split it into small chunks and send it to the browser
+     *
      * @static
      * @access public
-	 * @param string $filename
-	 * @return boolean
-	 */
-    function readfileChunked($filename)
+     * @param  string  $filename
+     * @return boolean
+     */
+    public function readfileChunked($filename)
     {
         $chunksize = 1024 * 10; // how many bytes per chunk
 
@@ -211,6 +209,7 @@ class CKFinder_Connector_Utils_FileSystem
             set_time_limit(8);
         }
         fclose($handle);
+
         return true;
     }
 
@@ -232,7 +231,7 @@ class CKFinder_Connector_Utils_FileSystem
     * @author Andreas Gohr <andi@splitbrain.org>
     * @see http://sourceforge.net/projects/phputf8/
     */
-    function convertToAscii($str)
+    public function convertToAscii($str)
     {
         static $UTF8_LOWER_ACCENTS = NULL;
         static $UTF8_UPPER_ACCENTS = NULL;
@@ -253,16 +252,16 @@ class CKFinder_Connector_Utils_FileSystem
   'ÿ' => 'y', 'ũ' => 'u', 'ŭ' => 'u', 'ư' => 'u', 'ţ' => 't', 'ý' => 'y', 'ő' => 'o',
   'â' => 'a', 'ľ' => 'l', 'ẅ' => 'w', 'ż' => 'z', 'ī' => 'i', 'ã' => 'a', 'ġ' => 'g',
   'ṁ' => 'm', 'ō' => 'o', 'ĩ' => 'i', 'ù' => 'u', 'į' => 'i', 'ź' => 'z', 'á' => 'a',
-  'û' => 'u', 'þ' => 'th', 'ð' => 'dh', 'æ' => 'ae', 'µ' => 'u', 'ĕ' => 'e', 
+  'û' => 'u', 'þ' => 'th', 'ð' => 'dh', 'æ' => 'ae', 'µ' => 'u', 'ĕ' => 'e',
             );
         }
-        
+
         $str = str_replace(
                 array_keys($UTF8_LOWER_ACCENTS),
                 array_values($UTF8_LOWER_ACCENTS),
                 $str
             );
-    
+
         if ( is_null($UTF8_UPPER_ACCENTS) ) {
             $UTF8_UPPER_ACCENTS = array(
   'À' => 'A', 'Ô' => 'O', 'Ď' => 'D', 'Ḟ' => 'F', 'Ë' => 'E', 'Š' => 'S', 'Ơ' => 'O',
@@ -287,6 +286,7 @@ class CKFinder_Connector_Utils_FileSystem
                 array_values($UTF8_UPPER_ACCENTS),
                 $str
             );
+
         return $str;
     }
 
@@ -295,10 +295,10 @@ class CKFinder_Connector_Utils_FileSystem
      *
      * @static
      * @access public
-     * @param string $fileName
+     * @param  string $fileName
      * @return string
      */
-    function convertToFilesystemEncoding($fileName)
+    public function convertToFilesystemEncoding($fileName)
     {
         $_config =& CKFinder_Connector_Core_Factory::getInstance("Core_Config");
         $encoding = $_config->getFilesystemEncoding();
@@ -309,15 +309,14 @@ class CKFinder_Connector_Utils_FileSystem
         if (!function_exists("iconv")) {
             if (strcasecmp($encoding, "ISO-8859-1") == 0 || strcasecmp($encoding, "ISO8859-1") == 0 || strcasecmp($encoding, "Latin1") == 0) {
                 return str_replace("\0", "_", utf8_decode($fileName));
-            } else if (function_exists('mb_convert_encoding')) {
+            } elseif (function_exists('mb_convert_encoding')) {
                 /**
                  * @todo check whether charset is supported - mb_list_encodings
                  */
                 $encoded = @mb_convert_encoding($fileName, $encoding, 'UTF-8');
                 if (@mb_strlen($fileName, "UTF-8") != @mb_strlen($encoded, $encoding)) {
                     return str_replace("\0", "_", preg_replace("/[^[:ascii:]]/u","_",$fileName));
-                }
-                else {
+                } else {
                     return str_replace("\0", "_", $encoded);
                 }
             } else {
@@ -338,10 +337,10 @@ class CKFinder_Connector_Utils_FileSystem
      *
      * @static
      * @access public
-     * @param string $fileName
+     * @param  string $fileName
      * @return string
      */
-    function convertToConnectorEncoding($fileName)
+    public function convertToConnectorEncoding($fileName)
     {
         $_config =& CKFinder_Connector_Core_Factory::getInstance("Core_Config");
         $encoding = $_config->getFilesystemEncoding();
@@ -372,7 +371,7 @@ class CKFinder_Connector_Utils_FileSystem
      * @return string
      * @access public
      */
-    function getDocumentRootPath()
+    public function getDocumentRootPath()
     {
         /**
          * The absolute pathname of the currently executing script.
@@ -381,8 +380,7 @@ class CKFinder_Connector_Utils_FileSystem
          */
         if (isset($_SERVER['SCRIPT_FILENAME'])) {
             $sRealPath = dirname($_SERVER['SCRIPT_FILENAME']);
-        }
-        else {
+        } else {
             /**
              * realpath — Returns canonicalized absolute pathname
              */
@@ -404,11 +402,11 @@ class CKFinder_Connector_Utils_FileSystem
      *
      * @static
      * @access public
-     * @param string $dir
-     * @param int $mode
+     * @param  string  $dir
+     * @param  int     $mode
      * @return boolean
      */
-    function createDirectoryRecursively($dir)
+    public function createDirectoryRecursively($dir)
     {
         if (is_dir($dir)) {
             return true;
@@ -420,8 +418,7 @@ class CKFinder_Connector_Utils_FileSystem
             $oldUmask = umask(0);
             $bCreated = @mkdir($dir, $perms);
             umask($oldUmask);
-        }
-        else {
+        } else {
             $bCreated = @mkdir($dir);
         }
 
@@ -439,8 +436,7 @@ class CKFinder_Connector_Utils_FileSystem
             $old_umask = umask(0);
             $result = @mkdir($dir, $perms);
             umask($old_umask);
-        }
-        else {
+        } else {
             $result = @mkdir($dir);
         }
 
@@ -454,10 +450,10 @@ class CKFinder_Connector_Utils_FileSystem
      *
      * @static
      * @access public
-     * @param string $filePath absolute path to file
+     * @param  string  $filePath absolute path to file
      * @return boolean
     */
-    function detectHtml($filePath)
+    public function detectHtml($filePath)
     {
         $fp = @fopen($filePath, 'rb');
         if ( $fp === false || !flock( $fp, LOCK_SH ) ) {
@@ -481,8 +477,8 @@ class CKFinder_Connector_Utils_FileSystem
 
         $tags = array('<body', '<head', '<html', '<img', '<pre', '<script', '<table', '<title');
 
-        foreach( $tags as $tag ) {
-            if(false !== strpos($chunk, $tag)) {
+        foreach ($tags as $tag) {
+            if (false !== strpos($chunk, $tag)) {
                 return true ;
             }
         }
@@ -514,12 +510,12 @@ class CKFinder_Connector_Utils_FileSystem
      *
      * @static
      * @access public
-     * @param string $filePath absolute path to file
-     * @param string $extension file extension
-     * @param integer $detectionLevel 0 = none, 1 = use getimagesize for images, 2 = use DetectHtml for images
+     * @param  string  $filePath       absolute path to file
+     * @param  string  $extension      file extension
+     * @param  integer $detectionLevel 0 = none, 1 = use getimagesize for images, 2 = use DetectHtml for images
      * @return boolean
     */
-    function isImageValid($filePath, $extension)
+    public function isImageValid($filePath, $extension)
     {
         if (!@is_readable($filePath)) {
             return -1;
@@ -563,10 +559,10 @@ class CKFinder_Connector_Utils_FileSystem
      *
      * @access public
      * @static
-     * @param string $serverPath
+     * @param  string  $serverPath
      * @return boolean
      */
-    function hasChildren($serverPath)
+    public function hasChildren($serverPath)
     {
         if (!is_dir($serverPath) || (false === $fh = @opendir($serverPath))) {
             return false;
@@ -576,7 +572,7 @@ class CKFinder_Connector_Utils_FileSystem
         while (false !== ($filename = readdir($fh))) {
             if ($filename == '.' || $filename == '..') {
                 continue;
-            } else if (is_dir($serverPath . DIRECTORY_SEPARATOR . $filename)) {
+            } elseif (is_dir($serverPath . DIRECTORY_SEPARATOR . $filename)) {
                 //we have found valid directory
                 $hasChildren = true;
                 break;

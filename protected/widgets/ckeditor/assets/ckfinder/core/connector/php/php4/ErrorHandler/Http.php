@@ -34,18 +34,17 @@ class CKFinder_Connector_ErrorHandler_Http extends CKFinder_Connector_ErrorHandl
     /**
      * Throw file upload error, return true if error has been thrown, false if error has been catched
      *
-     * @param int $number
+     * @param int    $number
      * @param string $text
      * @access public
      */
-    function throwError($number, $text = false, $exit = true)
+    public function throwError($number, $text = false, $exit = true)
     {
         if ($this->_catchAllErrors || in_array($number, $this->_skipErrorsArray)) {
             return false;
         }
 
-        switch ($number)
-        {
+        switch ($number) {
             case CKFINDER_CONNECTOR_ERROR_INVALID_REQUEST:
             case CKFINDER_CONNECTOR_ERROR_INVALID_NAME:
             case CKFINDER_CONNECTOR_ERROR_THUMBNAILS_DISABLED:

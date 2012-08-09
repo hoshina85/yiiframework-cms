@@ -67,7 +67,7 @@ class CKFinder_Connector_ErrorHandler_Base
     /**
      * Throw connector error, return true if error has been thrown, false if error has been catched
      *
-     * @param int $number
+     * @param int    $number
      * @param string $text
      * @access public
      */

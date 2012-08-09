@@ -46,7 +46,7 @@ class CKFinder_Connector_Core_Xml
      */
     private $_errorNode;
 
-    function __construct()
+    public function __construct()
     {
         $this->sendXmlHeaders();
         echo $this->getXMLDeclaration();
@@ -63,7 +63,7 @@ class CKFinder_Connector_Core_Xml
      */
     public function &getConnectorNode()
     {
-    	return $this->_connectorNode;
+        return $this->_connectorNode;
     }
 
     /**
@@ -74,7 +74,7 @@ class CKFinder_Connector_Core_Xml
      */
     public function &getErrorNode()
     {
-    	return $this->_errorNode;
+        return $this->_errorNode;
     }
 
     /**
@@ -106,7 +106,7 @@ class CKFinder_Connector_Core_Xml
      */
     private function getXMLDeclaration()
     {
-    	return '<?xml version="1.0" encoding="utf-8"?>';
+        return '<?xml version="1.0" encoding="utf-8"?>';
     }
 
     /**
@@ -114,8 +114,8 @@ class CKFinder_Connector_Core_Xml
      * Don't call this function directly
      *
      * @access public
-     * @param int $number error number
-     * @param string $text Custom error message (optional)
+     * @param int    $number error number
+     * @param string $text   Custom error message (optional)
      */
     public function raiseError( $number, $text = false)
     {

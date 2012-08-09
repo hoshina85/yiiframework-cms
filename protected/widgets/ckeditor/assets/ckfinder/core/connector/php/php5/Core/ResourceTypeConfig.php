@@ -86,11 +86,11 @@ class CKFinder_Connector_Core_ResourceTypeConfig
     /**
      * Get ResourceType configuration
      *
-     * @param string $resourceTypeNode
+     * @param  string $resourceTypeNode
      * @return array
      *
      */
-    function __construct($resourceTypeNode)
+    public function __construct($resourceTypeNode)
     {
         if (isset($resourceTypeNode["name"])) {
             $this->_name = $resourceTypeNode["name"];
@@ -102,13 +102,12 @@ class CKFinder_Connector_Core_ResourceTypeConfig
 
         if (!strlen($this->_url)) {
             $this->_url = "/";
-        }
-        else if(substr($this->_url,-1,1) != "/") {
+        } elseif (substr($this->_url,-1,1) != "/") {
             $this->_url .= "/";
         }
 
         if (isset($resourceTypeNode["maxSize"])) {
-            $this->_maxSize = CKFinder_Connector_Utils_Misc::returnBytes((string)$resourceTypeNode["maxSize"]);
+            $this->_maxSize = CKFinder_Connector_Utils_Misc::returnBytes((string) $resourceTypeNode["maxSize"]);
         }
 
         if (isset($resourceTypeNode["directory"])) {
@@ -122,11 +121,10 @@ class CKFinder_Connector_Core_ResourceTypeConfig
         if (isset($resourceTypeNode["allowedExtensions"])) {
             if (is_array($resourceTypeNode["allowedExtensions"])) {
                 foreach ($resourceTypeNode["allowedExtensions"] as $e) {
-                    $this->_allowedExtensions[] = strtolower(trim((string)$e));
+                    $this->_allowedExtensions[] = strtolower(trim((string) $e));
                 }
-            }
-            else {
-                $resourceTypeNode["allowedExtensions"] = trim((string)$resourceTypeNode["allowedExtensions"]);
+            } else {
+                $resourceTypeNode["allowedExtensions"] = trim((string) $resourceTypeNode["allowedExtensions"]);
                 if (strlen($resourceTypeNode["allowedExtensions"])) {
                     $extensions = explode(",", $resourceTypeNode["allowedExtensions"]);
                     foreach ($extensions as $e) {
@@ -140,11 +138,10 @@ class CKFinder_Connector_Core_ResourceTypeConfig
             if (is_array($resourceTypeNode["deniedExtensions"])) {
 
                 foreach ($resourceTypeNode["deniedExtensions"] as $extension) {
-                    $this->_deniedExtensions[] = strtolower(trim((string)$e));
+                    $this->_deniedExtensions[] = strtolower(trim((string) $e));
                 }
-            }
-            else {
-                $resourceTypeNode["deniedExtensions"] = trim((string)$resourceTypeNode["deniedExtensions"]);
+            } else {
+                $resourceTypeNode["deniedExtensions"] = trim((string) $resourceTypeNode["deniedExtensions"]);
                 if (strlen($resourceTypeNode["deniedExtensions"])) {
                     $extensions = explode(",", $resourceTypeNode["deniedExtensions"]);
                     foreach ($extensions as $e) {
@@ -249,8 +246,8 @@ class CKFinder_Connector_Core_ResourceTypeConfig
      * If allowed extensions are defined, return false if extension isn't on allowed list.
      *
      * @access public
-     * @param string $extension extension
-     * @param boolean $renameIfRequired whether try to rename file or not
+     * @param  string  $extension        extension
+     * @param  boolean $renameIfRequired whether try to rename file or not
      * @return boolean
      */
     public function checkExtension(&$fileName, $renameIfRequired = true)
@@ -285,8 +282,7 @@ class CKFinder_Connector_Core_ResourceTypeConfig
                 // Add the last extension to the final name.
                 $fileName .= '.' . $pieces[sizeof($pieces)-1] ;
             }
-        }
-        else {
+        } else {
             // Check only the last extension (ex. in file.php.jpg, only "jpg").
             return $this->checkSingleExtension( substr($fileName, strrpos($fileName,'.')+1) );
         }

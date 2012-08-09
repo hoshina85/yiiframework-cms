@@ -32,9 +32,9 @@ class CKFinder_Connector_Core_Connector
      * @var CKFinder_Connector_Core_Registry
      * @access private
      */
-    var $_registry;
+    public $_registry;
 
-    function CKFinder_Connector_Core_Connector()
+    public function CKFinder_Connector_Core_Connector()
     {
         $this->_registry =& CKFinder_Connector_Core_Factory::getInstance("Core_Registry");
         $this->_registry->set("errorHandler", "ErrorHandler_Base");
@@ -45,7 +45,7 @@ class CKFinder_Connector_Core_Connector
      * @access public
      *
      */
-    function handleInvalidCommand()
+    public function handleInvalidCommand()
     {
         $oErrorHandler =& $this->getErrorHandler();
         $oErrorHandler->throwError(CKFINDER_CONNECTOR_ERROR_INVALID_COMMAND);
@@ -57,10 +57,9 @@ class CKFinder_Connector_Core_Connector
      * @param string $command
      * @access public
      */
-    function executeCommand($command)
+    public function executeCommand($command)
     {
-        switch ($command)
-        {
+        switch ($command) {
             case 'FileUpload':
             $this->_registry->set("errorHandler", "ErrorHandler_FileUpload");
             $obj =& CKFinder_Connector_Core_Factory::getInstance("CommandHandler_".$command);
@@ -108,6 +107,7 @@ class CKFinder_Connector_Core_Connector
     {
         $_errorHandler = $this->_registry->get("errorHandler");
         $oErrorHandler =& CKFinder_Connector_Core_Factory::getInstance($_errorHandler);
+
         return $oErrorHandler;
     }
 }

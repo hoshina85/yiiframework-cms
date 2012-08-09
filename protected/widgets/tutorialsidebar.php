@@ -2,8 +2,8 @@
 
 class tutorialsidebar extends CWidget
 {
-	public function run()
-	{
-		$this->render('tutorialsidebar');
-	}
+    public function run()
+    {
+        $this->render('tutorialsidebar');
+    }
 }

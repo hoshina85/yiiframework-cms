@@ -52,11 +52,9 @@ define('CKFINDER_CONNECTOR_CONFIG_FILE_PATH',"./../../../config.php");
 
 if (version_compare(phpversion(), '6', '>=')) {
     define('CKFINDER_CONNECTOR_PHP_MODE', 6);
-}
-else if (version_compare(phpversion(), '5', '>=')) {
+} elseif (version_compare(phpversion(), '5', '>=')) {
     define('CKFINDER_CONNECTOR_PHP_MODE', 5);
-}
-else {
+} else {
     define('CKFINDER_CONNECTOR_PHP_MODE', 4);
 }
 

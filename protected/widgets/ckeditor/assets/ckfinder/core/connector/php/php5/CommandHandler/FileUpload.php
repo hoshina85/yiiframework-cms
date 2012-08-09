@@ -134,8 +134,7 @@ class CKFinder_Connector_CommandHandler_FileUpload extends CKFinder_Connector_Co
         $sServerDir = $this->_currentFolder->getServerPath();
         $iCounter = 0;
 
-        while (true)
-        {
+        while (true) {
             $sFilePath = CKFinder_Connector_Utils_FileSystem::combinePaths($sServerDir, $sFileName);
 
             if (file_exists($sFilePath)) {
@@ -150,13 +149,11 @@ class CKFinder_Connector_CommandHandler_FileUpload extends CKFinder_Connector_Co
             } else {
                 if (false === move_uploaded_file($uploadedFile['tmp_name'], $sFilePath)) {
                     $iErrorNumber = CKFINDER_CONNECTOR_ERROR_ACCESS_DENIED;
-                }
-                else {
+                } else {
                     if (isset($detectHtml) && $detectHtml === -1 && CKFinder_Connector_Utils_FileSystem::detectHtml($sFilePath) === true) {
                         @unlink($sFilePath);
                         $this->_errorHandler->throwError(CKFINDER_CONNECTOR_ERROR_UPLOADED_WRONG_HTML_FILE);
-                    }
-                    else if (isset($isImageValid) && $isImageValid === -1 && CKFinder_Connector_Utils_FileSystem::isImageValid($sFilePath, $sExtension) === false) {
+                    } elseif (isset($isImageValid) && $isImageValid === -1 && CKFinder_Connector_Utils_FileSystem::isImageValid($sFilePath, $sExtension) === false) {
                         @unlink($sFilePath);
                         $this->_errorHandler->throwError(CKFINDER_CONNECTOR_ERROR_UPLOADED_CORRUPT);
                     }
@@ -188,8 +185,7 @@ class CKFinder_Connector_CommandHandler_FileUpload extends CKFinder_Connector_Co
             if ($maxSize && filesize($sFilePath)>$maxSize) {
                 @unlink($sFilePath);
                 $this->_errorHandler->throwError(CKFINDER_CONNECTOR_ERROR_UPLOADED_TOO_BIG);
-            }
-            else {
+            } else {
                 $this->_errorHandler->throwError($iErrorNumber, true);
             }
         }

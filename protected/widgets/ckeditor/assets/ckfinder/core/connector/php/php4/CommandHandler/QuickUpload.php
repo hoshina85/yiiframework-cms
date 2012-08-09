@@ -37,9 +37,9 @@ class CKFinder_Connector_CommandHandler_QuickUpload extends CKFinder_Connector_C
      * @access protected
      * @var string
      */
-    var $command = "QuickUpload";
+    public $command = "QuickUpload";
 
-    function sendResponse()
+    public function sendResponse()
     {
         $oRegistry =& CKFinder_Connector_Core_Factory::getInstance("Core_Registry");
         $oRegistry->set("FileUpload_url", $this->_currentFolder->getUrl());

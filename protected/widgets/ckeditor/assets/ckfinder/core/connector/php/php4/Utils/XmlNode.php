@@ -32,37 +32,37 @@ class Ckfinder_Connector_Utils_XmlNode
      * @access private
      * @var array
      */
-    var $_attributes = array();
+    public $_attributes = array();
     /**
      * Array that stores child nodes
      *
      * @access private
      * @var array
      */
-    var $_childNodes = array();
+    public $_childNodes = array();
     /**
      * Node name
      *
      * @access private
      * @var string
      */
-    var $_name;
+    public $_name;
     /**
      * Node value
      *
      * @access private
      * @var string
      */
-    var $_value;
+    public $_value;
 
     /**
      * Create new node
      *
-     * @param string $nodeName node name
-     * @param string $nodeValue node value
+     * @param  string                           $nodeName  node name
+     * @param  string                           $nodeValue node value
      * @return Ckfinder_Connector_Utils_XmlNode
      */
-    function Ckfinder_Connector_Utils_XmlNode($nodeName, $nodeValue = null)
+    public function Ckfinder_Connector_Utils_XmlNode($nodeName, $nodeValue = null)
     {
         $this->_name = $nodeName;
         if (!is_null($nodeValue)) {
@@ -77,7 +77,7 @@ class Ckfinder_Connector_Utils_XmlNode
      * @param string $value
      * @access public
      */
-    function addAttribute($name, $value)
+    public function addAttribute($name, $value)
     {
         $this->_attributes[$name] = $value;
     }
@@ -88,7 +88,7 @@ class Ckfinder_Connector_Utils_XmlNode
      * @param Ckfinder_Connector_Utils_XmlNode $node
      * @access public
      */
-    function addChild(&$node)
+    public function addChild(&$node)
     {
         $this->_childNodes[] =& $node;
     }
@@ -99,7 +99,7 @@ class Ckfinder_Connector_Utils_XmlNode
      * @return string
      * @access public
      */
-    function asXML()
+    public function asXML()
     {
         $ret = "<" . $this->_name;
 
@@ -113,6 +113,7 @@ class Ckfinder_Connector_Utils_XmlNode
         //if there is nothing more todo, close empty tag and exit
         if (is_null($this->_value) && !sizeof($this->_childNodes)) {
             $ret .= " />";
+
             return $ret;
         }
 

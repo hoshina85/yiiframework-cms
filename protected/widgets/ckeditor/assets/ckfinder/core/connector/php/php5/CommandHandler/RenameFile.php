@@ -39,7 +39,6 @@ class CKFinder_Connector_CommandHandler_RenameFile extends CKFinder_Connector_Co
      */
     private $command = "RenameFile";
 
-
     /**
      * handle request and build XML
      * @access protected

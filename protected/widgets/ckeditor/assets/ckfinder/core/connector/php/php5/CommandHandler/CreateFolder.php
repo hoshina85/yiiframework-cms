@@ -77,8 +77,7 @@ class CKFinder_Connector_CommandHandler_CreateFolder extends CKFinder_Connector_
             $oldUmask = umask(0);
             $bCreated = @mkdir($sServerDir, $perms);
             umask($oldUmask);
-        }
-        else {
+        } else {
             $bCreated = @mkdir($sServerDir);
         }
 

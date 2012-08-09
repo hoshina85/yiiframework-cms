@@ -37,7 +37,7 @@ class CKFinder_Connector_Core_Registry
     /**
      * Chacke if value has been set
      *
-     * @param string $key
+     * @param  string  $key
      * @return boolean
      * @access private
      */
@@ -50,7 +50,7 @@ class CKFinder_Connector_Core_Registry
      * Set value
      *
      * @param string $key
-     * @param mixed $obj
+     * @param mixed  $obj
      * @access public
      */
     public function set($key, $obj)
@@ -61,14 +61,14 @@ class CKFinder_Connector_Core_Registry
     /**
      * Get value
      *
-     * @param string $key
+     * @param  string $key
      * @return mixed
      * @access public
      */
     public function get($key)
     {
-    	if ($this->isValid($key)) {
-    	    return $this->_store[$key];
-    	}
+        if ($this->isValid($key)) {
+            return $this->_store[$key];
+        }
     }
 }

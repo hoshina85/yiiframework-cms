@@ -32,14 +32,14 @@ class CKFinder_Connector_ErrorHandler_Base
      * @var boolean
      * @access protected
      */
-    var $_catchAllErrors = false;
+    public $_catchAllErrors = false;
     /**
      * Array with error numbers that should be ignored
      *
      * @var array[]int
      * @access protected
      */
-    var $_skipErrorsArray = array();
+    public $_skipErrorsArray = array();
 
     /**
      * Set whether all errors should be ignored
@@ -47,7 +47,7 @@ class CKFinder_Connector_ErrorHandler_Base
      * @param boolean $newValue
      * @access public
      */
-    function setCatchAllErros($newValue)
+    public function setCatchAllErros($newValue)
     {
         $this->_catchAllErrors = $newValue ? true : false;
     }
@@ -57,7 +57,7 @@ class CKFinder_Connector_ErrorHandler_Base
      *
      * @param array $newArray
      */
-    function setSkipErrorsArray($newArray)
+    public function setSkipErrorsArray($newArray)
     {
         if (is_array($newArray)) {
             $this->_skipErrorsArray = $newArray;
@@ -67,11 +67,11 @@ class CKFinder_Connector_ErrorHandler_Base
     /**
      * Throw connector error, return true if error has been thrown, false if error has been catched
      *
-     * @param int $number
+     * @param int    $number
      * @param string $text
      * @access public
      */
-    function throwError($number, $text = false)
+    public function throwError($number, $text = false)
     {
         if ($this->_catchAllErrors || in_array($number, $this->_skipErrorsArray)) {
             return false;

@@ -39,7 +39,6 @@ class CKFinder_Connector_CommandHandler_DeleteFile extends CKFinder_Connector_Co
      */
     private $command = "DeleteFile";
 
-
     /**
      * handle request and build XML
      * @access protected

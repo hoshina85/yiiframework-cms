@@ -56,8 +56,8 @@ class CKFinder_Connector_Utils_Security
      *
      * @access public
      * @param mixed $var
-     * @param int $depth current depth
-     * @param int $howDeep maximum depth
+     * @param int   $depth   current depth
+     * @param int   $howDeep maximum depth
      */
     public function stripQuotes(&$var, $depth=0, $howDeep=5)
     {

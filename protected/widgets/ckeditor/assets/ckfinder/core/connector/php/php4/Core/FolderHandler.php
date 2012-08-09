@@ -35,78 +35,77 @@ class CKFinder_Connector_Core_FolderHandler
      * @var CKFinder_Connector_Core_ResourceTypeConfig
      * @access private
      */
-    var $_resourceTypeConfig;
+    public $_resourceTypeConfig;
     /**
      * ResourceType name
      *
      * @var string
      * @access private
      */
-    var $_resourceTypeName = "";
+    public $_resourceTypeName = "";
     /**
      * Client path
      *
      * @var string
      * @access private
      */
-    var $_clientPath = "/";
+    public $_clientPath = "/";
     /**
      * Url
      *
      * @var string
      * @access private
      */
-    var $_url;
+    public $_url;
     /**
      * Server path
      *
      * @var string
      * @access private
      */
-    var $_serverPath;
+    public $_serverPath;
     /**
      * Thumbnails server path
      *
      * @var string
      * @access private
      */
-    var $_thumbsServerPath;
+    public $_thumbsServerPath;
     /**
      * ACL mask
      *
      * @var int
      * @access private
      */
-    var $_aclMask;
+    public $_aclMask;
     /**
      * Folder info
      *
      * @var mixed
      * @access private
      */
-    var $_folderInfo;
+    public $_folderInfo;
     /**
      * Thumbnails folder info
      *
      * @var mized
      * @access private
      */
-    var $_thumbsFolderInfo;
+    public $_thumbsFolderInfo;
 
-    function CKFinder_Connector_Core_FolderHandler()
+    public function CKFinder_Connector_Core_FolderHandler()
     {
         if (isset($_GET["type"])) {
-            $this->_resourceTypeName = (string)$_GET["type"];
+            $this->_resourceTypeName = (string) $_GET["type"];
         }
 
         if (isset($_GET["currentFolder"])) {
-            $this->_clientPath = CKFinder_Connector_Utils_FileSystem::convertToFilesystemEncoding((string)$_GET["currentFolder"]);
+            $this->_clientPath = CKFinder_Connector_Utils_FileSystem::convertToFilesystemEncoding((string) $_GET["currentFolder"]);
         }
 
         if (!strlen($this->_clientPath)) {
             $this->_clientPath = "/";
-        }
-        else {
+        } else {
             if (substr($this->_clientPath, -1, 1) != "/") {
                 $this->_clientPath .= "/";
             }
@@ -146,7 +145,7 @@ class CKFinder_Connector_Core_FolderHandler
      * @return string
      * @access public
      */
-    function getResourceTypeName()
+    public function getResourceTypeName()
     {
         return $this->_resourceTypeName;
     }
@@ -157,7 +156,7 @@ class CKFinder_Connector_Core_FolderHandler
      * @return string
      * @access public
      */
-    function getClientPath()
+    public function getClientPath()
     {
         return $this->_clientPath;
     }
@@ -168,7 +167,7 @@ class CKFinder_Connector_Core_FolderHandler
      * @return string
      * @access public
      */
-    function getUrl()
+    public function getUrl()
     {
         if (is_null($this->_url)) {
             $this->_resourceTypeConfig = $this->getResourceTypeConfig();
@@ -177,8 +176,7 @@ class CKFinder_Connector_Core_FolderHandler
                 $oErrorHandler =& $connector->getErrorHandler();
                 $oErrorHandler->throwError(CKFINDER_CONNECTOR_ERROR_INVALID_TYPE);
                 $this->_url = "";
-            }
-            else {
+            } else {
                 $this->_url = $this->_resourceTypeConfig->getUrl() . ltrim($this->getClientPath(), "/");
             }
         }
@@ -192,7 +190,7 @@ class CKFinder_Connector_Core_FolderHandler
      * @return string
      * @access public
      */
-    function getServerPath()
+    public function getServerPath()
     {
         if (is_null($this->_serverPath)) {
             $this->_resourceTypeConfig = $this->getResourceTypeConfig();
@@ -208,7 +206,7 @@ class CKFinder_Connector_Core_FolderHandler
      * @access public
      * @return string
      */
-    function getThumbsServerPath()
+    public function getThumbsServerPath()
     {
         if (is_null($this->_thumbsServerPath)) {
             $this->_resourceTypeConfig = $this->getResourceTypeConfig();
@@ -223,7 +221,7 @@ class CKFinder_Connector_Core_FolderHandler
             $this->_thumbsServerPath = CKFinder_Connector_Utils_FileSystem::combinePaths($this->_thumbsServerPath, ltrim($this->_clientPath, '/'));
 
             if (!is_dir($this->_thumbsServerPath)) {
-                if(!CKFinder_Connector_Utils_FileSystem::createDirectoryRecursively($this->_thumbsServerPath)) {
+                if (!CKFinder_Connector_Utils_FileSystem::createDirectoryRecursively($this->_thumbsServerPath)) {
                     /**
                      * @todo  Ckfinder_Connector_Utils_Xml::raiseError(); perhaps we should return error
                      *
@@ -241,7 +239,7 @@ class CKFinder_Connector_Core_FolderHandler
      * @return int
      * @access public
      */
-    function getAclMask()
+    public function getAclMask()
     {
         $_config =& CKFinder_Connector_Core_Factory::getInstance("Core_Config");
         $_aclConfig = $_config->getAccessControlConfig();
@@ -257,14 +255,15 @@ class CKFinder_Connector_Core_FolderHandler
      * Check ACL
      *
      * @access public
-     * @param int $aclToCkeck
+     * @param  int     $aclToCkeck
      * @return boolean
      */
-    function checkAcl($aclToCkeck)
+    public function checkAcl($aclToCkeck)
     {
         $aclToCkeck = intval($aclToCkeck);
 
         $maska = $this->getAclMask();
+
         return (($maska & $aclToCkeck) == $aclToCkeck);
     }
 }
