@@ -45,11 +45,11 @@ return array(
                             'application.extensions.*',
         ),
         'theme' => 'default',
-        'name' => 'YiiFramework.co.il',
+        'name' => 'yiijan',
         'defaultController' => 'site/index',
         'layout' => 'main',
         'charset'=>'UTF-8',
-        'sourceLanguage' => 'ja',
+        'sourceLanguage' => 'en',
         'language' => 'ja',
         'params' => array(
                             'fastcache' => $fastCache,

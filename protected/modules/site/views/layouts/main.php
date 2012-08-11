@@ -184,8 +184,8 @@
 
     <div id='bottomnew'>&nbsp;</div>
 
-    <div>
-    <ul id="menufooter">
+    <div id="menufooter">
+    <ul>
         <li><strong><?php echo Yii::t('global', 'Copyright {name} {year} &copy All Rights Reserved', array( '{name}' => Yii::app()->name, '{year}' => date('Y') )); ?></strong></li>
         <li><?php echo CHtml::link( Yii::t('global', 'About Us'), array('/about-us', 'lang'=>false) ); ?></a></li>
         <li><?php echo CHtml::link( Yii::t('global', 'F.A.Q'), array('/faq', 'lang'=>false) ); ?></a></li>
@@ -206,14 +206,5 @@
         <img src='<?php echo Yii::app()->themeManager->baseUrl; ?>/images/feedbackbutton<?php echo Yii::app()->language; ?>.png' alt='' />
     </a>
 </div>
-    <script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-15161565-1");
-pageTracker._trackPageview();
-} catch (err) {}</script>
 </body>
 </html>

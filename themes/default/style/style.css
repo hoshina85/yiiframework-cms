@@ -17,27 +17,26 @@ ul {
 caption,th {
 	text-align:left;
 }
-a,a:link,a:visited,a:hover { 
+a,a:link,a:visited,a:hover {
 	color:#0071c8;
-	text-decoration:none; 
+	text-decoration:none;
 }
-a:focus,a:hover { 
+a:focus,a:hover {
 	text-decoration:underline;
 }
-a img { 
-	border:0; 
+a img {
+	border:0;
 }
 :focus {
 	outline: 0;
 }
-.clear { 
-	clear:both; 
+.clear {
+	clear:both;
 }
 #content { font-size: 13px; }
 /* Global Elements
 =====================================================================*/
 body {
-	background:#5da1c0 url(../images/header.png) repeat-x;
 	line-height: 1.6em;
 	font:62.5% arial, verdana, serif;
 }
@@ -67,12 +66,13 @@ body {
 }
 #header {
 	width:999px;
-	height:43px;
+	height:115px;
 	margin: 0 0 12px 0;
 }
 #logo{
-	width:320px;
-	height:43px;
+	width:450px;
+	height:100px;
+  margin-top: 1em;
 	font-size:1.2em;
 	position:relative;
 	overflow:hidden;
@@ -81,7 +81,7 @@ body {
 	text-indent: -5000px;
 }
 #logo span{
-	background:url(../images/logo.png) no-repeat;
+	background:url(../images/yiijan_logo.png) no-repeat;
 	position:absolute;
 	width:100%;
 	height:100%;
@@ -122,8 +122,8 @@ body {
 #menutop li.last {
 	margin: 0;
 }
-.ui-tabs-hide {  
-	display: none;  
+.ui-tabs-hide {
+	display: none;
 }
 .ui-tabs-panel {
 	width: 733px;
@@ -1030,7 +1030,7 @@ div#placemainmenu li li:hover ul
 	font-weight: bold;
 }
 #frmcomment label span {
-	font-weight: lighter;	
+	font-weight: lighter;
 }
 .textboxcomment {
 	width: 323px;
@@ -1223,7 +1223,7 @@ div#placemainmenu li li:hover ul
 /* Footer
 =====================================================================*/
 #bottomnew {
-	background: url(../images/bottom_back.jpg) no-repeat;
+	background: url(../images/content_back.png) repeat-y;
 	height: 39px;
 	margin:0;
 	padding:0 26px;
@@ -1232,7 +1232,7 @@ div#placemainmenu li li:hover ul
 #contentbottom {
 	width: 947px;
 	height: 157px;
-	background: url(../images/new_content_bottom.jpg) no-repeat;
+	background: url(../images/content_back.png) repeat-y;
 	margin: 0;
 	padding: 0px 26px 0 26px;
 }
@@ -1313,8 +1313,8 @@ div#placemainmenu li li:hover ul
 	color: #6e6e6e;
 }
 #menufooter {
-	margin: 15px;
-	padding: 10px;
+	background: url(../images/content_back.png) repeat-y;
+	padding: 25px;
 }
 #menufooter li {
 	display: inline;
@@ -1382,12 +1382,12 @@ div#placemainmenu li li:hover ul
 	height: 100%;
 	display: block;
 }
-#lightbox-nav-btnPrev { 
-	left: 0; 
+#lightbox-nav-btnPrev {
+	left: 0;
 	float: left;
 }
-#lightbox-nav-btnNext { 
-	right: 0; 
+#lightbox-nav-btnNext {
+	right: 0;
 	float: right;
 }
 #lightbox-container-image-data-box {
@@ -1400,24 +1400,24 @@ div#placemainmenu li li:hover ul
 	padding: 0 10px 0;
 }
 #lightbox-container-image-data {
-	padding: 0 10px; 
-	color: #666; 
+	padding: 0 10px;
+	color: #666;
 }
-#lightbox-container-image-data #lightbox-image-details { 
-	width: 70%; 
-	float: left; 
-	text-align: left; 
-}	
+#lightbox-container-image-data #lightbox-image-details {
+	width: 70%;
+	float: left;
+	text-align: left;
+}
 #lightbox-image-details-caption { font-weight: bold; }
 #lightbox-image-details-currentNumber {
-	display: block; 
-	clear: left; 
-	padding-bottom: 1.0em;	
-}			
+	display: block;
+	clear: left;
+	padding-bottom: 1.0em;
+}
 #lightbox-secNav-btnClose {
-	width: 66px; 
+	width: 66px;
 	float: right;
-	padding-bottom: 0.7em;	
+	padding-bottom: 0.7em;
 }
 /*
 =====================================================================*/
@@ -1477,7 +1477,7 @@ ul.toc li.selected {padding-left: 1.5em;}
 
 .boxed_page ul, .boxed_page ul li { list-style-type: disc; }
 
-blockquote.tip, blockquote.info, blockquote.note 
+blockquote.tip, blockquote.info, blockquote.note
 {
 	padding: 10px 2em 10px 55px;
 }
@@ -1488,7 +1488,7 @@ ul.toc li {cursor: pointer;}
 	float: right;
 	color:#D4D4D4;
 	font-size:3em;}
-	
+
 	ul.yiiPager
 	{
 		font-size:11px;
@@ -1548,8 +1548,8 @@ ul.toc li {cursor: pointer;}
 	ul.yiiPager .last
 	{
 		display:none;
-	}	
-	
+	}
+
 /*************** Notifications ***************/
 
 .notification {
@@ -1790,12 +1790,12 @@ table.data thead th
 table.data thead th.center
 {
 	text-align: center;
-}	
+}
 
-table.data tbody tr td 
-{ 
-	background: #FFF; 
-	border-bottom: 1px solid #DDD; 
+table.data tbody tr td
+{
+	background: #FFF;
+	border-bottom: 1px solid #DDD;
 }
 
 table.data th { padding: 10px 0; }
