@@ -1,0 +1,2 @@
+chmod a+w protected/runtime
+chmod a+w assets

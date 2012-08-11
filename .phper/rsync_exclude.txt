@@ -1,0 +1,3 @@
+.git
+protected/runtime
+assets

@@ -7,7 +7,7 @@ $config=dirname(__FILE__).'/protected/config/';
 defined('ROOT_PATH') or define('ROOT_PATH', dirname(__FILE__) . '/');
 
 // remove the following lines when in production mode
-defined('YII_DEBUG') or define('YII_DEBUG', false);
+defined('YII_DEBUG') or define('YII_DEBUG', true);
 
 if( YII_DEBUG === true )
 {
@@ -15,7 +15,7 @@ if( YII_DEBUG === true )
 	error_reporting(E_ALL);
 	
 	// By default we use testing.com for the currently active domain
-	define('CURRENT_ACTIVE_DOMAIN', 'testing.com');
+	define('CURRENT_ACTIVE_DOMAIN', 'catch-green-gyudon-27992.phper.jp');
 }
 else
 {
@@ -25,7 +25,7 @@ else
 	error_reporting(E_ALL);
 	
 	// On production it will be the yiiframework.co.il domain name
-	define('CURRENT_ACTIVE_DOMAIN', 'yiiframework.co.il');
+	define('CURRENT_ACTIVE_DOMAIN', 'yiijan.org');
 }
 
 $configFile = YII_DEBUG ? 'dev.php' : 'production.php';
