@@ -123,6 +123,9 @@ class CustomUrlManager extends CUrlManager
                     // Forum Topics
                     "http://{$domain}/forum/topic/<topicid:(\d+)>-<alias:(.*?)>/*" => array('site/forum/viewtopic'),
 
+                    // reset
+                    "http://{$domain}/login/reset/q/<q:(\w+)>" => array('site/login/reset'),
+
                     );
             }
 
