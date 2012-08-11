@@ -59,7 +59,7 @@ class LoginController extends SiteBaseController
                 }
 
                 // Redirect
-                $this->redirect('index/index');
+                $this->redirect(array('index/index'));
             }
         }
 
