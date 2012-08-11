@@ -12,7 +12,7 @@
     <?php endif; ?>
 
     <div id='facebookloginbutton'>
-        <?php echo CHtml::link( CHtml::image('http://static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif', ''), 'javascript:void(0);', array( 'title' => Yii::t('login', 'Login With Facebook'), 'onClick' => "return showFaceBookAuth();" ) ); ?>
+        <?php echo CHtml::link( '<span>Sign in with Facebook</span>', 'javascript:void(0);', array( 'title' => Yii::t('login', 'Login With Facebook'), 'onClick' => "return showFaceBookAuth();", "id" => "facebook_signin" ) ); ?>
     </div>
 
     <?php echo CHtml::form('', 'post', array('class'=>'frmcontact')); ?>

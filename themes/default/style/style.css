@@ -1814,3 +1814,23 @@ table.data tr td.center { text-align: center; }
 {
 	padding-bottom: 5px;
 }
+
+#facebook_signin
+{
+  display: block;
+  width: 150px;
+  height: 23px;
+  background: url("../images/facebook_signin.png") no-repeat;
+}
+#facebook_signin:hover
+{
+  background-position: 0 -24px;
+}
+#facebook_signin:active
+{
+  background-position: 0 -48px;
+}
+#facebook_signin span
+{
+  visibility: hidden;
+}
