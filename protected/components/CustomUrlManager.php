@@ -101,6 +101,9 @@ class CustomUrlManager extends CUrlManager
                     "<lang:({$active_lang})>/<_c:([a-zA-z0-9-]+)>/<_a:([a-zA-z0-9-]+)>" => 'site/<_c>/<_a>',
                     "<lang:({$active_lang})>/<_c:([a-zA-z0-9-]+)>/<_a:([a-zA-z0-9-]+)>//*" => 'site/<_c>/<_a>/',
 
+                    // Site top
+                    "http://{$domain}/index" => array('site/index/index'),
+
                     // Site Map
                     "http://{$domain}/sitemap" => array('site/sitemap/index', 'urlSuffix'=>'.xml', 'caseSensitive'=>false),
 
@@ -126,6 +129,18 @@ class CustomUrlManager extends CUrlManager
                     // reset
                     "http://{$domain}/login/reset/q/<q:(\w+)>" => array('site/login/reset'),
 
+                    // Match by controller/action/*
+                    "http://{$domain}/<_c:([a-zA-z0-9-_]+)>/<_a:([a-zA-z0-9-_]+)>/*" => array('site/<_c>/<_a>/'),
+                    // Match by controller/action/* and more
+                    "http://{$domain}/<_c:([a-zA-z0-9-_]+)>/<_a:([a-zA-z0-9-_]+)>/*" => array('site/<_c>/<_a>'),
+
+                    // Match by index/index
+                    "http://{$domain}" => array('site/index/index'),
+                    "http://{$domain}/" => array('site/index/index'),
+
+                    // Match by controller index
+                    "http://<lang:({$active_lang})>.{$domain}/<_c:([a-zA-z0-9-_]+)>/*" => array('site/<_c>/index/'),
+                    "http://<lang:({$active_lang})>.{$domain}/<_c:([a-zA-z0-9-_]+)>/*" => array('site/<_c>/index'),
                     );
             }
 
