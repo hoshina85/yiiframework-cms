@@ -15,7 +15,7 @@ if( YII_DEBUG === true )
 	error_reporting(E_ALL);
 	
 	// By default we use testing.com for the currently active domain
-	define('CURRENT_ACTIVE_DOMAIN', 'catch-green-gyudon-27992.phper.jp');
+	define('CURRENT_ACTIVE_DOMAIN', 'yiijan.criff.net');
 }
 else
 {
@@ -25,7 +25,7 @@ else
 	error_reporting(E_ALL);
 	
 	// On production it will be the yiiframework.co.il domain name
-	define('CURRENT_ACTIVE_DOMAIN', 'yiijan.org');
+	define('CURRENT_ACTIVE_DOMAIN', 'yiijan.criff.net');
 }
 
 $configFile = YII_DEBUG ? 'dev.php' : 'production.php';

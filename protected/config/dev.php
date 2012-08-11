@@ -8,9 +8,9 @@ $development = array(
     'components' => array(
         'db' =>  array(
                         'class' => 'CDbConnection',
-                        'connectionString' => 'mysql:host=db.phper.jp;dbname=yiijan_site',
+                        'connectionString' => 'mysql:host=localhost;dbname=yiijan',
                         'username' => 'yiijan',
-                        'password' => '5b147d97',
+                        'password' => $_SERVER['dbPass'],
                         'charset' => 'UTF8',
                         'tablePrefix' => '',
                         'emulatePrepare' => true,
