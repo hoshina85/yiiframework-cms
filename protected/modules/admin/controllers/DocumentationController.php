@@ -200,7 +200,7 @@ class DocumentationController extends AdminBaseController
     /**
      * Import the topics to the DB
      */
-    public function importTopics($lang='he')
+    public function importTopics($lang='ja')
     {
         // Topics
         $guides = Documentation::model()->documentationFolders;
@@ -244,7 +244,7 @@ class DocumentationController extends AdminBaseController
     /**
      * Grab topics from the directory
      */
-    public function grabTopics( $doc='guide', $lang='he' )
+    public function grabTopics( $doc='guide', $lang='ja' )
     {
         $return = array();
 
