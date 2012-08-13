@@ -248,7 +248,7 @@ class LoginController extends SiteBaseController
 
         if (!$member) {
             Yii::app()->user->setFlash('error', Yii::t('login', 'Sorry, Nothing was found for that reset link.'));
-            $this->redirect('index/index');
+            $this->redirect('/index');
         }
 
         // We matched so now reset the reset link,
@@ -282,7 +282,7 @@ class LoginController extends SiteBaseController
         $member->save();
 
         Yii::app()->user->setFlash('success', Yii::t('login', 'Thank You. Your password was reset. Please check your email for you new generated password.'));
-        $this->redirect('index/index');
+        $this->redirect('/index');
     }
 
 }
