@@ -305,7 +305,7 @@ class BlogController extends SiteBaseController
                     $this->redirect(array('/blog/view/' . $model->alias, 'lang' => false ));
                 } else {
                     Yii::app()->user->setFlash('success', Yii::t('blog', 'Post Added. It will be displayed once approved.'));
-                    $this->redirect('blog/index');
+                    $this->redirect(array('blog/index'));
                 }
             }
         }
@@ -370,7 +370,7 @@ class BlogController extends SiteBaseController
                         $this->redirect(array('/blog/view/' . $model->alias, 'lang' => false ));
                     } else {
                         Yii::app()->user->setFlash('success', Yii::t('blog', 'Post Updated. It will be displayed once approved.'));
-                        $this->redirect('blog/index');
+                        $this->redirect(array('/blog/view/' . $model->alias, 'lang' => false ));
                     }
                 }
             }

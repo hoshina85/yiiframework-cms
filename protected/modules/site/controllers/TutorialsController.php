@@ -306,7 +306,7 @@ class TutorialsController extends SiteBaseController
                     $this->redirect(array('/tutorials/view/' . $model->alias, 'lang' => false ));
                 } else {
                     Yii::app()->user->setFlash('success', Yii::t('tutorials', 'Tutorial Added. It will be displayed once approved.'));
-                    $this->redirect('tutorials/index');
+                    $this->redirect(array('tutorials/index'));
                 }
             }
         }
@@ -367,7 +367,7 @@ class TutorialsController extends SiteBaseController
                         $this->redirect(array('/tutorials/view/' . $model->alias, 'lang' => false ));
                     } else {
                         Yii::app()->user->setFlash('success', Yii::t('tutorials', 'Tutorial Updated. It will be displayed once approved.'));
-                        $this->redirect('tutorials/index');
+                        $this->redirect(array('/tutorials/view/' . $model->alias, 'lang' => false ));
                     }
                 }
             }
