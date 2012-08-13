@@ -33,12 +33,11 @@ a img {
 .clear {
 	clear:both;
 }
-#content { font-size: 13px; }
+#content { font-size: 12px; }
 /* Global Elements
 =====================================================================*/
 body {
 	line-height: 1.6em;
-	font:62.5% arial, verdana, serif;
 }
 .replace{
 	position:relative;
@@ -66,12 +65,12 @@ body {
 }
 #header {
 	width:999px;
-	height:115px;
+	height:120px;
 	margin: 0 0 12px 0;
 }
 #logo{
 	width:450px;
-	height:100px;
+	height:106px;
   margin-top: 1em;
 	font-size:1.2em;
 	position:relative;
@@ -182,7 +181,6 @@ body {
 #slideshow h1 {
 	font-size: 2.4em;
 	color: #424242;
-	font-family: "Myriad Pro", arial, serif;
 }
 #placedesc {
 	width: 532px;
@@ -426,7 +424,6 @@ body {
 	float: left;
 }
 #texttestimonial {
-	font-family: Georgia, Garamond, serif;
 	font-size: 1.6em;
 	color: #343434;
 	line-height: 1.4em;
@@ -467,9 +464,9 @@ body {
 #mainmenu li a, #mainmenu li a:link, #mainmenu li a:visited {
 	display:inline;
 	float:left;
-	height:22px;
-	padding:6px 20px 0 20px;
-	font-size:1.2em;
+	height:25px;
+	padding:2px 20px 0 20px;
+	font-size:8pt;
 	font-weight:bold;
 	color:#797979;
 }
@@ -1038,7 +1035,6 @@ div#placemainmenu li li:hover ul
 	background: #f6f6f6;
 	border: 1px solid #d4d4d4;
 	margin: 3px 0 10px 0;
-	font-family: arial, verdana, serif;
 	font-size: 1.1em;
 	color: #1a1a1a;
 	padding: 4px 3px 0 3px;
@@ -1049,7 +1045,6 @@ div#placemainmenu li li:hover ul
 	background: #f6f6f6;
 	border: 1px solid #d4d4d4;
 	margin: 3px 0 10px 0;
-	font-family: arial, verdana, serif;
 	font-size: 1.1em;
 	color: #1a1a1a;
 	padding: 4px 3px 0 3px;
@@ -1202,7 +1197,6 @@ div#placemainmenu li li:hover ul
 	width:390px;
 	height:150px;
 	border:1px solid #c4c4c4;
-	font-family:Arial, verdana,serif;
 	font-size:1.2em;
 	padding:5px;
 	margin:10px 0;
@@ -1216,7 +1210,6 @@ div#placemainmenu li li:hover ul
 	background:#537f8e;
 	border:none;
 	color:#fff;
-	font-family:Arial, verdana,serif;
 	font-size:1.2em;
 	cursor:pointer;
 }
@@ -1319,7 +1312,7 @@ div#placemainmenu li li:hover ul
 #menufooter li {
 	display: inline;
 	float: left;
-	font-size: 1.1em;
+	font-size: 0.7em;
 	color: #444;
 	margin: 0 20px 0 0;
 }
@@ -1391,7 +1384,6 @@ div#placemainmenu li li:hover ul
 	float: right;
 }
 #lightbox-container-image-data-box {
-	font: 10px Verdana, Helvetica, sans-serif;
 	background-color: #fff;
 	margin: 0 auto;
 	line-height: 1.4em;
