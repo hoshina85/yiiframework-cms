@@ -33,7 +33,7 @@
                             <tr>
                                 <td><?php echo $string->id; ?></td>
                                 <td style='vertical-align:top;'><?php echo CHtml::encode($orig->message); ?> <br /><small>(<?php echo $orig->category; ?>)</small></td>
-                                <td><?php echo CHtml::textArea("strings[{$string->id}]", $string->translation, array( 'rows' => 10, 'cols' => 50 )); ?></td>
+                                <td><?php echo CHtml::textArea("strings[{$string->id}]", $string->translation, array( 'rows' => 3, 'cols' => 50 )); ?></td>
                                 <td>&nbsp;
                                     <?php if( $string->translation != $orig->message ): ?>
                                         <a href="<?php echo $this->createUrl('languages/revert', array( 'id' => $string->language, 'string' => $string->id )); ?>" title="<?php echo Yii::t('adminlang', 'Revert translation to original'); ?>" class='tooltip'>
