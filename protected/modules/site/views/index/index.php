@@ -103,23 +103,6 @@
                 <div class="clear"></div>
             </div>
             <br />
-            <div class="boxnavnoborder">
-                <h2><?php echo Yii::t('index', 'Newsletter'); ?></h2>
-                <p><?php echo Yii::t('index', 'Signup to our newsletter, And stay up-to-date with the latest information, Documentation, Tutorials and extensions submissions.'); ?></p>
-
-                <a name='newsletterform'></a>
-                <?php echo CHtml::form('#newsletterform'); ?>
-                <?php echo CHtml::activeLabel($model, 'email'); ?><br />
-                <?php echo CHtml::activeTextField($model, 'email', array( 'class'=>'textboxcontact', 'style' => 'width:auto;', 'onfocus'=>"this.value='';" )); ?>
-                <?php echo CHtml::error($model, 'email'); ?>
-                <?php if( $sent ): ?>
-                    <br /><span style='color:green;'><?php echo Yii::t('index', 'Thank you. You are now subscribed to our newsletter.'); ?></span>
-                <?php endif; ?>
-                <br /><br /><p><?php echo CHtml::submitButton( Yii::t('index', 'Subscribe'), array('name'=>'newsletter') ); ?></p>
-                <?php echo CHtml::endForm(); ?>
-
-                <div class="clear"></div>
-            </div>
         </div>
 </div>
         <div class="clear"></div>
