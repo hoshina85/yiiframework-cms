@@ -6,26 +6,18 @@ $config=dirname(__FILE__).'/protected/config/';
 // Define root directory
 defined('ROOT_PATH') or define('ROOT_PATH', dirname(__FILE__) . '/');
 
-// remove the following lines when in production mode
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-
-if( YII_DEBUG === true )
+if( $_SERVER['SERVER_NAME'] === 'yiijan.org' )
 {
-	ini_set('display_errors', true);
-	error_reporting(E_ALL);
-	
-	// By default we use testing.com for the currently active domain
+	ini_set('display_errors', false);
+	error_reporting(0);
 	define('CURRENT_ACTIVE_DOMAIN', 'yiijan.criff.net');
 }
 else
 {
-	//ini_set('display_errors', false);
-	//error_reporting(0);
+  define('YII_DEBUG', true);
 	ini_set('display_errors', true);
 	error_reporting(E_ALL);
-	
-	// On production it will be the yiiframework.co.il domain name
-	define('CURRENT_ACTIVE_DOMAIN', 'yiijan.criff.net');
+	define('CURRENT_ACTIVE_DOMAIN', $_SERVER['SERVER_NAME']);
 }
 
 $configFile = YII_DEBUG ? 'dev.php' : 'production.php';
