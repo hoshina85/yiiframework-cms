@@ -3,7 +3,7 @@
 <script type="text/javascript">
   google.load('search', '1', {language : '<?php echo Yii::app()->language; ?>'});
   google.setOnLoadCallback(function() {
-    var customSearchControl = new google.search.CustomSearchControl('003059621568850454275:stplygqsi9u');
+    var customSearchControl = new google.search.CustomSearchControl('017799262773432056544:bczjgrhry0e');
     customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
     var options = new google.search.DrawOptions();
     options.setAutoComplete(true);
