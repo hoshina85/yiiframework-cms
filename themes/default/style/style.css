@@ -4,6 +4,9 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquot
 	margin:0;
 	padding:0;
 }
+p{
+	line-height: 1.6em;
+}
 table{
 	border-collapse:collapse;
 	border-spacing:0;
@@ -37,7 +40,6 @@ a img {
 /* Global Elements
 =====================================================================*/
 body {
-	line-height: 1.6em;
 }
 .replace{
 	position:relative;
@@ -465,7 +467,7 @@ body {
 	display:inline;
 	float:left;
 	height:25px;
-	padding:2px 20px 0 20px;
+	padding:6px 20px 0 20px;
 	font-size:8pt;
 	font-weight:bold;
 	color:#797979;
@@ -693,7 +695,7 @@ div#placemainmenu li li:hover ul
 	background: url(../images/icon_10.png) no-repeat 8px 5px;
 	font-size: 1.2em;
 	color: #424242;
-	padding: 10px 0 0 35px;
+	padding: 7px 0 0 35px;
 	margin: 0 0 15px 0;
 }
 #maincontent {
@@ -1479,7 +1481,7 @@ ul.toc li {cursor: pointer;}
 .commentspan{
 	float: right;
 	color:#D4D4D4;
-	font-size:3em;}
+	font-size:1em;}
 
 	ul.yiiPager
 	{
@@ -1602,7 +1604,6 @@ top:5px;
 
 p {
 font-size:12px;
-line-height:14px;
 margin:0 0 14px;
 font-family:Arial,Helvetica,sans;
 padding:0;
