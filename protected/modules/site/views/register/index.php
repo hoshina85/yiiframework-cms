@@ -8,6 +8,9 @@
         <?php echo CHtml::errorSummary($model); ?>
     </div>
     <?php endif; ?>
+    <div id='facebookloginbutton'>
+        <?php echo CHtml::link( '<span>Sign in with Facebook</span>', 'javascript:void(0);', array( 'title' => Yii::t('login', 'Login With Facebook'), 'onClick' => "return showFaceBookAuth();", "id" => "facebook_signin" ) ); ?>
+    </div>
 
     <?php echo CHtml::form('', 'post', array('class'=>'frmcontact')); ?>
 
@@ -54,3 +57,13 @@
     <?php echo CHtml::endForm(); ?>
 
 </div>
+<script>
+function showOAuth()
+{
+    window.open('<?php echo $this->createUrl( 'facebooklogin' ); ?>');
+}
+function showFaceBookAuth()
+{
+    window.open('<?php echo $facebookLink; ?>', 'Facebook Login',"status=1,height=600,width=700");
+}
+</script>
