@@ -131,9 +131,6 @@
 
     <?php if( Yii::app()->getController()->id == 'index' ): ?>
 
-    <?php Yii::app()->clientScript->registerScriptFile( Yii::app()->themeManager->baseUrl . '/script/twitter.js' , CClientScript::POS_END ); ?>
-    <?php Yii::app()->clientScript->registerScriptFile( Yii::app()->themeManager->baseUrl . '/script/gettwitter.js' , CClientScript::POS_END ); ?>
-
     <div id="contentbottom">
         <div id="footerblog">
             <h4 class="icon15"><?php echo Yii::t('global', 'Latest News'); ?></h4>
@@ -171,9 +168,6 @@
                     <?php endif; ?>
             </ul>
             <?php $this->endCache(); } ?>
-        </div>
-        <div id="placetwitter">
-            <p id="texttwitter"><?php echo Yii::t('index', 'Please wait, Loading twitter'); ?> <img src="<?php echo Yii::app()->themeManager->baseUrl; ?>/images/loading.gif" alt="Loading" class="imgloading" /></p>
         </div>
 
         <div class="clear"></div>
