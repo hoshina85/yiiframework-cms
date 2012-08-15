@@ -10,7 +10,7 @@ if( $_SERVER['SERVER_NAME'] === 'yiijan.org' )
 {
 	ini_set('display_errors', false);
 	error_reporting(0);
-	define('CURRENT_ACTIVE_DOMAIN', 'yiijan.criff.net');
+	define('CURRENT_ACTIVE_DOMAIN', 'yiijan.org');
 }
 else
 {
