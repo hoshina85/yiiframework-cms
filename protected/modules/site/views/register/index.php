@@ -60,7 +60,7 @@
 <script>
 function showOAuth()
 {
-    window.open('<?php echo $this->createUrl( 'facebooklogin' ); ?>');
+    window.open('<?php echo $this->createUrl( 'login/facebooklogin',array('lang'=>'ja') ); ?>');
 }
 function showFaceBookAuth()
 {
