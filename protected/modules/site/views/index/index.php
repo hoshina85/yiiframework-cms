@@ -86,11 +86,11 @@
                 <h2><?php echo Yii::t('index', 'Yii Key Features'); ?></h2>
 
                 <ul class="menuiconnav">
-                    <li class="icon11"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'basics.mvc', 'lang'=>false)); ?>"><?php echo Yii::t('index', 'MVC Architecture'); ?></a></li>
-                    <li class="icon12"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'database.overview', 'lang'=>false)); ?>"><?php echo Yii::t('index', 'Database, DAO/ActiveRecord'); ?></a></li>
-                    <li class="icon3"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'topics.i18n', 'lang'=>false)); ?>"><?php echo Yii::t('index', 'Multilingual, I18N/L10N'); ?></a></li>
-                    <li class="icon13"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'basics.view', 'lang'=>false)); ?>"><?php echo Yii::t('index', 'Widgets Management'); ?></a></li>
-                    <li class="icon14"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'topics.theming', 'lang'=>false)); ?>"><?php echo Yii::t('index', 'Theme Control'); ?></a></li>
+                    <li class="icon11"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'basics.mvc', 'lang'=>'ja')); ?>"><?php echo Yii::t('index', 'MVC Architecture'); ?></a></li>
+                    <li class="icon12"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'database.overview', 'lang'=>'ja')); ?>"><?php echo Yii::t('index', 'Database, DAO/ActiveRecord'); ?></a></li>
+                    <li class="icon3"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'topics.i18n', 'lang'=>'ja')); ?>"><?php echo Yii::t('index', 'Multilingual, I18N/L10N'); ?></a></li>
+                    <li class="icon13"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'basics.view', 'lang'=>'ja')); ?>"><?php echo Yii::t('index', 'Widgets Management'); ?></a></li>
+                    <li class="icon14"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'topics.theming', 'lang'=>'ja')); ?>"><?php echo Yii::t('index', 'Theme Control'); ?></a></li>
 
                 </ul>
             </div>

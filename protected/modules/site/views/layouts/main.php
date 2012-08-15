@@ -65,7 +65,6 @@
                                 'blog/index' => Yii::t('global', 'Blog'),
                                 'forum/index' => Yii::t('global', 'Forum'),
                                 'search/index' => Yii::t('global', 'Search'),
-                                'contactus/index' => Yii::t('global', 'Contact Us'),
                                 );
 
             // Show the register or login button
@@ -199,12 +198,6 @@
         <?php endif; ?>
     </ul>
     </div>
-</div>
-<!-- Feedback button -->
-<div class='feedbackbutton'>
-    <a href='<?php echo $this->createUrl('contactus/index'); ?>'>
-        <img src='<?php echo Yii::app()->themeManager->baseUrl; ?>/images/feedbackbutton<?php echo Yii::app()->language; ?>.png' alt='' />
-    </a>
 </div>
 </body>
 </html>
