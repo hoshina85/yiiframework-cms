@@ -16,7 +16,7 @@ else
 {
   define('YII_DEBUG', true);
 	ini_set('display_errors', true);
-	error_reporting(E_ALL);
+	error_reporting(E_ALL & ~(E_NOTICE | E_DEPRECATED | E_STRICT));
 	define('CURRENT_ACTIVE_DOMAIN', $_SERVER['SERVER_NAME']);
 }
 
