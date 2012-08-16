@@ -9,7 +9,7 @@ class MissingMessages extends CApplicationComponent
      * If we are using a different translation then the original one
      * Then add the same message to the translation table.
      */
-    public function load($event)
+    public static function load($event)
     {
         // Load the messages
         $source = SourceMessage::model()->find('message=:message AND category=:category', array(':message'=>$event->message, ':category'=>$event->category));

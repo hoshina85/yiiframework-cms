@@ -21,9 +21,9 @@ class Settings extends CActiveRecord
     /**
      * @return object
      */
-    public static function model()
+    public static function model($classname=__CLASS__)
     {
-        return parent::model(__CLASS__);
+        return parent::model($classname);
     }
 
     /**

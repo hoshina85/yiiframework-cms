@@ -7,9 +7,9 @@ class SourceMessage extends CActiveRecord
     /**
      * @return SourceMessage
      */
-    public static function model()
+    public static function model($classname=__CLASS__)
     {
-        return parent::model(__CLASS__);
+        return parent::model($classname);
     }
 
     /**
