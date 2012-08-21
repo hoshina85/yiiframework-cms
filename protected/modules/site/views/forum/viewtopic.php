@@ -30,7 +30,7 @@
                 <span class='commentspan'><?php echo CHtml::link( '#' . $post->id, array('/forum/topic/' . $model->id . '-' . $model->alias, '#' => 'post' . $post->id, 'page' => $pages->getCurrentPage(), 'lang'=>false ) ); ?></span>
                 <?php $this->widget('ext.VGGravatarWidget', array( 'size' => 50, 'email'=>$post->author ? $post->author->email : '','htmlOptions'=>array('class'=>'imgavatar','alt'=>'avatar'))); ?>
                 <h4><?php echo $post->author ? $post->author->username : Yii::t('global', 'Unknown'); ?></h4>
-                <span class="datecomment"><?php echo Yii::app()->dateFormatter->formatDateTime($post->dateposted, 'short', 'short'); ?></span>
+                <span class="datecomment"><?php echo Yii::app()->dateFormatter->formatDateTime($post->dateposted, 'full', 'short'); ?></span>
                 <div class="clear"></div>
                 <p><?php echo $markdown->safeTransform($post->content); ?></p>
                 <?php if( Yii::app()->user->checkAccess('op_forum_posts') ): ?>
