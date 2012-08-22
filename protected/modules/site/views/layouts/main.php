@@ -51,7 +51,7 @@
 <body>
 <div id="wrapper">
     <div id="header">
-        <a href="<?php echo $this->createUrl( 'index/index' ); ?>" class="replace" id="logo"><span></span></a>
+        <a href="/" class="replace" id="logo"><span></span></a>
     
     <div id="mine">
         <?php if ( !Yii::app()->user->isGuest ): ?>
