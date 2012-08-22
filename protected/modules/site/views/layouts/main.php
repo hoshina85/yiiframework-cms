@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" lang="<?php echo Yii::app()->language; ?>">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=<?php echo Yii::app()->charset; ?>">
-        <meta name="google-site-verification" content="hg9AUxRqyk32CF675HLq6Wo0Mmb0rHOGCNSvXNUV6G4" />
+        <meta property="og:title" content="<?php echo ( count( $this->pageTitle ) ) ? implode( ' - ', array_reverse( $this->pageTitle ) ) : $this->pageTitle; ?> | Yii日本ユーザグループ">
+        <meta property="og:image" content="http://yiijan.org/themes/default/images/yiijan_logo.png">
+        <meta property="og:site_name" content="yiijan.org">
         <title><?php echo ( count( $this->pageTitle ) ) ? implode( ' - ', array_reverse( $this->pageTitle ) ) : $this->pageTitle; ?> | Yii日本ユーザグループ</title>
 
         <?php Yii::app()->clientScript->registerCssFile( Yii::app()->themeManager->baseUrl . '/style/style.css', 'screen' ); ?>
