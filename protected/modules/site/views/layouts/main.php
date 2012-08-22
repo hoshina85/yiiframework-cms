@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=<?php echo Yii::app()->charset; ?>">
         <meta name="google-site-verification" content="hg9AUxRqyk32CF675HLq6Wo0Mmb0rHOGCNSvXNUV6G4" />
-        <title><?php echo ( count( $this->pageTitle ) ) ? implode( ' - ', array_reverse( $this->pageTitle ) ) : $this->pageTitle; ?></title>
+        <title><?php echo ( count( $this->pageTitle ) ) ? implode( ' - ', array_reverse( $this->pageTitle ) ) : $this->pageTitle; ?> | Yii日本ユーザグループ</title>
 
         <?php Yii::app()->clientScript->registerCssFile( Yii::app()->themeManager->baseUrl . '/style/style.css', 'screen' ); ?>
 
