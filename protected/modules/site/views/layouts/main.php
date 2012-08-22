@@ -49,7 +49,19 @@
 <body>
 <div id="wrapper">
     <div id="header">
-        <a href="<?php echo $this->createUrl( 'index/index' ); ?>" class="replace" id="logo"><span></span>logo</a>
+        <a href="<?php echo $this->createUrl( 'index/index' ); ?>" class="replace" id="logo"><span></span></a>
+    
+    <div id="mine">
+        <?php if ( !Yii::app()->user->isGuest ): ?>
+        <?php $this->widget('ext.VGGravatarWidget', array( 'size' => 50, 'email'=>Yii::app()->user->email,'htmlOptions'=>array('class'=>'', 'title' => Yii::app()->user->username, 'alt'=>'avatar'))); ?>
+        <div id="name">
+           <span><?php echo CHtml::encode(Yii::app()->user->seoname)?></span>
+        </div>
+        <?php //echo CHtml::link( Yii::t('global', 'Logout'), array('logout/index') ); ?>
+        <?php else: ?>
+        <?php //echo CHtml::link( Yii::t('global', 'Login'), array('login/index') ); ?>
+        <?php endif; ?>
+    </div>
     </div>
     <?php if( Yii::app()->getController()->id == 'index' ): ?>
      <?php //$this->widget('widgets.menuslide'); ?>

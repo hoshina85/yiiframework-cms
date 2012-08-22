@@ -67,13 +67,13 @@ body {
 }
 #header {
 	width:999px;
-	height:120px;
-	margin: 0 0 12px 0;
+	height:80px;
 }
 #logo{
+	float: left;
 	width:450px;
-	height:106px;
-  margin-top: 1em;
+	height:60px;
+    margin-top: 1em;
 	font-size:1.2em;
 	position:relative;
 	overflow:hidden;
@@ -87,6 +87,20 @@ body {
 	width:100%;
 	height:100%;
 	cursor:pointer;
+}
+#mine {
+	float: right;
+	margin-top: 18px;
+}
+#mine img{
+	float: left;
+	margin-right: 5px;
+}
+#mine #name{
+	float: left;
+	font-size: 12px;
+	margin-top: 14px;
+	margin-bottom: 14px;
 }
 #menutop {
 	float: right;
