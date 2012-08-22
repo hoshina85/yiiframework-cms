@@ -26,9 +26,6 @@
 
                 <!--<h2><?php echo Yii::t('index', 'Latest Extensions'); ?></h2>
                 <ul class="listmenusmall">-->
-
-                    <?php echo $facebook->showLikeBox('128360757178028', 292, 300, 10, 'false'); ?>
-
                     <?php /*if ($this->beginCache('indexextensions_' . Yii::app()->language, array('duration'=>3600))) { ?>
                     <?php $exts = Extensions::model()->byDate()->byLang()->limitIndex()->findAll('status=1'); ?>
                     <?php if( is_array($exts) && count($exts) ): ?>
@@ -39,7 +36,6 @@
                         <li><?php echo Yii::t('index', 'No Extensions Available.'); ?></li>
                     <?php endif; ?>
                     <?php $this->endCache(); }*/ ?>
-
                 <!--</ul>-->
             </div>
             <div id="contentright">

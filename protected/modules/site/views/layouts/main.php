@@ -181,8 +181,6 @@
     <ul>
         <li><strong><?php echo Yii::t('global', 'Copyright {name} {year} &copy All Rights Reserved', array( '{name}' => Yii::app()->name, '{year}' => date('Y') )); ?></strong></li>
         <li><?php echo CHtml::link( Yii::t('global', 'About Us'), array('/about-us', 'lang'=>false) ); ?></a></li>
-        <li><?php echo CHtml::link( Yii::t('global', 'F.A.Q'), array('/faq', 'lang'=>false) ); ?></a></li>
-        <li><?php echo CHtml::link( Yii::t('global', 'Terms Of Service'), array('/terms-of-service', 'lang'=>false) ); ?></li>
         <?php if( Yii::app()->user->id ): ?>
             <li><?php echo CHtml::link( Yii::t('global', 'Profile'), array('/user/' . Yii::app()->user->id . '-' . Yii::app()->user->seoname, 'lang'=>false) ); ?></li>
             <li><?php echo CHtml::link( Yii::t('global', 'Logout'), array('logout/index') ); ?></a></li>
