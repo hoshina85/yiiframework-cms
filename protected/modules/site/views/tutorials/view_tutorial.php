@@ -67,15 +67,6 @@
                     </ul>
                 </div>
 
-                <div id='sharingoptions'>
-                    <?php echo $facebook->showLike( Yii::app()->createAbsoluteUrl('/tutorials/view/'.$model->alias, array('lang'=>false)) ); ?>
-                    <script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script>
-
-                    <div class='floatleft'>&nbsp;</div>
-
-                    <div class='clear'></div>
-                </div>
-
         <div class="clear"></div><br />
         <h3 id="titlecomment"><?php echo Yii::t('tutorials', 'Comments'); ?> (<?php echo $totalcomments; ?>)</h3>
         <ul id="listcomment">

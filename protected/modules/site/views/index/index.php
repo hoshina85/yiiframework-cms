@@ -24,21 +24,24 @@
                     <li><?php echo CHtml::link(Yii::t('index', 'View complete feature list'), array('/features', 'lang'=>false)); ?></li>
                 </ul>
 
-                <!--<h2><?php echo Yii::t('index', 'Latest Extensions'); ?></h2>
-                <ul class="listmenusmall">-->
-                    <?php /*if ($this->beginCache('indexextensions_' . Yii::app()->language, array('duration'=>3600))) { ?>
-                    <?php $exts = Extensions::model()->byDate()->byLang()->limitIndex()->findAll('status=1'); ?>
-                    <?php if( is_array($exts) && count($exts) ): ?>
-                        <?php foreach($exts as $ext): ?>
-                            <li><?php echo Extensions::model()->getLink( $ext->title, $ext->alias, array( 'title' => $ext->description ) ); ?></li>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <li><?php echo Yii::t('index', 'No Extensions Available.'); ?></li>
-                    <?php endif; ?>
-                    <?php $this->endCache(); }*/ ?>
-                <!--</ul>-->
+
             </div>
             <div id="contentright">
+                <h2><?php echo Yii::t('global', 'Latest News'); ?></h2>
+                <ul class="listmenusmall">
+                    <?php if(Yii::app()->params['latestnewscat']): ?>
+                        <?php $lastestnews = Blog::model()->findAll(array( 'order' => 'postdate DESC', 'condition' => 'catid=:catid AND language=:lang AND status=1', 'params' => array( ':lang' => Yii::app()->language,  ':catid' => Yii::app()->params['latestnewscat'] ), 'limit' => 4 )); ?>
+                        <?php if( is_array( $lastestnews ) && count( $lastestnews ) ): ?>
+                            <?php foreach($lastestnews as $news): ?>
+                                 <li><a href="<?php echo Yii::app()->createUrl('blog/view/'.$news->alias, array('lang'=>false)); ?>" title='<?php echo CHtml::encode($news->description); ?>'><?php echo CHtml::encode($news->title); ?></a></li>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <li><?php echo Yii::t('index', 'No News To Display.'); ?></li>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <li><?php echo Yii::t('index', 'No News To Display.'); ?></li>
+                    <?php endif; ?>
+                </ul>
                 <h2><?php echo Yii::t('index', 'Latest Tutorials'); ?></h2>
                 <ul class="listmenusmall">
 
@@ -53,6 +56,19 @@
                     <?php endif; ?>
                     <?php $this->endCache(); } ?>
 
+                </ul>
+                <h2><?php echo Yii::t('index', 'Latest Extensions'); ?></h2>
+                <ul class="listmenusmall">
+                    <?php if ($this->beginCache('indexextensions_' . Yii::app()->language, array('duration'=>3600))) { ?>
+                    <?php $exts = Extensions::model()->byDate()->byLang()->limitIndex()->findAll('status=1'); ?>
+                    <?php if( is_array($exts) && count($exts) ): ?>
+                        <?php foreach($exts as $ext): ?>
+                            <li><?php echo Extensions::model()->getLink( $ext->title, $ext->alias, array( 'title' => $ext->description ) ); ?></li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <li><?php echo Yii::t('index', 'No Extensions Available.'); ?></li>
+                    <?php endif; ?>
+                    <?php $this->endCache(); }?>
                 </ul>
                 <h3><?php echo Yii::t('index', 'Why should you use Yii?'); ?></h3>
                 <ul class="listicon">
@@ -80,14 +96,12 @@
         <div id="nav">
             <div class="boxnav">
                 <h2><?php echo Yii::t('index', 'Yii Key Features'); ?></h2>
-
                 <ul class="menuiconnav">
                     <li class="icon11"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'basics.mvc', 'lang'=>'ja')); ?>"><?php echo Yii::t('index', 'MVC Architecture'); ?></a></li>
                     <li class="icon12"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'database.overview', 'lang'=>'ja')); ?>"><?php echo Yii::t('index', 'Database, DAO/ActiveRecord'); ?></a></li>
                     <li class="icon3"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'topics.i18n', 'lang'=>'ja')); ?>"><?php echo Yii::t('index', 'Multilingual, I18N/L10N'); ?></a></li>
                     <li class="icon13"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'basics.view', 'lang'=>'ja')); ?>"><?php echo Yii::t('index', 'Widgets Management'); ?></a></li>
                     <li class="icon14"><a href="<?php echo Yii::app()->createUrl('documentation/guide', array( 'topic' => 'topics.theming', 'lang'=>'ja')); ?>"><?php echo Yii::t('index', 'Theme Control'); ?></a></li>
-
                 </ul>
             </div>
             <div class="boxnavnoborder">

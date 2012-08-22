@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" lang="<?php echo Yii::app()->language; ?>">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=<?php echo Yii::app()->charset; ?>">
@@ -43,6 +44,7 @@
         Yii::app()->clientScript->registerScriptFile( Yii::app()->themeManager->baseUrl . '/script/global.js' , CClientScript::POS_END );
 
         ?>
+
 </head>
 <body>
 <div id="wrapper">
@@ -128,69 +130,36 @@
         <?php echo $content; ?>
 
         </div>
-
-    <?php if( Yii::app()->getController()->id == 'index' ): ?>
-
-    <div id="contentbottom">
-        <div id="footerblog">
-            <h4 class="icon15"><?php echo Yii::t('global', 'Latest News'); ?></h4>
-            <ul id="listnewsfooter">
-
-                <?php if(Yii::app()->params['latestnewscat']): ?>
-
-                    <?php $lastestnews = Blog::model()->findAll(array( 'order' => 'postdate DESC', 'condition' => 'catid=:catid AND language=:lang AND status=1', 'params' => array( ':lang' => Yii::app()->language,  ':catid' => Yii::app()->params['latestnewscat'] ), 'limit' => 4 )); ?>
-
-                    <?php if( is_array( $lastestnews ) && count( $lastestnews ) ): ?>
-
-                        <?php foreach($lastestnews as $news): ?>
-                             <li><a href="<?php echo Yii::app()->createUrl('blog/view/'.$news->alias, array('lang'=>false)); ?>" title='<?php echo CHtml::encode($news->description); ?>'><?php echo CHtml::encode($news->title); ?></a></li>
-                        <?php endforeach; ?>
-
-                    <?php else: ?>
-                        <li><?php echo Yii::t('index', 'No News To Display.'); ?></li>
-                    <?php endif; ?>
-
-                <?php else: ?>
-                    <li><?php echo Yii::t('index', 'No News To Display.'); ?></li>
-                <?php endif; ?>
-            </ul>
-        </div>
-        <div id="footerscr">
-            <h4 class="icon16"><?php echo Yii::t('global', 'Latest Users Joined'); ?></h4>
-            <?php if ($this->beginCache('indexlastestusers', array('duration'=>3600))) { ?>
-            <ul id="listscrfooter">
-                    <?php $last = Members::model()->findAll(array( 'order' => 'joined DESC', 'limit' => 4 )); ?>
-
-                    <?php if( is_array($last) && count($last) ): ?>
-                        <?php foreach($last as $member): ?>
-                            <li><a href='<?php echo Yii::app()->createUrl('user/' . $member->id . '-' . $member->seoname, array('lang'=>false)); ?>'><?php $this->widget('ext.VGGravatarWidget', array( 'size' => 60, 'email'=>$member->email,'htmlOptions'=>array('class'=>'imgavatar', 'title' => CHtml::encode($member->username), 'alt'=>'avatar'))); ?></a></li>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-            </ul>
-            <?php $this->endCache(); } ?>
-        </div>
-
-        <div class="clear"></div>
-
-    </div>
-    <?php endif; ?>
-
-    <div id='bottomnew'>&nbsp;</div>
-
+                
     <div id="menufooter">
-    <ul>
-        <li><strong><?php echo Yii::t('global', 'Copyright {name} {year} &copy All Rights Reserved.', array( '{name}' => Yii::app()->name, '{year}' => date('Y') )); ?> powered by <?php echo CHtml::link('Yii framework', 'http://www.yiiframework.com')?>, <?php echo CHtml::link('phper.jp', 'http://phper.jp')?></strong></li>
-        <li><?php echo CHtml::link( Yii::t('global', 'About Us'), array('/about-us', 'lang'=>false) ); ?></a></li>
-        <?php if( Yii::app()->user->id ): ?>
-            <li><?php echo CHtml::link( Yii::t('global', 'Profile'), array('/user/' . Yii::app()->user->id . '-' . Yii::app()->user->seoname, 'lang'=>false) ); ?></li>
-            <li><?php echo CHtml::link( Yii::t('global', 'Logout'), array('logout/index') ); ?></a></li>
-        <?php endif; ?>
-        <?php if( ( Yii::app()->user->role == 'admin' || Yii::app()->user->checkAccess('op_acp_access') ) ): ?>
-            <li><?php echo CHtml::link( Yii::t('global', 'Admin'), array('admin/index'), array('target'=>'_blank') ); ?></a></li>
-        <?php endif; ?>
-    </ul>
-
+        <div>
+            <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <div class="fb-like" data-send="false" data-width="450" data-show-faces="true"></div>
+            <div class='floatleft'>&nbsp;</div>
+            <div class='clear'></div>
+        </div>
+        <ul>
+            <li><strong><?php echo Yii::t('global', 'Copyright {name} {year} &copy All Rights Reserved.', array( '{name}' => Yii::app()->name, '{year}' => date('Y') )); ?> powered by <?php echo CHtml::link('Yii framework', 'http://www.yiiframework.com')?>, <?php echo CHtml::link('phper.jp', 'http://phper.jp')?></strong></li>
+            <li><?php echo CHtml::link( Yii::t('global', 'About Us'), array('/about-us', 'lang'=>false) ); ?></a></li>
+            <?php if( Yii::app()->user->id ): ?>
+                <li><?php echo CHtml::link( Yii::t('global', 'Profile'), array('/user/' . Yii::app()->user->id . '-' . Yii::app()->user->seoname, 'lang'=>false) ); ?></li>
+                <li><?php echo CHtml::link( Yii::t('global', 'Logout'), array('logout/index') ); ?></a></li>
+            <?php endif; ?>
+            <?php if( ( Yii::app()->user->role == 'admin' || Yii::app()->user->checkAccess('op_acp_access') ) ): ?>
+                <li><?php echo CHtml::link( Yii::t('global', 'Admin'), array('admin/index'), array('target'=>'_blank') ); ?></a></li>
+            <?php endif; ?>
+        </ul>
     </div>
 </div>
+<div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) return;
+                      js = d.createElement(s); js.id = id;
+                      js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=479958975349834";
+                      fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
 </body>
 </html>

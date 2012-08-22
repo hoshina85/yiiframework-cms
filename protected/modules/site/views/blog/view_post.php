@@ -67,14 +67,7 @@
                     </ul>
                 </div>
 
-                <div id='sharingoptions'>
-                    <?php echo $facebook->showLike( Yii::app()->createAbsoluteUrl('/blog/view/'.$model->alias, array('lang'=>false)) ); ?>
-                    <script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script>
 
-                    <div class='floatleft'>&nbsp;</div>
-
-                    <div class='clear'></div>
-                </div>
 
         <div class="clear"></div><br />
         <h3 id="titlecomment"><?php echo Yii::t('blog', 'Comments'); ?> (<?php echo $totalcomments; ?>)</h3>
@@ -126,7 +119,6 @@ $(document).ready(function() {
      });
 </script>
 
-<?php echo $facebook->includeScript( Yii::app()->params['facebookappid'] ); ?>
 
 <?php $this->widget('widgets.blogsidebar'); ?>
 <div class="clear"></div>

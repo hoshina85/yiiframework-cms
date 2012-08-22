@@ -153,16 +153,6 @@
                         <li><?php echo CHtml::link( Yii::t('global', 'Text'), array('extensions/text', 'id'=>$model->id) ); ?></li>
                     </ul>
                 </div>
-
-                <div id='sharingoptions'>
-                    <?php echo $facebook->showLike( Yii::app()->createAbsoluteUrl('/extensions/view/'.$model->alias, array('lang'=>false)) ); ?>
-                    <script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script>
-
-                    <div class='floatleft'>&nbsp;</div>
-
-                    <div class='clear'></div>
-                </div>
-
         <div class="clear"></div><br />
         <h3 id="titlecomment"><?php echo Yii::t('extensions', 'Comments'); ?> (<?php echo $totalcomments; ?>)</h3>
         <ul id="listcomment">
@@ -224,8 +214,6 @@ $(document).ready(function() {
 
      });
 </script>
-
-<?php echo $facebook->includeScript( Yii::app()->params['facebookappid'] ); ?>
 
 <?php $this->widget('widgets.extensionssidebar'); ?>
 <div class="clear"></div>
