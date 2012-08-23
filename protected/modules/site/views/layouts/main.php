@@ -70,32 +70,15 @@
     <?php endif; ?>
     <div id="placemainmenu">
         <ul id="mainmenu">
-
-            <?php
-
-            $headerMenu = array(
-                                //'index/index' => Yii::t('global', 'Home'),
-                                'documentation/index' => Yii::t('global', 'Documentation'),
-                                'tutorials/index' => Yii::t('global', 'Tutorials'),
-                                'extensions/index' => Yii::t('global', 'Extensions'),
-                                'blog/index' => Yii::t('global', 'Blog'),
-                                'forum/index' => Yii::t('global', 'Forum'),
-                                'search/index' => Yii::t('global', 'Search'),
-                                );
-
-            // Show the register or login button
-            if ( Yii::app()->user->isGuest ) {
-                $headerMenu = array_merge($headerMenu, array(
-                                    'register/index' => Yii::t('global', 'Register'),
-                                    'login/index' => Yii::t('global', 'Login'),
-                                    ));
-            }
-
-            ?>
-
-            <?php foreach( $headerMenu as $key => $value ): ?>
-                <li><a href='<?php echo $this->createUrl($key); ?>'><?php echo $value; ?></a></li>
-            <?php endforeach; ?>
+            <li><?php echo CHtml::link(Yii::t('global','About Us'),'/about-us')?></li>
+            <li><?php echo CHtml::link(Yii::t('global','Tutorials'),array('tutorials/index'))?></li>
+            <li><?php echo CHtml::link(Yii::t('global','Extensions'),array('extensions/index'))?></li>
+            <li><?php echo CHtml::link(Yii::t('global','Blog'),array('blog/index'))?></li>
+            <li><?php echo CHtml::link(Yii::t('global','Forum'),array('forum/index'))?></li>
+            <?php if(Yii::app()->user->isGuest):?>
+            <li><?php echo CHtml::link(Yii::t('global','Register'),array('register/index'))?></li>
+            <li><?php echo CHtml::link(Yii::t('global','Login'),array('login/index'))?></li>
+            <?php endif;?>
 
         </ul>
     </div>

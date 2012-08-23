@@ -766,7 +766,7 @@ div#placemainmenu li li:hover ul
 	padding: 4px 0 8px 0;
 }
 #contentright {
-	width: 346px;
+	width: 700px;
 	float: right;
 }
 #contentright ul.listicon, #contentleft ul.listicon, #contentbig ul.listicon {
@@ -783,6 +783,7 @@ div#placemainmenu li li:hover ul
 #nav {
 	width: 226px;
 	float: left;
+  padding-right: 15px;
 	background: url(../images/sepcontent.png) repeat-y 100% 0;
 }
 .boxnav {
