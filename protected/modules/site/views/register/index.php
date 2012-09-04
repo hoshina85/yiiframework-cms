@@ -1,4 +1,5 @@
-<div id="formcenter">
+<div class="row">
+    <div class="twelve columns">
     <h2><?php echo Yii::t('register', 'Registration Form'); ?></h2>
 
     <p><?php echo Yii::t('register', 'Please fill all required fields and hit the submit button once your done.'); ?></p>
@@ -49,13 +50,14 @@
         <br /><br /><br />
 
         <p>
-            <?php echo CHtml::submitButton(Yii::t('global', 'Submit'), array('class'=>'submitcomment', 'name'=>'submit')); ?>
+            <?php echo CHtml::submitButton(Yii::t('global', 'Submit'), array('class'=>'button', 'name'=>'submit')); ?>
         </p>
 
     </div>
 
     <?php echo CHtml::endForm(); ?>
 
+</div>
 </div>
 <script>
 function showOAuth()

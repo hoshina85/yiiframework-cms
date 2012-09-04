@@ -1,4 +1,5 @@
-<div id="formcenter">
+<div class="row">
+<div class="twelve columns">
     <h2><?php echo Yii::t('forum', 'Create A Topic'); ?></h2>
 
     <p><?php echo Yii::t('forum', 'Please fill all required fields and hit the submit button once your done. It may take time for the topic to be displayed publicly.'); ?></p>
@@ -24,11 +25,12 @@
         <br />
 
         <p>
-            <?php echo CHtml::submitButton(Yii::t('adminglobal', 'Submit'), array('class'=>'submitcomment', 'name'=>'submit')); ?>
+            <?php echo CHtml::submitButton(Yii::t('adminglobal', 'Submit'), array('class'=>'button', 'name'=>'submit')); ?>
         </p>
 
     </div>
 
     <?php echo CHtml::endForm(); ?>
 
+</div>
 </div>

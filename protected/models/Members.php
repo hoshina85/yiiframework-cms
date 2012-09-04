@@ -245,7 +245,7 @@ class Members extends CActiveRecord
      */
     public function getProfileLink()
     {
-        return CHtml::link( $this->username, array('/user/' . $this->id . '-' . $this->seoname, 'lang'=>false ) );
+        return CHtml::link( CHtml::encode($this->username), array('/user/' . $this->id . '-' . $this->seoname, 'lang'=>false ) );
     }
 
 }

@@ -17,17 +17,16 @@ if ( Yii::app()->user->id ) {
 
 ?>
 
-<div id="nav">
-    <div class="boxnavnoborder">
-        <ul class='menunav'>
+<div class="two columns">
+        <ul class='side-nav'>
             <h4><?php echo Yii::t('blog', 'Categories'); ?></h4>
         <?php foreach( BlogCats::model()->getCatsForMember(Yii::app()->language) as $category ): ?>
-            <li><?php echo CHtml::link( $category->title, array( '/blog/category/' . $category->alias, 'lang' => false ) ); ?> - ( <?php echo $category->count; ?> )</li>
+      <li><?php echo CHtml::link( '<span class="label round">'.$category->title.'</span> - '.$category->count, array( '/blog/category/' . $category->alias, 'lang' => false ) ); ?></li>
         <?php endforeach; ?>
         </ul>
 
         <?php if( count($options) ): ?>
-        <ul class='menunav'>
+        <ul class='side-nav'>
             <h4><?php echo Yii::t('blog', 'Options'); ?></h4>
         <?php foreach($options as $key => $value): ?>
             <li><?php echo CHtml::link( $key, $value ); ?></li>
@@ -35,5 +34,4 @@ if ( Yii::app()->user->id ) {
         </ul>
         <?php endif; ?>
 
-    </div>
 </div>

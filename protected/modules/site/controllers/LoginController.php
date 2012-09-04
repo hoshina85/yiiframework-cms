@@ -206,7 +206,7 @@ class LoginController extends SiteBaseController
                                             {link}<br />
                                             ----------------------<br /><br /><br />
                                             <em>If you did not request this reset then please ignore this email.</em>",
-                                            array( '{username}' => $member->username, '{link}' => $link ));
+                                            array( '{username}' => CHtml::encode($member->username), '{link}' => $link ));
 
                 $message .= Yii::t('global', '<br /><br />----------------<br />Regards,<br />The {team} Team.<br />', array('{team}'=>Yii::app()->name));
 
@@ -262,7 +262,7 @@ class LoginController extends SiteBaseController
         $message = Yii::t('login', "Dear {username},<br /><br />
                                     We have reseted your password successfully.<br /><br />
                                     You new password is: <b>{password}</b><br />",
-                                    array( '{username}' => $member->username, '{password}' => $password ));
+                                    array( '{username}' => CHtml::encode($member->username), '{password}' => $password ));
 
         $message .= Yii::t('global', '<br /><br />----------------<br />Regards,<br />The {team} Team.<br />', array('{team}'=>Yii::app()->name));
 

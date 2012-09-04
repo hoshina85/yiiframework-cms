@@ -102,8 +102,8 @@ class UsersController extends SiteBaseController
             $markdown = new MarkdownParser;
 
             // Add page breadcrumb and title
-            $this->pageTitle[] = Yii::t('users', 'Viewing {name} Profile', array('{name}'=>$model->username));
-            $this->breadcrumbs[ Yii::t('users', 'Viewing {name} Profile', array('{name}'=>$model->username)) ] = '';
+            $this->pageTitle[] = Yii::t('users', 'Viewing {name} Profile', array('{name}'=>CHtml::encode($model->username)));
+            $this->breadcrumbs[ Yii::t('users', 'Viewing {name} Profile', array('{name}'=>($model->username))) ] = '';
 
             $this->render('profile', array( 'model' => $model, 'markdown' => $markdown, 'addcomments' => $addcomments, 'pages' => $pages, 'commentsModel' => $commentsModel, 'totalcomments' => $totalcomments, 'comments'=>$comments ));
         } else {

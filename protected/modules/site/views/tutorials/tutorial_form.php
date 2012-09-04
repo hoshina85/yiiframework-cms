@@ -1,4 +1,4 @@
-<div id="formcenter">
+<div class="row">
     <h2><?php echo $label; ?></h2>
 
     <p><?php echo Yii::t('tutorials', 'Please fill all required fields and hit the submit button once your done. It may take time for the tutorial to be displayed publicly.'); ?></p>
@@ -28,6 +28,7 @@
         <?php echo CHtml::error($model, 'catid', array( 'class' => 'errorfield' )); ?>
 
         <br />
+        <!--
         <?php echo CHtml::activeLabel($model, 'metadesc'); ?>
         <?php echo CHtml::activeTextArea($model, 'metadesc', array( 'class' => 'textareacontact' )); ?>
         <?php echo CHtml::error($model, 'metadesc', array( 'class' => 'errorfield' )); ?>
@@ -36,6 +37,7 @@
         <?php echo CHtml::activeTextArea($model, 'metakeys', array( 'class' => 'textareacontact' )); ?>
         <?php echo CHtml::error($model, 'metakeys', array( 'class' => 'errorfield' )); ?>
         <br />
+        -->
 
         <?php if( Yii::app()->user->checkAccess('op_tutorials_manage') ):  ?>
 
@@ -53,7 +55,7 @@
         <br />
 
         <p>
-            <?php echo CHtml::submitButton(Yii::t('adminglobal', 'Submit'), array('class'=>'submitcomment', 'name'=>'submit')); ?>
+            <?php echo CHtml::submitButton(Yii::t('adminglobal', 'Submit'), array('class'=>'button', 'name'=>'submit')); ?>
         </p>
 
     </div>

@@ -7,8 +7,8 @@ class ForumController extends SiteBaseController
     /**
      * Page size constants
      */
-    const TOPIC_PAGE_SIZE = 50;
-    const POST_PAGE_SIZE = 50;
+    const TOPIC_PAGE_SIZE = 10;
+    const POST_PAGE_SIZE = 10;
 
     /**
      * Controller constructor
@@ -31,6 +31,7 @@ class ForumController extends SiteBaseController
         $criteria = new CDbCriteria;
         $criteria->condition = 'language=:lang AND (visible=:visible OR visible=:mod)';
         $criteria->params = array( ':lang' => Yii::app()->language, ':visible' => 1, ':mod' => Yii::app()->user->checkAccess('op_forum_post_topics') ? 0 : 1 );
+        $criteria->order = 't.lastpostdate DESC';
 
         $count = ForumTopics::model()->count($criteria);
         $pages = new CPagination($count);
@@ -59,6 +60,8 @@ class ForumController extends SiteBaseController
         // Did we submit the form?
         if ( isset($_POST['ForumTopics']) ) {
             $model->attributes = $_POST['ForumTopics'];
+            $model->lastpostdate = time();
+            $model->lastpostauthorid = Yii::app()->user->id;
             $model->visible = 1;
             if ( $model->save() ) {
                 Yii::app()->user->setFlash('success', Yii::t('forum', 'Thank You. Your topic created.'));

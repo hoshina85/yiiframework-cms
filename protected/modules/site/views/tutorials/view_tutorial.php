@@ -1,16 +1,17 @@
-
 <?php
-    Yii::app()->clientScript->registerCssFile( Yii::app()->themeManager->baseUrl . '/style/highlight.css', 'screen' );
+    Yii::app()->clientScript->registerCssFile( Yii::app()->themeManager->baseUrl . '/stylesheets/highlight.css', 'screen' );
     Yii::app()->clientScript->registerScriptFile( Yii::app()->themeManager->baseUrl . '/script/jquery.printElement.min.js', CClientScript::POS_END );
 ?>
 
-<div id="maincontent">
-    <div id="contentbig">
+<div class="row">
+<?php $this->widget('widgets.tutorialsidebar'); ?>
+    <div class="ten columns">
                 <a href="#titlecomment" class="linkcomment"><strong><?php echo $totalcomments; ?></strong> <?php echo Yii::t('tutorials', 'Comments'); ?></a>
                 &nbsp;
                 <a href="#" class="linkcomment"><strong><?php echo $model->views; ?></strong> <?php echo Yii::t('tutorials', 'Views'); ?></a>
                 &nbsp;
-                <?php $this->widget('CStarRating',array(
+
+                <?php /* $this->widget('CStarRating',array(
                     'htmlOptions'=>array('class'=>'linkcomment','style'=>'padding-left: 4px; text-align:left; direction:ltr;'),
                     'name'=>'rating',
                     'value' => $model->getRating(),
@@ -29,18 +30,18 @@
                             success: function(msg){
                                 alert("'.Yii::t('global', 'Rating Added.').'");
                         }})}'
-                ));?>
+                ));*/?>
 
                 <?php if( Tutorials::model()->canEditTutorial( $model ) ): ?>
-                    <?php echo CHtml::link(  CHtml::image( Yii::app()->themeManager->baseUrl . '/images/icons/pencil.png' ), array('tutorials/edittutorial', 'id'=>$model->id), array('class'=>'linkcomment') ); ?>
+                    <?php echo CHtml::link(  'edit', array('tutorials/edittutorial', 'id'=>$model->id), array('class'=>'button secondary small') ); ?>
                 <?php endif; ?>
 
                 <?php if( Yii::app()->user->checkAccess('op_tutorials_manage') ): ?>
 
                     <?php if( $model->status ): ?>
-                        <?php echo CHtml::link(  CHtml::image( Yii::app()->themeManager->baseUrl . '/images/icons/cross_circle.png' ), array('tutorials/toggletutorial', 'id'=>$model->id), array('class'=>'linkcomment') ); ?>
+                        <?php echo CHtml::link( 'hidden', array('tutorials/toggletutorial', 'id'=>$model->id), array('class'=>'button alert small') ); ?>
                     <?php else: ?>
-                        <?php echo CHtml::link(  CHtml::image( Yii::app()->themeManager->baseUrl . '/images/icons/tick_circle.png' ), array('tutorials/toggletutorial', 'id'=>$model->id), array('class'=>'linkcomment') ); ?>
+                        <?php echo CHtml::link(  'open', array('tutorials/toggletutorial', 'id'=>$model->id), array('class'=>'button success small') ); ?>
                     <?php endif; ?>
 
                 <?php endif; ?>
@@ -48,47 +49,39 @@
                 <div class="clear"></div>
                 <br />
 
-                <p class="postinfo"><?php echo Yii::t('blog', 'Posted by <strong>{by}</strong> in {in} on {on}', array( '{by}' => $model->author ? $model->author->getProfileLink() : Yii::t('global', 'Guest'), '{on}' => Yii::app()->dateFormatter->formatDateTime($model->postdate, 'short', 'short'), '{in}' => CHtml::link( $model->category->title, array('/tutorials/category/' . $model->category->alias, 'lang' => false ) ) )); ?></p>
+                <p class="postinfo"><?php echo Yii::t('blog', 'Posted by <strong>{by}</strong> in {in} on {on}', array( '{by}' => $model->author ? $model->author->getProfileLink() : Yii::t('global', 'Guest'), '{on}' => Yii::app()->dateFormatter->formatDateTime($model->postdate, 'long', 'long'), '{in}' => CHtml::link( $model->category->title, array('/tutorials/category/' . $model->category->alias, 'lang' => false ) ) )); ?></p>
                 <div class="clear"></div>
 
                 <div id='toprint'>
                     <?php echo $content; ?>
                 </div>
-
-                <div class='clear'></div>
-                <a href="#" id='optionsbutton' class="linkcomment"><?php echo Yii::t('global', 'Options'); ?></a>
-                <div class='clear'></div>
-                <div id='pageoptions'>
-                    <ul>
-                        <li><?php echo CHtml::link( Yii::t('global', 'Print'), '#', array('id'=>'printdocument') ); ?></li>
-                        <li><?php echo CHtml::link( Yii::t('global', 'PDF'), array('tutorials/pdf', 'id'=>$model->id) ); ?></li>
-                        <li><?php echo CHtml::link( Yii::t('global', 'Word'), array('tutorials/word', 'id'=>$model->id) ); ?></li>
-                        <li><?php echo CHtml::link( Yii::t('global', 'Text'), array('tutorials/text', 'id'=>$model->id) ); ?></li>
-                    </ul>
-                </div>
-
-        <div class="clear"></div><br />
+                <hr />
         <h3 id="titlecomment"><?php echo Yii::t('tutorials', 'Comments'); ?> (<?php echo $totalcomments; ?>)</h3>
-        <ul id="listcomment">
+          <div class="row">
             <?php if( count( $comments ) ): ?>
                 <?php foreach($comments as $comment): ?>
-                    <li <?php if( $comment->visible == 0 ): ?>style='background-color:#FFCECE;'<?php endif; ?>>
-                        <a name='comment<?php echo $comment->id; ?>'></a>
-                        <span class='commentspan'><?php echo CHtml::link( '#' . $comment->id, array('/tutorials/view/' . $model->alias, '#' => 'comment' . $comment->id, 'lang'=>false ) ); ?></span>
-                        <?php $this->widget('ext.VGGravatarWidget', array( 'size' => 50, 'email'=>$comment->author ? $comment->author->email : '','htmlOptions'=>array('class'=>'imgavatar','alt'=>'avatar'))); ?>
-                        <h4><?php echo $comment->author ? $comment->author->username : Yii::t('global', 'Unknown'); ?></h4>
-                        <span class="datecomment"><?php echo Yii::app()->dateFormatter->formatDateTime($comment->postdate, 'short', 'short'); ?></span>
-                        <div class="clear"></div>
-                        <p><?php echo $markdown->safeTransform($comment->comment); ?></p>
-                        <?php if( Yii::app()->user->checkAccess('op_tutorials_comments') ): ?>
-                            <?php echo CHtml::link( CHtml::image( Yii::app()->themeManager->baseUrl . '/images/'. ($comment->visible ? 'cross_circle' : 'tick_circle') . '.png' ), array('tutorials/togglestatus', 'id' => $comment->id), array( 'class' => 'tooltip', 'title' => Yii::t('tutorials', 'Toggle comment status!') ) ); ?>
-                        <?php endif; ?>
-                    </li>
+            <div class="one columns">
+            </div>
+            <div class="one columns">
+                <a name='post<?php echo $comment->id; ?>'></a>
+                <?php $this->widget('ext.VGGravatarWidget', array( 'size' => 50, 'email'=>$post->author ? $post->author->email : '','htmlOptions'=>array('class'=>'imgavatar','alt'=>'avatar'))); ?>
+            </div>
+            <div class="ten columns">
+                <span class='commentspan'><?php echo CHtml::link( '#' . $comment->id, array('/tutorials/view/' . $model->alias, '#' => 'comment' . $comment->id, 'lang'=>false ) ); ?></span>
+                <span class="datecomment"><?php echo Yii::app()->dateFormatter->formatDateTime($comment->postdate, 'full', 'short'); ?></span>
+                <h4><?php echo $comment->author ? CHtml::encode($comment->author->username) : Yii::t('global', 'Unknown'); ?></h4>
+            </div>
+            <div class="two columns"></div>
+            <div class="ten columns">
+                <div class="panel">
+                <p><?php echo $markdown->safeTransform($comment->comment); ?></p>
+                </div>
+                </div>
                 <?php endforeach; ?>
             <?php else: ?>
                 <li><?php echo Yii::t('tutorials', 'No comments posted yet. Be the first!'); ?></li>
             <?php endif; ?>
-        </ul>
+        </div>
         <?php $this->widget('CLinkPager', array('pages'=>$pages)); ?>
         <?php if( $addcomments ): ?>
 
@@ -97,7 +90,7 @@
                 <?php echo CHtml::label(Yii::t('tutorials', 'Comment'), ''); ?>
                 <?php $this->widget('widgets.markitup.markitup', array( 'model' => $commentsModel, 'attribute' => 'comment' )); ?>
                 <?php echo CHtml::error($commentsModel, 'comment'); ?>
-                <?php echo CHtml::submitButton(Yii::t('tutorials', 'Post Comment'), array( 'class' => 'submitcomment' )); ?>
+                <?php echo CHtml::submitButton(Yii::t('tutorials', 'Post Comment'), array( 'class' => 'button' )); ?>
             </div>
         <?php echo CHtml::endForm(); ?>
 
@@ -117,7 +110,4 @@ $(document).ready(function() {
      });
 </script>
 
-<?php echo $facebook->includeScript( Yii::app()->params['facebookappid'] ); ?>
 
-<?php $this->widget('widgets.tutorialsidebar'); ?>
-<div class="clear"></div>

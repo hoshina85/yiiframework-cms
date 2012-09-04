@@ -1,10 +1,9 @@
-
 <?php
     Yii::app()->clientScript->registerCssFile( Yii::app()->themeManager->baseUrl . '/style/highlight.css', 'screen' );
     Yii::app()->clientScript->registerScriptFile( Yii::app()->themeManager->baseUrl . '/script/jquery.printElement.min.js', CClientScript::POS_END );
 ?>
 
-<div id="maincontent">
+<div class="row">
     <div id="contentbig">
                 <a href="#titlecomment" class="linkcomment"><strong><?php echo $totalcomments; ?></strong> <?php echo Yii::t('extensions', 'Comments'); ?></a>
                 &nbsp;
@@ -90,7 +89,7 @@
                             <br /><br />
 
                             <p>
-                                <?php echo CHtml::submitButton(Yii::t('global', 'Submit'), array('class'=>'submitcomment', 'name'=>'submit')); ?>
+                                <?php echo CHtml::submitButton(Yii::t('global', 'Submit'), array('class'=>'button', 'name'=>'submit')); ?>
                             </p>
 
                         </div>
@@ -183,7 +182,7 @@
                 <?php echo CHtml::label(Yii::t('extensions', 'Comment'), ''); ?>
                 <?php $this->widget('widgets.markitup.markitup', array( 'model' => $commentsModel, 'attribute' => 'comment' )); ?>
                 <?php echo CHtml::error($commentsModel, 'comment'); ?>
-                <?php echo CHtml::submitButton(Yii::t('extensions', 'Post Comment'), array( 'class' => 'submitcomment' )); ?>
+                <?php echo CHtml::submitButton(Yii::t('extensions', 'Post Comment'), array( 'class' => 'button' )); ?>
             </div>
         <?php echo CHtml::endForm(); ?>
 

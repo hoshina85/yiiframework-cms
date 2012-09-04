@@ -27,7 +27,7 @@ $current_domain = CURRENT_ACTIVE_DOMAIN;
 
 // Required system configuration. There should be no edit performed here.
 return array(
-        'preload' => array('log', 'session', 'db', 'cache'),
+        'preload' => array('log', 'session', 'db', 'cache','foundation'),
         'basePath' => ROOT_PATH . 'protected/',
         'modules' => array(
                             'admin' => array(
@@ -44,7 +44,7 @@ return array(
                             'application.models.*',
                             'application.extensions.*',
         ),
-        'theme' => 'default',
+        'theme' => 'foundation',
         'name' => 'yiijan',
         'defaultController' => 'site/index',
         'layout' => 'main',
@@ -69,6 +69,9 @@ return array(
                 'widgets' => 'application.widgets',
         ),
         'components' => array(
+                'foundation' => array(
+                  'class' => 'ext.foundation.components.Foundation'
+                ),
                 'format' => array(
                         'class' => 'CFormatter',
                    ),

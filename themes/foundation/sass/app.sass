@@ -1,0 +1,163 @@
+// You custom settings file to override Foundation defaults
+@import settings
+
+// Comment out this import if you are customizing you imports below
+@import foundation
+@import compass/css3/border-radius
+@import compass/css3/box-shadow
+// ----------------------------------------
+// Import specific parts of Foundation by commenting the import "foundation"
+// and uncommenting what you want below. You must uncomment the following if customizing
+
+// @import "compass/css3";
+// @import "foundation/settings";
+// @import "foundation/functions/all";
+// @import "foundation/common/globals";
+// @import "foundation/mixins/clearfix";
+// @import "modular-scale";
+
+// Control which mixins you have access too
+
+// @import "foundation/mixins/css-triangle";
+// @import "foundation/mixins/font-size";
+
+// Must include next two for semantic grid to work
+
+// @import "foundation/mixins/respond-to";
+// @import "foundation/mixins/semantic-grid";
+
+// Must include the grid for any responsiveness
+
+// @import "foundation/components/grid";
+
+// Control which common styles get compiled
+
+// @import "foundation/common/typography";
+// @import "foundation/common/forms";
+
+// Control which components you get if customizing
+
+// @import "foundation/components/modules/buttons";
+// @import "foundation/components/modules/tabs";
+// @import "foundation/components/modules/ui";
+// @import "foundation/components/modules/navbar";
+// @import "foundation/components/modules/orbit";
+// @import "foundation/components/modules/reveal";
+// @import "foundation/components/modules/offcanvas";
+
+h2
+  font-size: 25px
+h3
+  font-size: 20px
+h4
+  font-size: 15px
+
+body
+  background-color: #F0F0F0
+
+div.row
+  background-color: #FAFAFA
+
+header > .row
+  padding-top: 1em
+
+.row > .nav-bar
+  margin-bottom: 0
+
+ul.breadcrumbs
+  margin: 11px 15px
+
+#mine
+  .nav-bar
+    border: none
+    background-color: #FFF
+    color: $txtColor
+    margin: 0
+    height: 50px
+
+  img
+    float: right
+
+  li.has-flyout
+    border: none
+    height: 50px
+
+  .flyout
+    position: relative
+    width: inherit
+    top: 0
+    left: 0
+    li
+      a
+        padding: 10px 1px 10px 16px
+
+  .nav-bar > li:hover
+    background-color: #CCC
+
+  .nav-bar > li > a
+    height: 50px
+    color: $txtColor
+
+  .nav-bar > li:last-child
+    border: none
+
+  .nav-bar > li.has-flyout > a:first-child
+    padding-top: 5px
+  .nav-bar > li.has-flyout > a:first-child::after
+    border-color: $txtColor transparent transparent transparent
+    top: 22px
+
+.row
+  background-color: $white
+
+footer
+  background-color: #4D4D4D
+  padding: 1em
+  color: $white
+  .row
+    background-color: inherit
+    line-height: 2.6
+    a
+      color: lighten($mainColor,20%)
+
+
+.news li
+  margin-bottom: 10px
+  padding-bottom: 10px
+  border-bottom: dashed #CCC 1px
+  font-size: 9pt
+
+.news li:last-child
+  border: none
+a.title
+  font-size: 1.3em
+  margin: 0
+  line-height: 1
+  font-weight: bold
+
+pre
+  background-color: #F6F6F6
+  border: 1px solid #E9E9E9
+  @include border-radius(2px)
+  padding: 1em
+  line-height: 1.4
+  font-family: "Lucida Console", "Monaco", monospace
+
+h2,h3
+  border-left: 3px $successColor solid
+  padding-left: 5px
+
+.postinfo
+  color: #555
+  margin: 0
+
+#facebook_signin 
+  display: block
+  width: 150px
+  height: 23px
+  background: url("../../default/images/facebook_signin.png") no-repeat
+  margin-bottom: 1em
+
+#facebook_signin > span
+  visibility: hidden
+
