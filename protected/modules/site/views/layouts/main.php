@@ -18,21 +18,7 @@
 
     <!-- Included CSS Files -->
     <?php Yii::app()->clientScript->registerCssFile( Yii::app()->themeManager->baseUrl . '/stylesheets/app.css', 'screen' ); ?>
-    <?php Yii::app()->clientScript->registerCssFile( Yii::app()->themeManager->baseUrl . '/stylesheets/sprite.css', 'screen' ); ?>
 
-    <script src="/javascripts/foundation/modernizr.foundation.js"></script>
-
-    <!-- IE Fix for HTML5 Tags -->
-    <?php
-    //Yii::app()->clientScript->registerCoreScript('jquery');
-    //Yii::app()->clientScript->registerScriptFile( Yii::app()->themeManager->baseUrl . '/script/ui_core.js' , CClientScript::POS_END );
-    //Yii::app()->clientScript->registerScriptFile( Yii::app()->themeManager->baseUrl . '/script/ui_tabs.js' , CClientScript::POS_END );
-    //Yii::app()->clientScript->registerScriptFile( Yii::app()->themeManager->baseUrl . '/script/lightbox.js' , CClientScript::POS_END );
-    //Yii::app()->clientScript->registerScriptFile( Yii::app()->themeManager->baseUrl . '/script/bubblepopup.js' , CClientScript::POS_END );
-    //Yii::app()->clientScript->registerScriptFile( Yii::app()->themeManager->baseUrl . '/script/tiptip/jquery.tipTip.minified.js' , CClientScript::POS_END );
-    //Yii::app()->clientScript->registerCssFile( Yii::app()->themeManager->baseUrl . '/script/tiptip/tipTip.css', 'screen' );
-    //Yii::app()->clientScript->registerScriptFile( Yii::app()->themeManager->baseUrl . '/script/global.js' , CClientScript::POS_END );
-    ?>
   </head>
   <body>
     <header>
