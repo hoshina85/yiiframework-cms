@@ -1,5 +1,5 @@
 <?php
-    Yii::app()->clientScript->registerCssFile( Yii::app()->themeManager->baseUrl . '/style/highlight.css', 'screen' );
+    Yii::app()->clientScript->registerCssFile( Yii::app()->themeManager->baseUrl . '/stylesheets/highlight.css', 'screen' );
 ?>
 
 <?php if( Yii::app()->user->id ): ?>
