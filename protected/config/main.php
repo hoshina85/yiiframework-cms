@@ -70,7 +70,8 @@ return array(
         ),
         'components' => array(
                 'foundation' => array(
-                  'class' => 'ext.foundation.components.Foundation'
+                  'class' => 'ext.foundation.components.Foundation',
+                  'coreCss' => false,
                 ),
                 'format' => array(
                         'class' => 'CFormatter',
