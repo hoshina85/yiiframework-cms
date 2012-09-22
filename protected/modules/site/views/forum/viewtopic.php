@@ -45,8 +45,8 @@
                 <span class="datecomment"><?php echo Yii::app()->dateFormatter->formatDateTime($post->dateposted, 'full', 'short'); ?></span>
                 <h4><?php echo $post->author ? CHtml::encode($post->author->username) : Yii::t('global', 'Unknown'); ?></h4>
             </div>
-            </div>
-<div class="row">
+        </div>
+        <div class="row">
             <div class="two columns"></div>
             <div class="ten columns">
                 <div class="panel">
@@ -64,6 +64,8 @@
 
 <?php if( Yii::app()->user->checkAccess('op_forum_post_posts') ): ?>
 <hr />
+<div class="rows">
+<div class="twelve columns">
         <h3><?php echo Yii::t('forum', 'Post'); ?></h3>
 <?php echo CHtml::form('', 'post', array('id'=>'frmcomment')); ?>
 <?php echo CHtml::hiddenField('lastpage', $pages->pageCount); ?>
@@ -77,4 +79,6 @@
 <?php else: ?>
 <div><?php echo Yii::t('global', 'You must be logged in to post.'); ?></div>
 <?php endif;?>
+</div>
+</div>
 </div>

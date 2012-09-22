@@ -1,4 +1,5 @@
 <div class="row">
+<div class="twelve columns">
     <h2><?php echo $label; ?></h2>
 
     <p><?php echo Yii::t('tutorials', 'Please fill all required fields and hit the submit button once your done. It may take time for the tutorial to be displayed publicly.'); ?></p>
@@ -62,4 +63,5 @@
 
     <?php echo CHtml::endForm(); ?>
 
+</div>
 </div>
