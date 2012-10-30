@@ -160,7 +160,7 @@ class ForumController extends SiteBaseController
 
             $pages->applyLimit($criteria);
 
-            $posts = ForumPosts::model()->byDateAsc()->with(array('author'))->findAll($criteria);
+            $posts = ForumPosts::model()->byDate()->with(array('author'))->findAll($criteria);
 
             // Show titles and nav
             $this->pageTitle[] = Yii::t('forum', 'Viewing Topic: {title}', array('{title}'=>CHtml::encode($model->title)));
