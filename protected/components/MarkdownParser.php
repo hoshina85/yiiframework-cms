@@ -22,6 +22,7 @@ class MarkdownParser extends CMarkdownParser
     {
         $content=$this->transform($content);
         $purifier=new CHtmlPurifier;
+        $purifier->options=array('Attr.EnableID'=>true);
 
         return $purifier->purify($content);
     }
