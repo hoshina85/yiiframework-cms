@@ -256,11 +256,8 @@ class BlogController extends SiteBaseController
             $this->pageTitle[] = $model->title;
             $this->breadcrumbs[ $model->title ] = '';
 
-            // Load facebook
-            Yii::import('ext.facebook.facebookLib');
-            $facebook = new facebookLib(array( 'appId' => Yii::app()->params['facebookapikey'], 'secret' => Yii::app()->params['facebookapisecret'], 'cookie' => true, 'disableSSLCheck' => true ));
 
-            $this->render('view_post',array( 'facebook' => $facebook, 'addcomments' => $addcomments, 'content'=>$content, 'model' => $model, 'pages' => $pages, 'markdown' => $markdown, 'commentsModel' => $commentsModel, 'totalcomments' => $totalcomments, 'comments'=>$comments));
+            $this->render('view_post',array('addcomments' => $addcomments, 'content'=>$content, 'model' => $model, 'pages' => $pages, 'markdown' => $markdown, 'commentsModel' => $commentsModel, 'totalcomments' => $totalcomments, 'comments'=>$comments));
         } else {
             throw new CHttpException(404, Yii::t('error', 'Sorry, We could not find that post.'));
         }

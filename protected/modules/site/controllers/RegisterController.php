@@ -61,13 +61,9 @@ class RegisterController extends SiteBaseController
             }
         }
 
-        // Load facebook
-        Yii::import('ext.facebook.facebookLib');
-        $facebook = new facebookLib(array( 'appId' => Yii::app()->params['facebookappid'], 'secret' => Yii::app()->params['facebookapisecret'], 'cookie' => true, 'disableSSLCheck' => false ));
-        facebookLib::$CURL_OPTS[CURLOPT_CAINFO] = Yii::getPathOfAlias('ext.facebook') . '/ca-bundle.crt';
 
         // Facebook link
-        $facebookLink = $facebook->getLoginUrl(array('req_perms' => 'read_stream,email,offline_access', 'next' => Yii::app()->createAbsoluteUrl('/login/facebooklogin', array( 'lang' => false ) ), 'display'=>'popup') );
+        $facebookLink = Yii::app()->facebook->getLoginUrl(array('redirect_uri'=>$this->createAbsoluteUrl('Login/facebookLogin'), 'scope'=>'email'));
 
         $this->render('index', array('model'=>$model, 'facebookLink' => $facebookLink));
     }

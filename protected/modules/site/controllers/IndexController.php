@@ -27,11 +27,7 @@ class IndexController extends SiteBaseController
             }
         }
 
-        // Load facebook
-        Yii::import('ext.facebook.facebookLib');
-        $facebook = new facebookLib(array( 'appId' => Yii::app()->params['facebookappid'], 'secret' => Yii::app()->params['facebookapisecret'], 'cookie' => true, 'disableSSLCheck' => false ));
-        facebookLib::$CURL_OPTS[CURLOPT_CAINFO] = Yii::getPathOfAlias('ext.facebook') . '/ca-bundle.crt';
 
-        $this->render('index', array('model'=>$model, 'facebook' => $facebook, 'sent'=>$sent));
+        $this->render('index', array('model'=>$model,  'sent'=>$sent));
     }
 }

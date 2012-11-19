@@ -1,3 +1,5 @@
+<div class="row">
+    <div class="twelve columns">
 <div class='notification information png_bg'>
     <div>
         <table>
@@ -10,9 +12,9 @@
 </div>
 
 <div id="formcenter">
-<div id='facebooklogin'>
+<div class="row">
 
-<div class='floatleft' style='width:45%'>
+<div class='six columns'>
     <h2><?php echo Yii::t('login', 'Associate Account Form'); ?></h2>
     <p><?php echo Yii::t('login', 'Associate an account with your facebook account.'); ?></p>
 
@@ -42,7 +44,7 @@
 
 </div>
 
-<div class='floatleft paddright' style='width:45%;'>
+<div class='six columns'>
     <h2><?php echo Yii::t('login', 'Sign-Up Form'); ?></h2>
     <p><?php echo Yii::t('login', 'Signup using your facebook account information'); ?></p>
 
@@ -86,5 +88,7 @@
 
 <div class="clear"></div><br />
 
+</div>
+</div>
 </div>
 </div>

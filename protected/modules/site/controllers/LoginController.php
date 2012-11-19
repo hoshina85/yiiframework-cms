@@ -63,13 +63,8 @@ class LoginController extends SiteBaseController
             }
         }
 
-        // Load facebook
-        Yii::import('ext.facebook.facebookLib');
-        $facebook = new facebookLib(array( 'appId' => Yii::app()->params['facebookappid'], 'secret' => Yii::app()->params['facebookapisecret'], 'cookie' => true, 'disableSSLCheck' => false ));
-        facebookLib::$CURL_OPTS[CURLOPT_CAINFO] = Yii::getPathOfAlias('ext.facebook') . '/ca-bundle.crt';
-
         // Facebook link
-        $facebookLink = $facebook->getLoginUrl(array('req_perms' => 'read_stream,email,offline_access', 'next' => Yii::app()->createAbsoluteUrl('/login/facebooklogin', array( 'lang' => false ) ), 'display'=>'popup') );
+        $facebookLink = Yii::app()->facebook->getLoginUrl(array('redirect_uri'=>$this->createAbsoluteUrl('Login/facebookLogin'), 'scope'=>'email'));
 
         $this->render('index', array('model'=>$model, 'facebookLink' => $facebookLink, 'facebook'=>$facebook));
     }
@@ -79,17 +74,18 @@ class LoginController extends SiteBaseController
      */
     public function actionFacebookLogin()
     {
+      $userId = Yii::app()->facebook->getUser();
+      $access = Yii::app()->facebook->getAccessToken();
 
         // Load facebook
-        Yii::import('ext.facebook.facebookLib');
-        $facebook = new facebookLib(array( 'appId' => Yii::app()->params['facebookappid'], 'secret' => Yii::app()->params['facebookapisecret'], 'cookie' => true, 'disableSSLCheck' => false ));
-        facebookLib::$CURL_OPTS[CURLOPT_CAINFO] = Yii::getPathOfAlias('ext.facebook') . '/ca-bundle.crt';
+        //$facebook = new facebookLib(array( 'appId' => Yii::app()->params['facebookappid'], 'secret' => Yii::app()->params['facebookapisecret'], 'cookie' => true, 'disableSSLCheck' => false ));
+        //facebookLib::$CURL_OPTS[CURLOPT_CAINFO] = Yii::getPathOfAlias('ext.facebook') . '/ca-bundle.crt';
 
         // Do we have an access token?
-        if ( ( $session = $facebook->getSession() ) || ( isset($_GET['session']) && $_GET['session'] ) ) {
+        if ($access) {
             $info = array( 'id' => 0, 'email' => '' );
 
-            $info = $facebook->getInfo(null, array('access_token'=>$session['access_token']));
+            $info = Yii::app()->facebook->api('/me?access_token='.$access);
 
             // Did we submit the authenticate form?
             $facebookForm = new facebookForm;
@@ -109,7 +105,7 @@ class LoginController extends SiteBaseController
 
                     // Update the fbuid and update the token
                     // We got through save the a new token
-                    Members::model()->updateByPk( $identity->getId() , array( 'fbuid' => $info['id'], 'fbtoken' => $session['access_token'] ) );
+                    Members::model()->updateByPk( $identity->getId() , array( 'fbuid' => $info['id'], 'fbtoken' => $access ) );
 
                     // Login & redirect
                     Yii::app()->user->setFlash( 'success', Yii::t('login', 'Thank You. You are now logged in.') );
@@ -136,7 +132,7 @@ class LoginController extends SiteBaseController
 
                     // Update the fbuid and update the token
                     // We got through save the a new token
-                    Members::model()->updateByPk( $facebookSignForm->id, array( 'fbuid' => $info['id'], 'fbtoken' => $session['access_token'] ) );
+                    Members::model()->updateByPk( $facebookSignForm->id, array( 'fbuid' => $info['id'], 'fbtoken' => $access ) );
 
                     // Login & redirect
                     Yii::app()->user->setFlash( 'success', Yii::t('login', 'Thank You. You are now logged in.') );
@@ -159,24 +155,19 @@ class LoginController extends SiteBaseController
             } else {
                 // We got through save the a new token
                 Yii::app()->user->login($identity, (Yii::app()->params['loggedInDays'] * 60 * 60 * 24 ));
-                Members::model()->updateByPk( $identity->getId(), array( 'fbtoken' => $session['access_token'] ) );
+                Members::model()->updateByPk( $identity->getId(), array( 'fbtoken' => $access ) );
                 Yii::app()->user->setFlash( 'success', Yii::t('login', 'Thank You. You are now logged in.') );
-                $this->render('facebookdone', array( 'link' => $this->createUrl('/index', array( 'lang' => false ) ) ) );
+                return $this->render('facebookdone', array( 'link' => $this->createUrl('/index', array( 'lang' => false ) ) ) );
                 //$this->redirect('/index');
             }
 
-            // Redirect if haven't done so
-            if ( !isset( $_GET['facebookRedirected'] ) ) {
-                $_GET['facebookRedirected'] = 'true';
-                $this->render('facebookdone', array( 'link' => $this->createUrl('/login/facebooklogin', array_merge( $_GET, array( 'lang' => false ) ) ) ) );
-            }
 
             // Default values
             $facebookForm->email = $facebookForm->email ? $facebookForm->email : $info['email'];
             $facebookSignForm->email = $facebookSignForm->email ? $facebookSignForm->email : $info['email'];
             $facebookSignForm->username = $facebookSignForm->username ? $facebookSignForm->username : $info['name'];
 
-            $this->render('facebook_login', array( 'facebookSignForm' => $facebookSignForm, 'facebookForm' => $facebookForm,  'info' => $info ));
+             $this->render('facebook_login', array( 'facebookSignForm' => $facebookSignForm, 'facebookForm' => $facebookForm,  'info' => $info ));
         } else {
             $this->redirect('/login');
         }
@@ -232,7 +223,7 @@ class LoginController extends SiteBaseController
         $this->pageTitle[] = Yii::t('login', 'Lost Password');
         $this->breadcrumbs[ Yii::t('login', 'Lost Password') ] = '';
 
-        $this->render('lostpassword', array( 'model' => $model ));
+        return $this->render('lostpassword', array( 'model' => $model ));
     }
 
     /**

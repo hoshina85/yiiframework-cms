@@ -10,7 +10,7 @@
     </div>
     <?php endif; ?>
     <div id='facebookloginbutton'>
-        <?php echo CHtml::link( '<span>Sign in with Facebook</span>', 'javascript:void(0);', array( 'title' => Yii::t('login', 'Login With Facebook'), 'onClick' => "return showFaceBookAuth();", "id" => "facebook_signin" ) ); ?>
+        <?php echo CHtml::link( '<span>Sign in with Facebook</span>', $facebookLink, array( 'title' => Yii::t('login', 'Login With Facebook'), "id" => "facebook_signin" ) ); ?>
     </div>
 
     <?php echo CHtml::form('', 'post', array('class'=>'frmcontact')); ?>

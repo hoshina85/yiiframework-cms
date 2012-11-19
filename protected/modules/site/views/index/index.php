@@ -103,4 +103,3 @@
 </div>
 </div>
 
-<?php echo $facebook->includeScript( Yii::app()->params['facebookappid'] ); ?>

@@ -31,8 +31,8 @@ $production = array(
                 array(
                     'class' => 'LogEmailMessages',
                     'levels' => 'error, warning',
-                    'emails' => 'vadimg88@gmail.com',
-                    'sentFrom' => 'support@yiiframework.co.il',
+                    'emails' => 'hoshina@gmail.com',
+                    'sentFrom' => 'hoshina@gmail.com',
                     'subject' => 'Application Error',
                 ),
         ),
