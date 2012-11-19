@@ -48,23 +48,6 @@
 <?php $this->endCache(); } ?>
 </ul>
 
-<h2><?php echo Yii::t('index', 'Latest Extensions'); ?></h2>
-<ul class="no-bullet news">
-  <?php if ($this->beginCache('indexextensions_' . Yii::app()->language, array('duration'=>3600))) { ?>
-  <?php $exts = Extensions::model()->byDate()->byLang()->limitIndex()->findAll('status=1'); ?>
-  <?php if( is_array($exts) && count($exts) ): ?>
-  <?php foreach($exts as $ext): ?>
-  <li>
-    <p class="postinfo">Posted by <?php echo $ext->author->profileLink;?> in 
-      <span class="label round"><?php echo $ext->category->title;?></span> on
-      <?php echo Yii::app()->dateFormatter->formatDateTime($ext->postdate, 'long');?></p>
-      <?php echo Extensions::model()->getLink( $ext->title, $ext->alias, array( 'title' => $ext->description, 'class'=>'title' ) ); ?></li>
-    <?php endforeach; ?>
-  <?php else: ?>
-  <li><?php echo Yii::t('index', 'No Extensions Available.'); ?></li>
-<?php endif; ?>
-<?php $this->endCache(); }?>
-</ul>
 </div>
 
 <div class="four columns">
