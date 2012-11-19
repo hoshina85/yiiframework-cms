@@ -9,23 +9,23 @@ $main = include_once 'main.php';
 $production = array(
     'components' => array(
         'db' =>  array(
-                        'class' => 'CDbConnection',
-                        'connectionString' => 'mysql:host=localhost;dbname=yiiframework',
-                        'username' => 'root',
-                        'password' => '89538953',
-                        'charset' => 'UTF8',
-                        'tablePrefix' => '',
-                        'emulatePrepare' => true,
-                        'enableProfiling' => true,
-                        'schemaCacheID' => 'cache',
-                        'schemaCachingDuration' => 3600
-                ),
+            'class' => 'CDbConnection',
+            'connectionString' => 'mysql:host=localhost;dbname=yiiframework',
+            'username' => 'root',
+            'password' => '89538953',
+            'charset' => 'UTF8',
+            'tablePrefix' => '',
+            'emulatePrepare' => true,
+            'enableProfiling' => true,
+            'schemaCacheID' => 'cache',
+            'schemaCachingDuration' => 3600
+        ),
         'messages' => array(
-                            //'onMissingTranslation' => array('MissingMessages', 'load'),
-                            'cachingDuration' => 3600,
-             ),
+            //'onMissingTranslation' => array('MissingMessages', 'load'),
+            'cachingDuration' => 3600,
+        ),
         'log' => array(
-                        'class' => 'CLogRouter',
+            'class' => 'CLogRouter',
             'routes' => array(
                 // Configures Yii to email all errors and warnings to an email address
                 array(
@@ -35,10 +35,10 @@ $production = array(
                     'sentFrom' => 'hoshina@gmail.com',
                     'subject' => 'Application Error',
                 ),
-        ),
-
             ),
+
         ),
+    ),
 );
 //merge both configurations and return them
 return CMap::mergeArray($main, $production);
